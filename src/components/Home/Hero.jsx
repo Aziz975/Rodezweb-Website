@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const Hero = () => {
@@ -42,9 +41,20 @@ const Hero = () => {
           {/* Left Column */}
           <div className="flex flex-col gap-4">
             <div className="flex min-h-[115px] items-center gap-4 rounded-md bg-white p-5 text-black">
-              <img src="images/rodezlogo.png" alt="" />
-              <div className="h-14 w-24 shrink-0 rounded-full bg-gray-200">
-                {/* Add team image src here */}
+              {/* Logo image */}
+              <img
+                src="/images/rodezlogo.png"
+                alt="Rodez logo"
+                className="h-10 w-auto shrink-0 object-contain"
+              />
+
+              {/* Team image */}
+              <div className="h-14 w-24 shrink-0 overflow-hidden rounded-full bg-gray-200">
+                <img
+                  src="images/redhelmet.webp"
+                  alt="Our team"
+                  className="h-full w-full "
+                />
               </div>
 
               <div>
@@ -78,10 +88,11 @@ const Hero = () => {
           {/* Center Column */}
           <div className="flex flex-col gap-4">
             <div className="flex h-[280px] items-center justify-center overflow-hidden rounded-md bg-[#f5f5f5]">
+              {/* Portrait image */}
               <img
-                src="images/image1.png"
+                src="/images/redhelmet.webp"
                 alt="Portrait"
-                className="h-full w-full object-cover rounded-md"
+                className="h-full w-full rounded-md object-cover"
               />
             </div>
 
@@ -188,18 +199,30 @@ const Philosophy = () => {
           </div>
 
           {/* Main Image */}
-          <div className="min-h-[280px] bg-[#d9dedb] md:col-span-4">
-            {/* Add main workspace image src here */}
+          <div className="min-h-[280px] overflow-hidden bg-[#d9dedb] md:col-span-4">
+            <img
+              src="images/redhelmet.webp"
+              alt="Our workspace"
+              className="h-full min-h-[280px] w-full object-cover"
+            />
           </div>
 
           {/* Secondary Image */}
-          <div className="min-h-[180px] bg-[#e8e8e8] md:col-span-2">
-            {/* Add secondary image src here */}
+          <div className="min-h-[180px] overflow-hidden bg-[#e8e8e8] md:col-span-2">
+            <img
+              src="images/redhelmet.webp"
+              alt="Team collaboration"
+              className="h-full min-h-[180px] w-full object-cover"
+            />
           </div>
 
           {/* Third Image */}
-          <div className="min-h-[180px] bg-[#c8c8c8] md:col-span-2">
-            {/* Add third image src here */}
+          <div className="min-h-[180px] overflow-hidden bg-[#c8c8c8] md:col-span-2">
+            <img
+              src="images/redhelmet.webp"
+              alt="Creative process"
+              className="h-full min-h-[180px] w-full object-cover"
+            />
           </div>
 
         </div>
@@ -241,5 +264,13 @@ const Solutions = () => {
     </section>
   );
 };
+
+const App = () => (
+  <>
+    <Hero />
+    <Philosophy />
+    <Solutions />
+  </>
+);
 
 export default App;
