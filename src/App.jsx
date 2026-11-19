@@ -6,6 +6,8 @@ import Home from "./Pages/HomePage";
 import ContactPage from "./components/Contact/ContactPage";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Blog from "./Components/Blog/Blog";
+import Footer from "./components/Footer/Footer";
+
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
         <Route path="/about" element={<AboutUs />} />
          <Route path="/blog" element={<Blog />} />
       </Routes>
+       <Footer></Footer>
     </BrowserRouter>
   );
 };
