@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-// Put your blog images in the "public/blog" folder and write the path here, e.g. "/blog/post-1.jpg".
-// If "image" is empty, a grey placeholder is shown.
-const AVATAR = ""; // e.g. "/blog/admin.jpg"
+// Admin avatar (same Gravatar the live site uses). You can also save it in /public and use a local path.
+const AVATAR =
+  "https://secure.gravatar.com/avatar/75c38e32cdecce71f0633de6f67b4272b4a1d844a7781d382931765efffd06c5?s=112&d=mm&r=g";
 
 const posts = [
   {
-    slug: "best-website-development-company-in-noida-for-business-growth",
+    slug: "best-website-development-company-in-noida-for-business-growth-rodez-web-technology",
     title:
       "Best Website Development Company in Noida for Business Growth | Rodez Web Technology",
-    image:"/images/image1.png",
+    image: "/images/image1.png",
     categories: ["Digital Marketing"],
     excerpt:
       "In today’s digital world, having a professional website is essential for businesses that want to build credibility, reach more customers, and increase online enquiries...",
@@ -17,7 +17,7 @@ const posts = [
     read: "7 min read",
   },
   {
-    slug: "website-redesign-services-in-noida",
+    slug: "website-redesign-services-in-noida-to-improve-user-experience-and-conversions-rodez-web-technology",
     title:
       "Website Redesign Services in Noida to Improve User Experience and Conversions | Rodez Web Technology",
     image: "/images/image2.png",
@@ -28,7 +28,7 @@ const posts = [
     read: "9 min read",
   },
   {
-    slug: "wordpress-website-development-company-in-noida",
+    slug: "wordpress-website-development-company-in-noida-for-custom-business-websites-rodez-web-technology",
     title:
       "WordPress Website Development Company in Noida for Custom Business Websites | Rodez Web Technology",
     image: "/images/image3.png",
@@ -39,13 +39,13 @@ const posts = [
     read: "5 min read",
   },
   {
-    slug: "best-shopify-developers-in-noida",
+    slug: "best-shopify-developers-in-noida-for-professional-ecommerce-website-development",
     title:
       "Best Shopify Developers in Noida for Professional Ecommerce Website Development",
     image: "/images/image4.png",
     categories: ["Business", "Digital Marketing", "Uncategorized"],
     excerpt:
-      "In today’s competitive digital marketplace, having a professional ecommerce website is essential for businesses that want to sell products online and reach more customers. [...]",
+      "In today’s competitive digital marketplace, having a professional ecommerce website is essential for businesses that want to sell products online and reach more customers. [...",
     date: "Oct 24, 2026",
     read: "7 min read",
   },
@@ -54,7 +54,7 @@ const posts = [
 const recentPosts = [
   ...posts.map((p) => ({ slug: p.slug, title: p.title })),
   {
-    slug: "best-wordpress-website-development-company-in-noida",
+    slug: "best-wordpress-website-development-company-in-india-for-business-websites-rodez-web-technology",
     title:
       "Best WordPress Website Development Company in Noida for Business Websites | Rodez Web Technology",
   },
@@ -76,54 +76,58 @@ const categories = [
   "WordPress",
 ];
 
+// [name, slug]
 const tags = [
-  "Business Growth",
-  "Content Marketing",
-  "Custom Website Development",
-  "Digital Marketing",
-  "Digital Marketing Agency",
-  "Digital Marketing Agency Noida",
-  "Digital Marketing Bangalore",
-  "Digital Marketing Company in Noida",
-  "Digital Marketing Company Noida",
-  "Digital Marketing Services",
-  "E-commerce Website Development",
-  "Facebook Marketing",
-  "Google Ads",
-  "Lead Generation",
-  "Local SEO",
-  "Marketing Strategy",
-  "Online Business Growth",
-  "Online Marketing",
-  "Online Marketing Agency",
-  "Pay-Per-Click (PPC)",
-  "Performance Marketing",
-  "PPC",
-  "PPC Advertising",
-  "PPC Services",
-  "PPC Services Noida",
-  "rodezWeb",
-  "Rodez Web Technologies",
-  "Rodez Web Technology",
-  "Search Engine Optimization",
-  "Search Engine Optimization (SEO)",
-  "SEO",
-  "SEO Company Noida",
-  "SEO Optimized",
-  "SEO Services",
-  "SEO Services Bangalore",
-  "SEO Services Noida",
-  "Social media marketing",
-  "Social media marketing Bangalore",
-  "Social Media Marketing Noida",
-  "Technical SEO",
-  "UI UX Design",
-  "web development",
-  "Website Development",
-  "WordPress Development",
+  ["Business Growth", "business-growth"],
+  ["Content Marketing", "content-marketing"],
+  ["Custom Website Development", "custom-website-development"],
+  ["Digital Marketing", "digital-marketing"],
+  ["Digital Marketing Agency", "digital-marketing-agency"],
+  ["Digital Marketing Agency Noida", "digital-marketing-agency-noida"],
+  ["Digital Marketing Bangalore", "digital-marketing-bangalore"],
+  ["Digital Marketing Company in Noida", "digital-marketing-company-in-noida"],
+  ["Digital Marketing Company Noida", "digital-marketing-company-noida"],
+  ["Digital Marketing Services", "digital-marketing-services"],
+  ["E-commerce Website Development", "e-commerce-website-development"],
+  ["Facebook Marketing", "facebook-marketing"],
+  ["Google Ads", "google-ads"],
+  ["Lead Generation", "lead-generation"],
+  ["Local SEO", "local-seo"],
+  ["Marketing Strategy", "marketing-strategy"],
+  ["Online Business Growth", "online-business-growth"],
+  ["Online Marketing", "online-marketing"],
+  ["Online Marketing Agency", "online-marketing-agency"],
+  ["Pay-Per-Click (PPC)", "pay-per-click-ppc"],
+  ["Performance Marketing", "performance-marketing"],
+  ["PPC", "ppc"],
+  ["PPC Advertising", "ppc-advertising"],
+  ["PPC Services", "ppc-services"],
+  ["PPC Services Noida", "ppc-services-noida"],
+  ["rodezWeb", "rodezweb"],
+  ["Rodez Web Technologies", "rodez-web-technologies"],
+  ["Rodez Web Technology", "rodez-web-technology"],
+  ["Search Engine Optimization", "search-engine-optimization"],
+  ["Search Engine Optimization (SEO)", "search-engine-optimization-seo"],
+  ["SEO", "seo"],
+  ["SEO-Friendly Websites", "seo-friendly-websites"],
+  ["SEO Company Noida", "seo-company-noida"],
+  ["SEO Optimized", "seo-optimized"],
+  ["SEO Services", "seo-services"],
+  ["SEO Services Bangalore", "seo-services-bangalore"],
+  ["SEO Services Noida", "seo-services-noida"],
+  ["Social media marketing", "social-media-marketing"],
+  ["Social media marketing Bangalore", "social-media-marketing-bangalore"],
+  ["Social Media Marketing Noida", "social-media-marketing-noida"],
+  ["Technical SEO", "technical-seo"],
+  ["UI UX Design", "ui-ux-design"],
+  ["web development", "web-development"],
+  ["Website Development", "website-development"],
+  ["WordPress Development", "wordpress-development"],
 ];
 
 const pages = [1, 2, 3, "…", 105];
+
+const categoryHref = (c) => `/category/${c.toLowerCase().replace(/\s+/g, "-")}`;
 
 // Replace 91XXXXXXXXXX with the real WhatsApp number (country code + number, no + or spaces)
 const WHATSAPP_URL =
@@ -140,13 +144,15 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-[#1e1e1e] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9]">
       {/* ---------- Hero ---------- */}
-      <section className="bg-[#262626] px-6 pb-20 pt-16 lg:px-[7.5%] lg:pb-[120px] lg:pt-[110px]">
-        <div className="mx-auto max-w-[1620px]">
-          <p className="mb-6 text-[clamp(1.5rem,2.2vw,2.2rem)] text-[#ef5d39]">
+      <section className="flex min-h-[446px] items-center bg-[#262626] px-6 py-16 lg:px-[7.5%]">
+        <div className="mx-auto w-full max-w-[1620px]">
+          <h2 className="mb-6 text-[clamp(1.5rem,1.7vw,2rem)] font-normal text-[#ef5d39]">
             Our stories
-          </p>
-          <h1 className="max-w-[820px] text-[clamp(2.6rem,6vw,5.6rem)] font-bold uppercase leading-[1.05]">
-            We create awesome blog
+          </h2>
+          <h1 className="text-[clamp(2.6rem,4.1vw,4.9rem)] font-bold uppercase leading-none">
+            We create
+            <br />
+            Awesome Blog
           </h1>
         </div>
       </section>
@@ -162,21 +168,23 @@ export default function Blog() {
 
             {filtered.map((p) => (
               <article key={p.slug} className="mb-20">
-                {p.image ? (
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="aspect-[1075/605] w-full rounded-[45px] object-cover"
-                  />
-                ) : (
-                  <div className="aspect-[1075/605] w-full rounded-[45px] bg-[#333]" />
-                )}
+                <a href={`/${p.slug}`} className="block">
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="aspect-video w-full rounded-[45px] object-cover"
+                    />
+                  ) : (
+                    <div className="aspect-video w-full rounded-[45px] bg-[#333]" />
+                  )}
+                </a>
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   {p.categories.map((c) => (
                     <a
                       key={c}
-                      href={`/category/${c.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={categoryHref(c)}
                       className="rounded-full bg-[#2a2a2a] px-4 py-2 text-[1.1rem] hover:bg-[#383838]"
                     >
                       {c}
@@ -184,11 +192,11 @@ export default function Blog() {
                   ))}
                 </div>
 
-                <h2 className="mt-6 text-[clamp(1.8rem,2.9vw,2.9rem)] font-bold leading-[1.2]">
-                  <a href={`/blog/${p.slug}`} className="hover:text-[#ef5d39]">
+                <a href={`/${p.slug}`} className="block">
+                  <h2 className="mt-6 text-[clamp(1.8rem,2.9vw,2.9rem)] font-bold leading-[1.2] hover:text-[#ef5d39]">
                     {p.title}
-                  </a>
-                </h2>
+                  </h2>
+                </a>
 
                 <p className="mt-6 text-[1.3rem] font-light leading-[1.65]">
                   {p.excerpt}
@@ -196,21 +204,20 @@ export default function Blog() {
 
                 <div className="mt-8 flex items-center justify-between border-t border-[#333] pt-7">
                   <div className="flex items-center gap-4">
-                    {AVATAR ? (
+                    <a href="/author/admin">
                       <img
                         src={AVATAR}
                         alt="admin"
                         className="h-14 w-14 rounded-full object-cover"
                       />
-                    ) : (
-                      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#444] text-lg font-semibold">
-                        A
-                      </span>
-                    )}
+                    </a>
                     <div>
-                      <p className="text-[1.15rem] font-semibold leading-tight">
+                      <a
+                        href="/author/admin"
+                        className="text-[1.15rem] font-semibold leading-tight"
+                      >
                         admin
-                      </p>
+                      </a>
                       <p className="text-[1.1rem] text-[#9a9a9a]">
                         {p.date} <span className="mx-1.5">•</span> {p.read}
                       </p>
@@ -218,7 +225,7 @@ export default function Blog() {
                   </div>
 
                   <a
-                    href={`/blog/${p.slug}`}
+                    href={`/${p.slug}`}
                     className="text-[1.15rem] text-[#ef5d39] hover:underline"
                   >
                     Read More
@@ -230,11 +237,11 @@ export default function Blog() {
             {/* Pagination */}
             <nav
               aria-label="Pagination"
-              className="flex items-center justify-center gap-5 pt-4 text-[1.3rem]"
+              className="flex items-center justify-center gap-1 pt-4 text-[1.3rem]"
             >
               {pages.map((n, i) =>
                 n === "…" ? (
-                  <span key={i} className="text-[#9a9a9a]">
+                  <span key={i} className="hidden px-2 text-[#9a9a9a] sm:inline">
                     …
                   </span>
                 ) : (
@@ -242,9 +249,9 @@ export default function Blog() {
                     key={n}
                     onClick={() => setPage(n)}
                     aria-current={page === n ? "page" : undefined}
-                    className={`flex h-11 min-w-11 items-center justify-center rounded-full px-2 ${
-                      page === n ? "bg-[#444]" : "hover:bg-[#2a2a2a]"
-                    }`}
+                    className={`h-[46px] min-w-[46px] items-center justify-center rounded-full px-2 ${
+                      n === 105 ? "hidden sm:flex" : "flex"
+                    } ${page === n ? "bg-[#444]" : "hover:bg-[#2a2a2a]"}`}
                   >
                     {n}
                   </button>
@@ -252,7 +259,7 @@ export default function Blog() {
               )}
               <button
                 onClick={() => setPage((n) => Math.min(105, Number(n) + 1))}
-                className="px-2 text-[#9a9a9a] hover:text-white"
+                className="ml-3 px-2 text-[#9a9a9a] hover:text-white"
               >
                 Next
               </button>
@@ -297,7 +304,7 @@ export default function Blog() {
               <ul className="list-disc space-y-4 pl-5 marker:text-[#777]">
                 {recentPosts.map((r) => (
                   <li key={r.slug} className="text-[1.3rem] leading-[1.15]">
-                    <a href={`/blog/${r.slug}`} className="hover:text-[#ef5d39]">
+                    <a href={`/${r.slug}`} className="hover:text-[#ef5d39]">
                       {r.title}
                     </a>
                   </li>
@@ -319,10 +326,7 @@ export default function Blog() {
               <ul className="list-disc space-y-3.5 pl-5 marker:text-[#777]">
                 {categories.map((c) => (
                   <li key={c} className="text-[1.3rem]">
-                    <a
-                      href={`/category/${c.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="hover:text-[#ef5d39]"
-                    >
+                    <a href={categoryHref(c)} className="hover:text-[#ef5d39]">
                       {c}
                     </a>
                   </li>
@@ -335,13 +339,13 @@ export default function Blog() {
                 Tags
               </h3>
               <div className="flex flex-wrap gap-x-2 gap-y-2.5">
-                {tags.map((t) => (
+                {tags.map(([name, slug]) => (
                   <a
-                    key={t}
-                    href={`/tag/${t.toLowerCase().replace(/\s+/g, "-")}`}
+                    key={slug}
+                    href={`/tag/${slug}`}
                     className="rounded-full bg-[#2a2a2a] px-4 py-2 text-[1.1rem] hover:bg-[#383838]"
                   >
-                    #{t}
+                    #{name}
                   </a>
                 ))}
               </div>
