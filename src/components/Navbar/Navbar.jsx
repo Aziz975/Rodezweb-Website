@@ -21,9 +21,13 @@ const links = [
 ];
 
 const services = [
+  { label: "All Services", href: "/services" },  
   { label: "Web Development", href: "/services/web-development" },
   { label: "App Development", href: "/services/app-development" },
-  { label: "UI/UX Design", href: "/services/ui-ux-design" },
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  { label: "Wordpress Website Development", href: "/services/wordpress-development" },
+  { label: "Shopify Website Development", href: "/services/shopify-development" },
+
 ];
 
 const MoonIcon = () => (
@@ -76,11 +80,12 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-[72px] w-full max-w-[1900px] items-center justify-between px-5 sm:px-6 lg:h-[80px] lg:px-6">
         {/* Logo */}
-        <a
-          href="/"
-          className="shrink-0 text-[22px] font-normal tracking-tight text-[#e8552d] sm:text-[26px]"
-        >
-            <img src="" alt="" />
+        <a href="/" className="flex items-center gap-2 text-white">
+          <img
+            src="images/rodezlogo.png"
+            alt="Rodez Web Technologies"
+            className="h-10 w-auto object-contain"
+          />
           Rodez Web Technologies
         </a>
 
@@ -161,9 +166,8 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden bg-[#1c1c1c] transition-[max-height] duration-300 lg:hidden ${
-          open ? "max-h-[520px] border-t border-white/10" : "max-h-0"
-        }`}
+        className={`overflow-hidden bg-[#1c1c1c] transition-[max-height] duration-300 lg:hidden ${open ? "max-h-[520px] border-t border-white/10" : "max-h-0"
+          }`}
       >
         <ul className="flex flex-col px-5 py-3 sm:px-6">
           {links.map((link) => (

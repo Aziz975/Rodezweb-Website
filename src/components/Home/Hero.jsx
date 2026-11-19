@@ -42,7 +42,7 @@ const Hero = () => {
           {/* Left Column */}
           <div className="flex flex-col gap-4">
             <div className="flex min-h-[115px] items-center gap-4 rounded-md bg-white p-5 text-black">
-              {/* Image placeholder */}
+              <img src="images/rodezlogo.png" alt="" />
               <div className="h-14 w-24 shrink-0 rounded-full bg-gray-200">
                 {/* Add team image src here */}
               </div>
@@ -78,7 +78,11 @@ const Hero = () => {
           {/* Center Column */}
           <div className="flex flex-col gap-4">
             <div className="flex h-[280px] items-center justify-center overflow-hidden rounded-md bg-[#f5f5f5]">
-              {/* Add main portrait image src here */}
+              <img
+                src="images/image1.png"
+                alt="Portrait"
+                className="h-full w-full object-cover rounded-md"
+              />
             </div>
 
             <div className="flex min-h-[65px] items-center justify-between rounded-md bg-[#F45132] px-5">
