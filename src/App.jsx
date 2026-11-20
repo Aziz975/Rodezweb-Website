@@ -8,8 +8,15 @@ import AboutUs from "./Components/AboutUs/AboutUs";
 import Blog from "./Components/Blog/Blog";
 import Footer from "./components/Footer/Footer";
 
+
+import Services from "./Components/Services/AllServices";
+import WebDevelopment from "./Components/Services/WebDevelopment";
+import WordpressDevelopment from "./components/Services/WordpressDevelopment";
+import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
+
 import Services from "./components/Services/AllServices";
 import WebDevelopment from "./components/Services/WebDevelopment";import ShopifyDevelopment from "./components/Services/ShopifyDevelopment";
+
 import AppDevelopment from "./Pages/AppDevelopmentPage";
 import DigitalPage from "./Pages/DigitalPage";
 import WordpressPage from "./Pages/WordpressPage";

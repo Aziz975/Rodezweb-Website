@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaDev, FaAws, FaNodeJs, FaWordpress, FaShopify } from "react-icons/fa6";
 import { FaCheck, FaArrowRight, FaChevronLeft, FaChevronRight, FaPlus, FaMinus } from "react-icons/fa6";
 
@@ -37,7 +37,6 @@ const faqs = [
   { q: "Q5. Do you provide support after the website is launched?", a: "Yes. We offer post-launch support and maintenance to keep your website running smoothly." },
 ];
 
-// TODO: replace with real logo files
 const clients = [
   { name: "Banyan Paradise", src: "/images/banyan.png" },
   { name: "Swapna Srushti Water Park", src: "/images/swapna.png" },
@@ -45,7 +44,10 @@ const clients = [
   { name: "CAP India", src: "/images/cap-India.png" },
   { name: "Government of Telangana", src: "/images/govrn-telangana.png" },
   { name: "KJ Institute of Engineering & Technology", src: "/images/kj-institute.png" },
+  { name: "Eye-care Hospital", src: "/images/eyecare.png" },
+  { name: "Sterling Cancer Hospital", src: "/images/sterling.png" },
 ];
+
 /* ---------- SECTIONS ---------- */
 function Hero() {
   return (
@@ -291,9 +293,79 @@ function Faqs() {
   );
 }
 
+function useVisible() {
+  const get = () => (window.innerWidth >= 1024 ? 5 : window.innerWidth >= 640 ? 3 : 2);
+  const [v, setV] = useState(get);
+  useEffect(() => {
+    const onResize = () => setV(get());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return v;
+}
+
+function LogoCarousel() {
+  const visible = useVisible();
+  const n = clients.length;
+  const [start, setStart] = useState(0); // first visible card
+  const [dir, setDir] = useState(0); // 1 = next, -1 = prev, 0 = idle
+  const [paused, setPaused] = useState(false);
+
+  // 1 card before + visible cards + 1 card after (circular)
+  const items = Array.from({ length: visible + 2 }, (_, i) => clients[(start - 1 + i + n * 5) % n]);
+  const slot = 100 / (visible + 2); // one card width, in % of the track
+
+  const go = (d) => {
+    if (dir === 0) setDir(d);
+  };
+
+  const handleEnd = (e) => {
+    if (e.target !== e.currentTarget) return;
+    setStart((s) => (s + dir + n) % n);
+    setDir(0);
+  };
+
+  // auto-play (pauses on hover)
+  useEffect(() => {
+    if (paused || dir !== 0) return;
+    const t = setTimeout(() => setDir(1), 2500);
+    return () => clearTimeout(t);
+  }, [paused, dir, start]);
+
+  return (
+    <div className="mt-10 flex items-center gap-4">
+      <button aria-label="Previous" onClick={() => go(-1)} className="text-white">
+        <FaChevronLeft />
+      </button>
+
+      <div className="flex-1 overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <div
+          className="flex"
+          onTransitionEnd={handleEnd}
+          style={{
+            width: `${((visible + 2) * 100) / visible}%`,
+            transform: `translateX(-${(1 + dir) * slot}%)`,
+            transition: dir !== 0 ? "transform 500ms ease" : "none",
+          }}
+        >
+          {items.map((c, i) => (
+            <div key={i} className="px-3 shrink-0" style={{ width: `${slot}%` }}>
+              <div className="bg-white rounded-2xl border-2 border-[#f0603a] h-44 flex items-center justify-center p-4">
+                <img src={c.src} alt={c.name} className="max-h-full object-contain" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button aria-label="Next" onClick={() => go(1)} className="text-white">
+        <FaChevronRight />
+      </button>
+    </div>
+  );
+}
+
 function CtaAndClients() {
-  const [idx, setIdx] = useState(0);
-  const shown = clients.slice(idx, idx + 5);
   return (
     <section className="max-w-7xl mx-auto px-6 pb-24">
       <div
@@ -310,17 +382,7 @@ function CtaAndClients() {
       </div>
 
       <p className="text-white text-center uppercase mt-16">Trusted by growing businesses across industries</p>
-      <div className="relative mt-10 flex items-center gap-4">
-        <button aria-label="Previous" onClick={() => setIdx(Math.max(0, idx - 1))} className="text-white"><FaChevronLeft /></button>
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-          {shown.map((c) => (
-            <div key={c.name} className="bg-white rounded-2xl border-2 border-[#f0603a] h-44 flex items-center justify-center p-4">
-              <img src={c.src} alt={c.name} className="max-h-full object-contain" />
-            </div>
-          ))}
-        </div>
-        <button aria-label="Next" onClick={() => setIdx(Math.min(clients.length - 5, idx + 1))} className="text-white"><FaChevronRight /></button>
-      </div>
+      <LogoCarousel />
     </section>
   );
 }
