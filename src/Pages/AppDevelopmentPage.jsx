@@ -3,7 +3,7 @@ import Hero from '../components/Services/AppDevelopment/Hero'
 import AppGrowthSection from '../components/Services/AppDevelopment/AppGrowthSection'
 import AppBusinessImpact from '../components/Services/AppDevelopment/AppBusinessImpact'
 import AppProcessFaqSection from '../components/Services/AppDevelopment/AppProcessFaqSection'
-import TrustedBySection from '../../../../TrustedBySection'
+import TrustedBySection from '../Components/Services/ShopifyDevelopment/TrustedBySection'
 
 const AppDevelopment = () => {
   return (
