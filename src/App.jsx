@@ -10,10 +10,11 @@ import Footer from "./components/Footer/Footer";
 
 import Services from "./components/Services/AllServices";
 import WebDevelopment from "./components/Services/WebDevelopment";
-import DigitalMarketing from "./components/Services/DigitalMarketing";
 import WordpressDevelopment from "./components/Services/WordpressDevelopment";
 import ShopifyDevelopment from "./components/Services/ShopifyDevelopment";
-import AppDevelopment from "./components/Services/AppDevelopment";
+import AppDevelopment from "./Pages/AppDevelopmentPage";
+import DigitalPage from "./Pages/DigitalPage";
+
 
 const App = () => {
   return (
@@ -29,9 +30,9 @@ const App = () => {
 
         {/* Services */}
         <Route path="/services" element={<Services />} />
-        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/services/app-development" element={<AppDevelopment/>} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
-        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/services/digital-marketing" element={<DigitalPage />} />
         <Route path="/services/wordpress-development" element={<WordpressDevelopment />} />
         <Route path="/services/shopify-development" element={<ShopifyDevelopment />} />
       </Routes>
