@@ -13,14 +13,14 @@ const posts = [
     title:
       "Website Redesign Services in Noida to Improve User Experience and Conversions | Rodez Web Technology",
     date: "Oct 27, 2026",
-    image: "",
+    image: "images/image2.png",
     href: "/blog/website-redesign-services-in-noida",
   },
   {
     category: "Business",
     title: "Best Shopify Developers in Noida for Professional Ecommerce Website Development",
     date: "Oct 24, 2026",
-    image: "",
+    image: "images/image4.png",
     href: "/blog/best-shopify-developers-in-noida",
   },
   {
@@ -28,7 +28,7 @@ const posts = [
     title:
       "Best Website Design and Development Company in Noida for Business Growth | Rodez Web Technology",
     date: "Oct 22, 2026",
-    image: "",
+    image: "images/RODEZ-Noida-Web-Solutions-Banner-1024x576.png",
     href: "/blog/best-website-design-company-in-noida",
   },
   {
@@ -36,7 +36,7 @@ const posts = [
     title:
       "Best Web Development Services in Noida to Grow Your Online Business | Rodez Web Technology",
     date: "Oct 19, 2026",
-    image: "",
+    image: "images/website.png",
     href: "/blog/best-web-development-services-in-noida",
   },
 ];

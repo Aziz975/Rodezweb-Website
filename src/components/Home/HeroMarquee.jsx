@@ -54,7 +54,7 @@ export default function HeroMarquee() {
         playsInline
         preload="auto"
       >
-        <source src="" type="video/mp4" />
+        <source src="/images/video.mp4" type="" />
       </video>
 
       {/* Bottom fade so the text stays readable */}

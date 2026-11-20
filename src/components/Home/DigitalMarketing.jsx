@@ -109,7 +109,7 @@ export default function DigitalMarketing() {
                 {[0, 1, 2].map((n) => (
                   <img
                     key={n}
-                    src=""
+                    src="images/avtar.png"
                     alt=""
                     className="-ml-3 h-9 w-9 rounded-full border-2 border-white bg-gray-300 object-cover first:ml-0 lg:h-11 lg:w-11"
                   />
@@ -144,7 +144,7 @@ export default function DigitalMarketing() {
           {/* Center column */}
           <div className="flex flex-col gap-3 lg:gap-4">
             <div className="min-h-[340px] overflow-hidden rounded-[10px] bg-[#f1f1f1] lg:min-h-0 lg:flex-[138]">
-              <img src="" alt="" className="h-full min-h-[340px] w-full object-cover lg:min-h-0" />
+              <img src="images/redhelmet.webp" alt="" className="h-full min-h-[340px] w-full object-cover lg:min-h-0" />
             </div>
             <div className="flex items-center justify-between rounded-[10px] bg-[#f05a2d] px-4 py-4 lg:min-h-0 lg:flex-[29] lg:px-5 lg:py-0">
               <div>

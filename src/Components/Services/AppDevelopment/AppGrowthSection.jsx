@@ -2,6 +2,29 @@ import React from "react";
 
 const APP_SHOWCASE_IMAGE = "";
 
+/* ---------- Shared sizing (same scale as DigitalMarketingCta / Faq / Process / Growth) ---------- */
+const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]"; // left & right space
+const WRAP = "mx-auto max-w-[1700px]";
+
+const headingStyle = {
+  fontSize: "clamp(1.9rem, 3.6vw, 4.25rem)",
+  letterSpacing: "-0.03em",
+};
+const subHeadingStyle = {
+  fontSize: "clamp(1.1rem, 1.7vw, 2.1rem)",
+  letterSpacing: "-0.02em",
+};
+const bodyStyle = {
+  fontSize: "clamp(0.9rem, 1.05vw, 1.25rem)",
+  lineHeight: 1.7,
+  letterSpacing: "-0.02em",
+};
+const smallStyle = {
+  fontSize: "clamp(0.85rem, 1vw, 1.2rem)",
+  lineHeight: 1.6,
+  letterSpacing: "-0.02em",
+};
+
 export default function AppGrowthSection() {
   const benefits = [
     "Increase revenue",
@@ -12,80 +35,83 @@ export default function AppGrowthSection() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#1e1e1e] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9]">
+    <section className="relative w-full overflow-hidden bg-[#1c1c1c] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9]">
       {/* ================= TOP CONTENT ================= */}
-      <div className="mx-auto max-w-[1500px] px-5 pt-16 text-center sm:px-8 sm:pt-20 lg:px-[8%] lg:pt-[100px]">
-        <h2 className="text-[clamp(1.8rem,3vw,3.5rem)] font-bold leading-tight tracking-[-0.04em]">
-          Your Customers Are Already There
-        </h2>
+      <div className={`${SIDE_SPACE} pt-16 sm:pt-20 lg:pt-28`}>
+        <div className={`${WRAP} text-center`}>
+          <h2 className="font-bold leading-[1.1]" style={headingStyle}>
+            Your Customers Are Already There
+          </h2>
 
-        <h3 className="mt-3 text-[clamp(1rem,1.5vw,1.65rem)] font-semibold text-[#fdfaf9]">
-          Is Your Business Too?
-        </h3>
+          <h3 className="mt-3 font-semibold text-[#fdfaf9]" style={subHeadingStyle}>
+            Is Your Business Too?
+          </h3>
 
-        <div className="mx-auto mt-6 max-w-[1100px] space-y-2 text-[clamp(0.8rem,1vw,1.05rem)] leading-[1.8] text-[#d0d0d0]">
-          <p>
-            Today's customers expect convenience, speed, and accessibility.
-          </p>
+          <div className="mx-auto mt-6 max-w-[1200px] space-y-2 text-[#fdfaf9]" style={bodyStyle}>
+            <p>Today&apos;s customers expect convenience, speed, and accessibility.</p>
 
-          <p>
-            Whether they're booking services, placing orders, tracking progress,
-            or interacting with your brand, mobile experiences have become the
-            standard—not the advantage.
-            <br className="hidden lg:block" />
-            Businesses that meet customers where they are create stronger
-            relationships, better experiences, and more opportunities to grow.
-          </p>
+            <p>
+              Whether they&apos;re booking services, placing orders, tracking progress, or
+              interacting with your brand, mobile experiences have become the standard—not the
+              advantage.
+              <br className="hidden lg:block" />
+              Businesses that meet customers where they are create stronger relationships, better
+              experiences, and more opportunities to grow.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* ================= APP IMAGE SHOWCASE ================= */}
-      <div className="relative mx-auto flex w-full items-center justify-center px-5 py-12 sm:py-16 lg:py-[100px]">
-        <div className="relative flex w-full max-w-[1000px] items-center justify-center">
-          {/* Mobile app mockup image */}
-          <img
-            src={APP_SHOWCASE_IMAGE}
-            alt="Mobile application showcase displaying app features and business solutions"
-            className="block h-auto w-full max-w-[650px] object-contain"
-            loading="lazy"
-          />
+      <div className={`${SIDE_SPACE} py-12 sm:py-16 lg:py-24`}>
+        <div className={`${WRAP} flex items-center justify-center`}>
+          <div className="w-full max-w-[700px] lg:max-w-[900px]">
+            {APP_SHOWCASE_IMAGE ? (
+              <img
+                src={APP_SHOWCASE_IMAGE}
+                alt="Mobile application showcase displaying app features and business solutions"
+                className="block h-auto w-full object-contain"
+                loading="lazy"
+              />
+            ) : (
+              <div className="aspect-[16/9] w-full rounded-md border border-dashed border-white/10" />
+            )}
+          </div>
         </div>
       </div>
 
       {/* ================= BOTTOM CONTENT ================= */}
-      <div className="mx-auto max-w-[1500px] px-5 pb-16 text-center sm:px-8 sm:pb-20 lg:px-[8%] lg:pb-[100px]">
-        <h2 className="text-[clamp(1.7rem,2.8vw,3.3rem)] font-bold leading-tight tracking-[-0.04em] text-[#fdfaf9]">
-          We Don’t Just Build Apps. We Build Growth Engines.
-        </h2>
+      <div className={`${SIDE_SPACE} pb-16 sm:pb-20 lg:pb-28`}>
+        <div className={`${WRAP} text-center`}>
+          <h2 className="mx-auto max-w-[1400px] font-bold leading-[1.1]" style={headingStyle}>
+            We Don’t Just Build Apps. We Build Growth Engines.
+          </h2>
 
-        <div className="mx-auto mt-5 max-w-[900px] text-[clamp(0.85rem,1vw,1.05rem)] leading-7 text-[#d0d0d0]">
-          <p>
-            An application shouldn't be another business expense.
-          </p>
+          <div className="mx-auto mt-6 max-w-[1000px] text-[#fdfaf9]" style={bodyStyle}>
+            <p>An application shouldn&apos;t be another business expense.</p>
+            <p className="mt-1 font-semibold">It should:</p>
+          </div>
 
-          <p className="mt-1 font-medium text-white">
-            It should:
+          {/* ================= BENEFITS ================= */}
+          <div className="mx-auto mt-6 flex max-w-[1400px] flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:gap-x-9">
+            {benefits.map((benefit) => (
+              <div
+                key={benefit}
+                className="flex items-center gap-2 font-semibold text-[#fdfaf9]"
+                style={smallStyle}
+              >
+                <span className="text-[#F45132]">✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* ================= FINAL TEXT ================= */}
+          <p className="mx-auto mt-8 max-w-[1100px] text-gray-300" style={smallStyle}>
+            At Rodex Web Technologies, every application is designed around business outcomes—not
+            just features.
           </p>
         </div>
-
-        {/* ================= BENEFITS ================= */}
-        <div className="mx-auto mt-6 flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-3">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-2 text-[clamp(0.8rem,0.95vw,1rem)] text-[#e5e5e5]"
-            >
-              <span className="text-[#f15a3a]">✓</span>
-              <span>{benefit}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* ================= FINAL TEXT ================= */}
-        <p className="mx-auto mt-7 max-w-[1000px] text-[clamp(0.8rem,0.95vw,1rem)] leading-7 text-[#b8b8b8]">
-          At Rodex Web Technologies, every application is designed around
-          business outcomes—not just features.
-        </p>
       </div>
     </section>
   );

@@ -16,7 +16,6 @@ const Home = () => {
   return (
    <>
   <HeroMarquee></HeroMarquee>
-  
   <DigitalMarketing></DigitalMarketing>
   <ServicesSection></ServicesSection>
   <ProcessSection></ProcessSection>

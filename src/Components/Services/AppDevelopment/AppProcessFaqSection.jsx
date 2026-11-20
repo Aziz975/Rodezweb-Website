@@ -1,12 +1,46 @@
+
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
 
-/* ---------- Image placeholders (left empty until assets are provided) ---------- */
+/* ---------- Shared Styling (Rodex Design System) ---------- */
+
+const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]";
+const WRAP = "mx-auto max-w-[1700px]";
+
+const headingStyle = {
+  fontSize: "clamp(1.9rem, 3.6vw, 4.25rem)",
+  letterSpacing: "-0.03em",
+};
+
+const subHeadingStyle = {
+  fontSize: "clamp(1.1rem, 1.7vw, 2.1rem)",
+  letterSpacing: "-0.02em",
+};
+
+const bodyStyle = {
+  fontSize: "clamp(0.9rem, 1.05vw, 1.25rem)",
+  lineHeight: 1.7,
+  letterSpacing: "-0.02em",
+};
+
+const smallStyle = {
+  fontSize: "clamp(0.85rem, 1vw, 1.2rem)",
+  lineHeight: 1.6,
+  letterSpacing: "-0.02em",
+};
+
+const sectionStyle = {
+  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+};
+
+/* ---------- Image Placeholders ---------- */
+
 const PROCESS_BG_IMG = "";
 const CTA_BG_IMG = "";
 
 /* ---------- Data ---------- */
+
 const processSteps = [
   { title: "Discover", text: "We understand your goals and challenges." },
   { title: "Design", text: "We create experiences users love." },
@@ -17,10 +51,26 @@ const processSteps = [
 ];
 
 const reasons = [
-  { no: "01", title: "Growth-First Thinking", text: "Every feature should support business objectives." },
-  { no: "02", title: "Custom Solutions", text: "Built around your business—not templates." },
-  { no: "03", title: "Scalable Architecture", text: "Designed to grow with your company." },
-  { no: "04", title: "Long-Term Partnership", text: "Support beyond launch day." },
+  {
+    no: "01",
+    title: "Growth-First Thinking",
+    text: "Every feature should support business objectives.",
+  },
+  {
+    no: "02",
+    title: "Custom Solutions",
+    text: "Built around your business—not templates.",
+  },
+  {
+    no: "03",
+    title: "Scalable Architecture",
+    text: "Designed to grow with your company.",
+  },
+  {
+    no: "04",
+    title: "Long-Term Partnership",
+    text: "Support beyond launch day.",
+  },
 ];
 
 const faqs = [
@@ -55,7 +105,10 @@ const clients = [
   { name: "Telangana Government", src: "" },
 ];
 
-/* ---------- 1. From Vision To Launch ---------- */
+/* ============================================================
+   1. FROM VISION TO LAUNCH
+============================================================ */
+
 function ProcessCarousel() {
   const [start, setStart] = useState(0);
   const total = processSteps.length;
@@ -71,171 +124,245 @@ function ProcessCarousel() {
   return (
     <section
       className="relative w-full overflow-hidden bg-[#7a0c12]"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+      style={sectionStyle}
     >
       {PROCESS_BG_IMG && (
         <img
           src={PROCESS_BG_IMG}
-          alt="Rodez Web Technologies app development process"
+          alt="Rodex Web Technologies app development process"
           className="absolute inset-0 h-full w-full object-cover"
         />
       )}
+
+      {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#8a0f16]/90 via-[#6e0a10]/70 to-[#8a0f16]/90" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-8 px-5 py-14 md:flex-row md:items-center md:gap-10 md:py-20">
-        {/* Intro card */}
-        <div className="w-full max-w-sm rounded-sm bg-[#232323]/95 p-6 text-[#fdfaf9] md:w-[300px] md:shrink-0">
-          <h2
-            className="font-bold leading-tight"
-            style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", letterSpacing: "-0.03em" }}
-          >
-            From Vision
-            <br />
-            To Launch
-          </h2>
-          <p className="mt-4 text-xs leading-relaxed text-[#d0d0d0]">
-            Whether you&apos;re launching a new business or upgrading an existing presence, we create
-            websites that align with your objectives and deliver measurable results.
-          </p>
-        </div>
+      <div className={`${SIDE_SPACE} relative py-16 sm:py-20 lg:py-28`}>
+        <div
+          className={`${WRAP} flex flex-col items-center gap-8 md:flex-row md:gap-10 lg:gap-14`}
+        >
+          {/* Intro Card */}
+          <div className="w-full max-w-sm rounded-lg border border-white/10 bg-[#232323]/95 p-6 text-[#fdfaf9] sm:p-8 md:w-[300px] md:shrink-0">
+            <h2
+              className="font-bold leading-[1.1] tracking-[-0.03em]"
+              style={headingStyle}
+            >
+              From Vision
+              <br />
+              To Launch
+            </h2>
 
-        {/* Steps */}
-        <div className="relative flex w-full flex-1 items-center">
-          <button
-            type="button"
-            onClick={prev}
-            aria-label="Previous step"
-            className="z-10 mr-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#fdfaf9] text-[#1e1e1e] transition hover:bg-[#f15a3a] hover:text-white"
-          >
-            <ChevronLeft size={14} />
-          </button>
-
-          <div className="relative flex-1">
-            {/* connector line */}
-            <div className="absolute left-0 right-0 top-1/2 hidden h-px -translate-y-1/2 bg-[#fdfaf9]/70 md:block" />
-
-            <div className="relative grid grid-cols-1 md:grid-cols-3 md:gap-4">
-              {visible.map((step, i) => {
-                const isMiddle = i === 1;
-                return (
-                  <div
-                    key={step.number}
-                    className={`${i > 0 ? "hidden md:flex" : "flex"} flex-col items-center justify-center gap-3 md:min-h-[190px]`}
-                  >
-                    {isMiddle && <Badge number={step.number} />}
-                    <div
-                      className={`w-full max-w-[210px] rounded-sm bg-[#fdfaf9] px-4 py-4 text-center text-[#1e1e1e] shadow-lg transition-transform duration-300 hover:-translate-y-1 ${
-                        isMiddle ? "md:translate-y-3" : "md:-translate-y-3"
-                      }`}
-                    >
-                      <h3 className="text-sm font-semibold">{step.title}</h3>
-                      <p className="mt-1 text-[11px] leading-snug text-[#555]">{step.text}</p>
-                    </div>
-                    {!isMiddle && <Badge number={step.number} />}
-                  </div>
-                );
-              })}
-            </div>
+            <p className="mt-4 text-[#d0d0d0]" style={smallStyle}>
+              Whether you're launching a new business or upgrading an existing
+              presence, we create websites that align with your objectives and
+              deliver measurable results.
+            </p>
           </div>
 
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Next step"
-            className="z-10 ml-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#fdfaf9] text-[#1e1e1e] transition hover:bg-[#f15a3a] hover:text-white"
-          >
-            <ChevronRight size={14} />
-          </button>
+          {/* Process Steps */}
+          <div className="relative flex w-full min-w-0 flex-1 items-center">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous step"
+              className="z-10 mr-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#fdfaf9] text-[#1e1e1e] transition duration-300 hover:bg-[#f15a3a] hover:text-white sm:h-10 sm:w-10"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <div className="relative min-w-0 flex-1">
+              {/* Connector Line */}
+              <div className="absolute left-0 right-0 top-1/2 hidden h-px -translate-y-1/2 bg-[#fdfaf9]/70 md:block" />
+
+              <div className="relative grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                {visible.map((step, i) => {
+                  const isMiddle = i === 1;
+
+                  return (
+                    <div
+                      key={step.number}
+                      className={`${
+                        i > 0 ? "hidden md:flex" : "flex"
+                      } flex-col items-center justify-center gap-3 md:min-h-[220px]`}
+                    >
+                      {isMiddle && <Badge number={step.number} />}
+
+                      <div
+                        className={`w-full max-w-[230px] rounded-lg bg-[#fdfaf9] px-4 py-5 text-center text-[#1e1e1e] shadow-lg transition-transform duration-300 hover:-translate-y-1 ${
+                          isMiddle ? "md:translate-y-3" : "md:-translate-y-3"
+                        }`}
+                      >
+                        <h3
+                          className="font-semibold"
+                          style={subHeadingStyle}
+                        >
+                          {step.title}
+                        </h3>
+
+                        <p className="mt-2 text-[#555]" style={smallStyle}>
+                          {step.text}
+                        </p>
+                      </div>
+
+                      {!isMiddle && <Badge number={step.number} />}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next step"
+              className="z-10 ml-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#fdfaf9] text-[#1e1e1e] transition duration-300 hover:bg-[#f15a3a] hover:text-white sm:h-10 sm:w-10"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
+/* ---------- Process Badge ---------- */
+
 function Badge({ number }) {
   return (
-    <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-[#fdfaf9] bg-[#f15a3a] text-[11px] font-bold text-white">
+    <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#fdfaf9] bg-[#f15a3a] text-xs font-bold text-white">
       {number}
     </span>
   );
 }
 
-/* ---------- 2. Why Businesses Choose Rodez? ---------- */
+/* ============================================================
+   2. WHY BUSINESSES CHOOSE RODEX
+============================================================ */
+
 function WhyChoose() {
   return (
     <section
-      className="bg-[#1e1e1e] px-5 py-16 md:py-20"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+      className={`${SIDE_SPACE} bg-[#1c1c1c] py-16 sm:py-20 lg:py-28`}
+      style={sectionStyle}
     >
-      <h2
-        className="text-center font-bold text-[#fdfaf9]"
-        style={{ fontSize: "clamp(1.5rem, 2.6vw, 2.25rem)", letterSpacing: "-0.03em" }}
-      >
-        Why Businesses{" "}
-        <span className="rounded-sm bg-[#f15a3a] px-2 py-0.5 text-white">Choose</span> Rodez?
-      </h2>
+      <div className={`${WRAP}`}>
+        <h2
+          className="text-center font-bold leading-[1.1] text-[#fdfaf9]"
+          style={headingStyle}
+        >
+          Why Businesses{" "}
+          <span className="inline-block rounded-md bg-[#f15a3a] px-3 py-1 text-white">
+            Choose
+          </span>{" "}
+          Rodex?
+        </h2>
 
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {reasons.map((item) => (
-          <div
-            key={item.no}
-            className="rounded-lg border border-white/10 bg-[#232323] px-6 py-6 text-center transition duration-300 hover:-translate-y-1 hover:border-[#f15a3a]/60"
-          >
-            <span className="text-sm font-semibold text-[#f15a3a]">{item.no}</span>
-            <h3 className="mt-1 text-base font-semibold text-[#fdfaf9]">{item.title}</h3>
-            <p className="mt-1 text-xs text-[#a0a0a0]">{item.text}</p>
-          </div>
-        ))}
+        <div className="mx-auto mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-6">
+          {reasons.map((item) => (
+            <div
+              key={item.no}
+              className="rounded-lg border border-white/10 bg-[#232323] px-6 py-7 text-center transition duration-300 hover:-translate-y-1 hover:border-[#f15a3a]/60 hover:shadow-[0_10px_30px_rgba(241,90,58,0.08)] sm:px-7"
+            >
+              <span className="font-bold text-[#f15a3a]" style={smallStyle}>
+                {item.no}
+              </span>
+
+              <h3
+                className="mt-3 font-semibold leading-tight text-[#fdfaf9]"
+                style={subHeadingStyle}
+              >
+                {item.title}
+              </h3>
+
+              <p className="mt-3 text-[#a0a0a0]" style={smallStyle}>
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-/* ---------- 3. FAQ ---------- */
+/* ============================================================
+   3. FREQUENTLY ASKED QUESTIONS
+============================================================ */
+
 function FaqSection() {
   const [open, setOpen] = useState(0);
 
   return (
     <section
-      className="bg-[#1e1e1e] px-5 py-16 md:py-24"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+      className={`${SIDE_SPACE} bg-[#1c1c1c] py-16 sm:py-20 lg:py-28`}
+      style={sectionStyle}
     >
-      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1fr_1.15fr] md:gap-12">
+      <div
+        className={`${WRAP} grid items-start gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-14 lg:gap-20`}
+      >
+        {/* FAQ Intro */}
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-[#d0d0d0]">FAQs</p>
+          <p
+            className="font-semibold uppercase tracking-[0.12em] text-[#f15a3a]"
+            style={smallStyle}
+          >
+            FAQs
+          </p>
+
           <h2
-            className="mt-3 font-bold leading-tight text-[#fdfaf9]"
-            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.03em" }}
+            className="mt-4 font-bold leading-[1.1] text-[#fdfaf9]"
+            style={headingStyle}
           >
             Frequently Asked Questions!
           </h2>
-          <p className="mt-4 max-w-sm text-xs leading-relaxed text-[#d0d0d0]">
-            Find answers to common questions about our services, process, timelines, and how we help
-            businesses achieve their digital goals.
+
+          <p className="mt-5 max-w-lg text-[#d0d0d0]" style={bodyStyle}>
+            Find answers to common questions about our services, process,
+            timelines, and how we help businesses achieve their digital goals.
           </p>
         </div>
 
-        <div className="flex flex-col gap-2.5">
+        {/* FAQ Accordion */}
+        <div className="flex flex-col gap-3">
           {faqs.map((item, i) => {
             const isOpen = open === i;
+
             return (
-              <div key={item.q} className="overflow-hidden rounded-sm bg-[#fdfaf9] text-[#1e1e1e]">
+              <div
+                key={item.q}
+                className="overflow-hidden rounded-lg border border-white/10 bg-[#232323] transition duration-300 hover:border-[#f15a3a]/40"
+              >
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center gap-3 px-3 py-3 text-left text-xs font-medium"
+                  className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left text-[#fdfaf9] transition sm:px-6 sm:py-5"
                 >
-                  {isOpen ? <Minus size={12} /> : <Plus size={12} />}
-                  <span>{item.q}</span>
+                  <span
+                    className="font-semibold leading-relaxed"
+                    style={smallStyle}
+                  >
+                    {item.q}
+                  </span>
+
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f15a3a]/10 text-[#f15a3a]">
+                    {isOpen ? <Minus size={17} /> : <Plus size={17} />}
+                  </span>
                 </button>
+
                 <div
                   className={`grid transition-all duration-300 ${
                     isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="px-3 pb-4 pt-1 text-[11px] leading-relaxed text-[#555]">{item.a}</p>
+                    <p
+                      className="px-4 pb-5 text-[#a0a0a0] sm:px-6"
+                      style={bodyStyle}
+                    >
+                      {item.a}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -247,109 +374,69 @@ function FaqSection() {
   );
 }
 
-/* ---------- 4. CTA card ---------- */
+/* ============================================================
+   4. CALL TO ACTION CARD
+============================================================ */
+
 function CtaCard() {
   return (
     <section
-      className="bg-[#1e1e1e] px-5 py-12 md:py-20"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+      className={`${SIDE_SPACE} bg-[#1c1c1c] py-14 sm:py-20 lg:py-24`}
+      style={sectionStyle}
     >
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-xl bg-[#2a2a2a] px-6 py-10 md:px-8 md:py-9">
-        {CTA_BG_IMG && (
-          <img
-            src={CTA_BG_IMG}
-            alt="Start your app development project with Rodez"
-            className="absolute inset-0 h-full w-full object-cover opacity-40"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#232323] via-[#232323]/80 to-transparent" />
+      <div className={`${WRAP}`}>
+        <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#232323] px-6 py-12 sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+          {/* CTA Background Image */}
+          {CTA_BG_IMG && (
+            <img
+              src={CTA_BG_IMG}
+              alt="Start your app development project with Rodex"
+              className="absolute inset-0 h-full w-full object-cover opacity-40"
+            />
+          )}
 
-        <div className="relative max-w-3xl">
-          <h2
-            className="font-bold leading-tight text-[#fdfaf9]"
-            style={{ fontSize: "clamp(1.5rem, 2.6vw, 2.1rem)", letterSpacing: "-0.03em" }}
-          >
-            Let&apos;s Build Something That Moves Your Business Forward
-          </h2>
-          <p className="mt-3 max-w-2xl text-xs leading-relaxed text-[#d0d0d0]">
-            Whether you&apos;re launching a new product, streamlining operations, or creating better
-            customer experiences, we&apos;re ready to help turn your vision into a scalable digital
-            solution.
-          </p>
-          <Link
-            to="/contact"
-            className="mt-5 inline-block rounded-full bg-[#f15a3a] px-5 py-2 text-[11px] font-semibold text-white transition hover:bg-[#d94a2c]"
-          >
-            Book A Growth Consultation
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
+          {/* Background Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#232323] via-[#232323]/90 to-[#232323]/50" />
 
-/* ---------- 5. Trusted by (logo carousel) ---------- */
-function TrustedBy() {
-  const trackRef = useRef(null);
-
-  const scroll = (dir) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * 160, behavior: "smooth" });
-  };
-
-  return (
-    <section
-      className="bg-[#1e1e1e] px-5 pb-16 pt-6 md:pb-24"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-    >
-      <p className="text-center text-[10px] font-semibold uppercase tracking-wide text-[#d0d0d0]">
-        Trusted by growing businesses across industries
-      </p>
-
-      <div className="mx-auto mt-5 flex max-w-3xl items-center gap-2">
-        <button
-          type="button"
-          onClick={() => scroll(-1)}
-          aria-label="Scroll logos left"
-          className="shrink-0 text-[#a0a0a0] transition hover:text-[#f15a3a]"
-        >
-          <ChevronLeft size={14} />
-        </button>
-
-        <div
-          ref={trackRef}
-          className="flex flex-1 gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {clients.map((client) => (
-            <div
-              key={client.name}
-              className="flex h-12 w-12  shrink-0 items-center justify-center overflow-hidden rounded-md border border-[#f15a3a]/70 bg-[#fdfaf9] sm:h-14 sm:w-14 md:h-[50px] md:w-[50px]"
+          <div className="relative max-w-4xl">
+            <h2
+              className="font-bold leading-[1.1] text-[#fdfaf9]"
+              style={headingStyle}
             >
-              {client.src && (
-                <img src={client.src} alt={client.name} className="h-full w-full object-contain p-1" />
-              )}
-            </div>
-          ))}
-        </div>
+              Let's Build Something That Moves Your Business Forward
+            </h2>
 
-        <button
-          type="button"
-          onClick={() => scroll(1)}
-          aria-label="Scroll logos right"
-          className="shrink-0 text-[#a0a0a0] transition hover:text-[#f15a3a]"
-        >
-          <ChevronRight size={14} />
-        </button>
+            <p className="mt-5 max-w-3xl text-[#d0d0d0]" style={bodyStyle}>
+              Whether you're launching a new product, streamlining operations,
+              or creating better customer experiences, we're ready to help turn
+              your vision into a scalable digital solution.
+            </p>
+
+            <Link
+              to="/contact"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-[#f15a3a] px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#ff704d] hover:shadow-[0_8px_25px_rgba(241,90,58,0.2)]"
+              style={smallStyle}
+            >
+              Book A Growth Consultation
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ---------- Page export ---------- */
+
+/* ============================================================
+   MAIN PAGE COMPONENT
+============================================================ */
+
 export default function AppProcessFaqSection() {
   return (
-    <div className="bg-[#1e1e1e]">
+    <div
+      className="w-full overflow-hidden bg-[#1c1c1c] text-[#fdfaf9]"
+      style={sectionStyle}
+    >
       <ProcessCarousel />
       <WhyChoose />
       <FaqSection />

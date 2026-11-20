@@ -1,145 +1,54 @@
 import React from "react";
 
 const Hero = () => {
+  const BANNER_IMAGE = "ggg";
+
+  const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]";
+  const WRAP = "mx-auto max-w-[1700px]";
+
   return (
-    <section className="bg-[#1c1c1c] text-white">
-      <div className="mx-auto max-w-[1120px] px-5 pt-16 sm:px-8 lg:px-12 lg:pt-24">
+    <section className="relative w-full overflow-hidden bg-[#1c1c1c] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9]">
 
-        {/* Hero Heading */}
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
-          <div className="max-w-[520px]">
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-wider">
-              <span className="text-[#F45132]">■</span> Full Service Digital Agency
-            </p>
+      {/* Banner Image */}
+      <div className="relative h-[320px] w-full overflow-hidden sm:h-[420px] lg:h-[595px]">
 
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[58px]">
-              Your Growth Starts
-              <br />
-              With Better Digital
-              <br />
-              Marketing
-            </h1>
+        {BANNER_IMAGE && (
+          <img
+            src={images/image3.png}
+            alt="Digital marketing banner"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+        )}
 
-            <p className="mt-5 max-w-[440px] text-xs leading-relaxed text-gray-300 sm:text-sm">
-              From SEO and paid advertising to web development and branding,
-              we help businesses attract more customers, generate qualified
-              leads, and scale faster in today's competitive digital landscape.
-            </p>
+        {/* Image Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#100d20]/40 via-transparent to-transparent" />
+
+        {/* Bottom Text */}
+        <div className="absolute inset-x-0 bottom-0 overflow-hidden pb-5 sm:pb-7 lg:pb-5">
+          <div className={`${SIDE_SPACE} ${WRAP}`}>
+            <div className="w-full overflow-visible">
+              <h1
+                className="whitespace-nowrap font-semibold leading-[0.95] tracking-[-0.045em]"
+                style={{
+                  fontSize: "clamp(2.8rem, 7.2vw, 6.8rem)",
+                }}
+              >
+                Your Business Lives Online
+                <span className="mx-3 font-light text-white/80 sm:mx-5">
+                  ◦
+                </span>
+                Because first impressions matter.
+              </h1>
+            </div>
           </div>
-
-          <a
-            href="#contact"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-[#F45132] px-7 py-3 text-xs font-semibold transition hover:bg-white hover:text-black"
-          >
-            + Get a Free Consultation
-          </a>
         </div>
 
-        {/* Statistics Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
-          {/* Left Column */}
-          <div className="flex flex-col gap-4">
-            <div className="flex min-h-[115px] items-center gap-4 rounded-md bg-white p-5 text-black">
-              {/* Logo image */}
-              <img
-                src="/images/rodezlogo.png"
-                alt="Rodez logo"
-                className="h-10 w-auto shrink-0 object-contain"
-              />
-
-              {/* Team image */}
-              <div className="h-14 w-24 shrink-0 overflow-hidden rounded-full bg-gray-200">
-                <img
-                  src="images/redhelmet.webp"
-                  alt="Our team"
-                  className="h-full w-full "
-                />
-              </div>
-
-              <div>
-                <h3 className="text-sm font-bold">
-                  200+ Businesses Empowered
-                </h3>
-                <p className="mt-2 text-[10px] leading-relaxed text-gray-500">
-                  Helping brands achieve measurable growth and digital success.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex min-h-[280px] flex-col justify-between rounded-md border border-white/80 p-5">
-              <div>
-                <span className="text-4xl font-bold text-[#F45132]">“</span>
-                <p className="max-w-[250px] text-sm font-semibold leading-relaxed">
-                  Every strategy is backed by insights, analytics, and
-                  measurable performance.
-                </p>
-              </div>
-
-              <div>
-                <h2 className="text-5xl font-bold">92%</h2>
-                <p className="text-[10px] text-gray-400">
-                  Client Satisfaction
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Center Column */}
-          <div className="flex flex-col gap-4">
-            <div className="flex h-[280px] items-center justify-center overflow-hidden rounded-md bg-[#f5f5f5]">
-              {/* Portrait image */}
-              <img
-                src="/images/redhelmet.webp"
-                alt="Portrait"
-                className="h-full w-full rounded-md object-cover"
-              />
-            </div>
-
-            <div className="flex min-h-[65px] items-center justify-between rounded-md bg-[#F45132] px-5">
-              <div>
-                <h2 className="text-3xl font-bold">20+</h2>
-                <p className="text-[10px]">Global Awards</p>
-              </div>
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#F45132]">
-                ★
-              </span>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div className="flex flex-col gap-4">
-            <div className="flex min-h-[280px] flex-col justify-between rounded-md border border-white/80 p-5">
-              <p className="max-w-[250px] text-sm font-semibold leading-relaxed">
-                We create{" "}
-                <span className="text-[#F45132]">powerful digital experiences</span>{" "}
-                through strategic marketing, creative design, and innovative
-                technology that help businesses grow online.
-              </p>
-
-              <div>
-                <h2 className="text-5xl font-bold">5K+</h2>
-                <p className="text-[10px] text-gray-400">
-                  Projects Delivered
-                </p>
-              </div>
-            </div>
-
-            <div className="flex min-h-[65px] items-center gap-4 rounded-md bg-white px-5 text-black">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#fff0eb] text-[#F45132]">
-                ●
-              </span>
-              <p className="flex-1 text-center text-xs font-medium">
-                Available For Work
-              </p>
-            </div>
-          </div>
-
-        </div>
       </div>
     </section>
   );
 };
+
+
 
 
 const Philosophy = () => {
