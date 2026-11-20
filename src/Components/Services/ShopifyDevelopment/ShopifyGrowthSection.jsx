@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaMoneyBillAlt, FaRegUser, FaUserAstronaut, FaCube } from "react-icons/fa";
 
 const ACCENT = "bg-[#f0603a]";
 
@@ -11,11 +11,13 @@ const features = [
 ];
 
 // TODO: only tab 01 is from your screenshot. Click 02, 03, 04 on the live page and copy the real text.
+const tabIcons = [FaMoneyBillAlt, FaRegUser, FaUserAstronaut, FaCube];
+
 const tabs = [
   { title: "Increase Sales", desc: "Create shopping experiences that encourage more purchases." },
-  { title: "Build Brand Trust", desc: "Add title 02 here." },
-  { title: "Improve Customer Experience", desc: "Add title 03 here." },
-  { title: "Scale Your Store", desc: "Add title 04 here." },
+  { title: "Increase Average Order Value", desc: "Encourage larger purchases through strategic store design." },
+  { title: "Improve Customer Retention", desc: "Build loyalty through seamless shopping journeys." },
+  { title: "Scale Efficiently", desc: "Handle growth without compromising performance." },
 ];
 
 function Solutions() {
@@ -46,6 +48,7 @@ function Solutions() {
 function Benefits() {
   const [active, setActive] = useState(0);
   const t = tabs[active];
+    const TabIcon = tabIcons[active];
   return (
     <section className="max-w-6xl mx-auto px-6 pb-20 text-center">
       <h2 className="text-white font-bold text-3xl sm:text-5xl leading-tight">What A High-Performing Shopify Store Can Do For Your Business</h2>
@@ -59,7 +62,7 @@ function Benefits() {
         </div>
         <div>
           <span className="mx-auto w-16 h-16 rounded-full bg-indigo-900/60 text-indigo-400 flex items-center justify-center">
-            <span className="w-4 h-4 rounded-sm border-2 border-current" />
+            <TabIcon className="text-2xl" />
           </span>
           <h3 className="text-white text-3xl mt-6">{t.title}</h3>
           <p className="text-neutral-200 mt-3">{t.desc}</p>

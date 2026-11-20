@@ -1,19 +1,19 @@
 import React from 'react'
-import Wordpress from '../components/Services/WordpressDevelopment/Wordpress'
-import BeingOnline from '../components/Services/WordpressDevelopment/BeingOnlinewordpress'
-import WordpressGrowth from '../components/Services/WordpressDevelopment/WordpressGrowth'
-import WordpressProcess from '../components/Services/DigitalMarketing/DigitalMarketingProcess'
-import WordpressFaq from '../components/Services/WordpressDevelopment/WordpressFaq'
+import Hero from '../Components/Services/WordpressDevelopment/Hero'
+import WordpressBusinessImpact from '../Components/Services/WordpressDevelopment/WordpressBusinessImpact'
+import WordpressGrowthSection from '../Components/Services/WordpressDevelopment/WordpressGrowthSection'
+import WordpressProcessFaqSection from '../Components/Services/WordpressDevelopment/WordpressProcessFaqSection'
+import TrustedBySection from '../Components/Services/WordpressDevelopment/TrustedBySection'
 
 const WordpressPage = () => {
   return (
-<>
-<Wordpress></Wordpress>
-<BeingOnline></BeingOnline>
-<WordpressGrowth></WordpressGrowth>
-<WordpressProcess></WordpressProcess>
-<WordpressFaq></WordpressFaq>
-</>
+    <main className="bg-[#1c1c1c] font-sans overflow-x-hidden">
+      <Hero />
+      <WordpressBusinessImpact />
+      <WordpressGrowthSection />
+      <WordpressProcessFaqSection />
+      <TrustedBySection />
+    </main>
   )
 }
 
