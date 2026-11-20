@@ -4,6 +4,9 @@ import AppGrowthSection from '../components/Services/AppDevelopment/AppGrowthSec
 import AppBusinessImpact from '../components/Services/AppDevelopment/AppBusinessImpact'
 import AppProcessFaqSection from '../components/Services/AppDevelopment/AppProcessFaqSection'
 import TrustedBySection from '../Components/Services/ShopifyDevelopment/TrustedBySection'
+import TrustedBySection from '../components/Services/AppDevelopment/TrustedBySection'
+
+
 
 const AppDevelopment = () => {
   return (
