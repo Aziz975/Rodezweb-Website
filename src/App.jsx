@@ -9,11 +9,10 @@ import Blog from "./Components/Blog/Blog";
 import Footer from "./components/Footer/Footer";
 
 import Services from "./components/Services/AllServices";
-import WebDevelopment from "./components/Services/WebDevelopment";
-import WordpressDevelopment from "./components/Services/WordpressDevelopment";
-import ShopifyDevelopment from "./components/Services/ShopifyDevelopment";
+import WebDevelopment from "./components/Services/WebDevelopment";import ShopifyDevelopment from "./components/Services/ShopifyDevelopment";
 import AppDevelopment from "./Pages/AppDevelopmentPage";
 import DigitalPage from "./Pages/DigitalPage";
+import WordpressPage from "./Pages/WordpressPage";
 
 
 const App = () => {
@@ -33,7 +32,7 @@ const App = () => {
         <Route path="/services/app-development" element={<AppDevelopment/>} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
         <Route path="/services/digital-marketing" element={<DigitalPage />} />
-        <Route path="/services/wordpress-development" element={<WordpressDevelopment />} />
+        <Route path="/services/wordpress-development" element={<WordpressPage />} />
         <Route path="/services/shopify-development" element={<ShopifyDevelopment />} />
       </Routes>
       <Footer />
