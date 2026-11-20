@@ -13,10 +13,10 @@ const steps = [
 // TODO: only Q1 answer is from your screenshot; copy the rest from the live page.
 const faqs = [
   { q: "Q. Why should I choose Shopify for my online store?", a: "Shopify is secure, scalable, user-friendly, and designed specifically for eCommerce businesses." },
-  { q: "Q. Can you migrate my existing store to Shopify?", a: "Add answer here." },
-  { q: "Q. Will my Shopify store work on mobile devices?", a: "Add answer here." },
-  { q: "Q. Can I manage products and orders myself?", a: "Add answer here." },
-  { q: "Q. Do you provide support after launch?", a: "Add answer here." },
+  { q: "Q. Can you migrate my existing store to Shopify?", a: "Yes. We can help transfer products, customers, and content from other platforms." },
+  { q: "Q. Will my Shopify store work on mobile devices?", a: "Absolutely. Every store we build is fully optimized for mobile shopping." },
+  { q: "Q. Can I manage products and orders myself?", a: "Yes. Shopify provides an easy-to-use dashboard that allows you to manage your entire store." },
+  { q: "Q. Do you provide support after launch?", a: "Yes. We offer maintenance, updates, troubleshooting, and ongoing support." },
 ];
 
 function Process() {
