@@ -4,11 +4,19 @@ export default function Hero() {
     return (
         <>
             {/* banner */}
-            <section
-                className="h-40 sm:h-52 md:h-[340px] flex items-center justify-center bg-cover bg-center"
-                style={{ backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0) 60%, #1c1c1c 100%), url('/images/wordpress-banner.jpg')" }} // TODO
-            >
-                <h1 className="text-white font-extrabold uppercase text-4xl sm:text-6xl md:text-7xl tracking-tight text-center">
+            <section className="relative h-40 sm:h-52 md:h-[340px] flex items-center justify-center overflow-hidden">
+                {/* background image */}
+                <img
+                    src="/images/space-man.png"
+                    alt="WordPress Development Banner"
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                {/* fade into the page background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent from-60% to-[#1c1c1c]" />
+
+                {/* heading above the image */}
+                <h1 className="relative z-10 text-white font-extrabold uppercase text-4xl sm:text-6xl md:text-7xl tracking-tight text-center">
                     WordPress Development
                 </h1>
             </section>
