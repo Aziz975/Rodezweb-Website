@@ -7,7 +7,7 @@ export default function Hero() {
     <>
       <section
         className="h-40 sm:h-52 md:h-[340px] flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0) 60%, #1c1c1c 100%), url('/images/shopify-banner.jpg')" }} // TODO
+        style={{ backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0) 60%, #1c1c1c 100%), url('/images/shopify-banner.png')" }} // TODO
       >
         <h1 className="text-white font-extrabold uppercase text-4xl sm:text-6xl md:text-7xl tracking-tight text-center">
           Shopify Development
