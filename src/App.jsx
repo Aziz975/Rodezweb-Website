@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Pages/HomePage";
 import ContactPage from "./components/Contact/ContactPage";
-import AboutUs from "./Components/AboutUs/AboutUs";
-import Blog from "./Components/Blog/Blog";
+
+import Blog from "./components/Blog/Blog";
 import Services from "./Components/Services/AllServices";
 import WebDevelopment from "./Components/Services/WebDevelopment";
 import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
