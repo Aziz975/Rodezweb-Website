@@ -1,18 +1,6 @@
+
 import { useEffect, useRef, useState } from "react";
-
-/*
-  "Our Process" section — cards appear one by one while you scroll.
-  Styling kept from the previous pages: Manrope font, #1c1c1c background, orange #f05a2d.
-
-  Theme: dark by default. When the Navbar toggle adds <html class="light">,
-  the variables under `html.light .pr-root` take over (bright mode).
-
-  Font (if not already added, index.html <head>):
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  IMPORTANT: the panel uses `position: sticky`. It will NOT stick if any parent
-  of this section has overflow: hidden / auto / scroll (use overflow-x-clip instead).
-*/
+import { motion, useReducedMotion } from "framer-motion";
 
 const steps = [
   {
@@ -37,53 +25,180 @@ const steps = [
   },
 ];
 
-/* Scroll progress (0 → 1) at which cards 02, 03 and 04 appear */
+/* Scroll progress at which cards 02, 03 and 04 appear */
 const THRESHOLDS = [0.2, 0.45, 0.7];
 
 export default function ProcessSection() {
   const trackRef = useRef(null);
-  const [count, setCount] = useState(1); // how many cards are visible
+  const headingRef = useRef(null);
 
+  const [count, setCount] = useState(1);
+  const [animationKey, setAnimationKey] = useState(0);
+
+  const shouldReduceMotion = useReducedMotion();
+
+  /*
+    Replay the animation whenever the heading enters
+    the viewport again.
+  */
+  useEffect(() => {
+    const heading = headingRef.current;
+    if (!heading) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey((prev) => prev + 1);
+          setCount(1);
+        }
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(heading);
+
+    return () => observer.disconnect();
+  }, []);
+
+  /*
+    Existing scroll progress logic.
+    Cards appear one by one as the user scrolls.
+  */
   useEffect(() => {
     let raf = 0;
 
     const update = () => {
       raf = 0;
+
       const el = trackRef.current;
       if (!el) return;
+
       const rect = el.getBoundingClientRect();
       const total = rect.height - window.innerHeight;
-      const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-      const next = 1 + THRESHOLDS.filter((t) => progress >= t).length;
+
+      const progress =
+        total > 0
+          ? Math.min(1, Math.max(0, -rect.top / total))
+          : 0;
+
+      const next =
+        1 + THRESHOLDS.filter((t) => progress >= t).length;
+
       setCount((prev) => (prev === next ? prev : next));
     };
 
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!raf) {
+        raf = requestAnimationFrame(update);
+      }
     };
 
     update();
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+
     window.addEventListener("resize", onScroll);
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
+  /* Heading animation */
+  const headingAnimation = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 45,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  /* Description animation */
+  const descriptionAnimation = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 25,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.8,
+        delay: shouldReduceMotion ? 0 : 0.2,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  /* Panel animation */
+  const panelAnimation = {
+    hidden: {
+      opacity: 0,
+      scale: shouldReduceMotion ? 1 : 0.94,
+      y: shouldReduceMotion ? 0 : 35,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.9,
+        delay: shouldReduceMotion ? 0 : 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  /* Individual process card animation */
+  const cardAnimation = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 65,
+      scale: shouldReduceMotion ? 1 : 0.88,
+      rotateX: shouldReduceMotion ? 0 : -12,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
     <section className="pr-root w-full overflow-x-clip bg-[color:var(--pr-bg)] pt-12 font-['Manrope',sans-serif] text-[color:var(--pr-text)] sm:pt-16 lg:pt-8">
+
       <style>{`
-        /* ---------- Dark mode (default) ---------- */
+        /* ---------- Dark mode ---------- */
         .pr-root {
           --pr-bg: #1c1c1c;
-          --pr-bg-0: rgba(28, 28, 28, 0);       /* transparent version of --pr-bg for fades */
+          --pr-bg-0: rgba(28, 28, 28, 0);
           --pr-text: #ffffff;
           --pr-text-soft: rgba(255, 255, 255, 0.9);
           --pr-border: rgba(255, 255, 255, 0.8);
-          --pr-panel: #5c3d5e;                  /* purple panel */
-          transition: background-color .3s ease, color .3s ease;
+          --pr-panel: #5c3d5e;
+
+          transition:
+            background-color .3s ease,
+            color .3s ease;
         }
 
         /* ---------- Bright mode ---------- */
@@ -96,38 +211,87 @@ export default function ProcessSection() {
           --pr-panel: #8b668d;
         }
 
-        .pr-panel { transition: background-color .3s ease; }
+        .pr-panel {
+          transition: background-color .3s ease;
+        }
+
+        .pr-step-card {
+          backface-visibility: hidden;
+          transform-style: preserve-3d;
+        }
+
+        .pr-step-card:hover {
+          box-shadow: 0 20px 45px rgba(0, 0, 0, .18);
+        }
 
         @media (prefers-reduced-motion: reduce) {
-          .pr-root, .pr-panel { transition: none; }
+          .pr-root,
+          .pr-panel {
+            transition: none !important;
+          }
+
+          .pr-step-card:hover {
+            transform: none !important;
+          }
         }
       `}</style>
 
-      {/* Heading */}
-      <div className="mx-auto flex w-full max-w-[1300px] flex-col items-center px-5 text-center sm:px-6">
-        <div className="flex items-center gap-2">
+      {/* Heading and description */}
+      <div
+        ref={headingRef}
+        className="mx-auto flex w-full max-w-[1300px] flex-col items-center px-5 text-center sm:px-6"
+      >
+        <motion.div
+          key={`label-${animationKey}`}
+          variants={headingAnimation}
+          initial="hidden"
+          animate="visible"
+          className="flex items-center gap-2"
+        >
           <span className="h-2 w-2 rounded-[2px] border border-[color:var(--pr-border)]" />
+
           <span className="text-[10px] font-bold uppercase tracking-wide text-[color:var(--pr-text-soft)] sm:text-[11px]">
             Our Process
           </span>
-        </div>
+        </motion.div>
 
-        <h2 className="mt-4 text-[clamp(1.9rem,3.8vw,3.4rem)] font-extrabold leading-[1.1] tracking-tight">
+        <motion.h2
+          key={`heading-${animationKey}`}
+          variants={headingAnimation}
+          initial="hidden"
+          animate="visible"
+          className="mt-4 text-[clamp(1.9rem,3.8vw,3.4rem)] font-extrabold leading-[1.1] tracking-tight"
+        >
           The Roadmap Behind Every <br className="hidden sm:block" />
           Successful Project
-        </h2>
+        </motion.h2>
 
-        <p className="mt-5 max-w-[900px] text-[13px] font-semibold leading-relaxed text-[color:var(--pr-text-soft)] sm:text-[15px]">
-          Every successful project follows a proven path. Our collaborative process ensures that every
-          solution is strategically planned, expertly executed, and continuously optimized for long-term
-          growth.
-        </p>
+        <motion.p
+          key={`description-${animationKey}`}
+          variants={descriptionAnimation}
+          initial="hidden"
+          animate="visible"
+          className="mt-5 max-w-[900px] text-[13px] font-semibold leading-relaxed text-[color:var(--pr-text-soft)] sm:text-[15px]"
+        >
+          Every successful project follows a proven path. Our collaborative
+          process ensures that every solution is strategically planned,
+          expertly executed, and continuously optimized for long-term growth.
+        </motion.p>
       </div>
 
-      {/* Scroll track: its height decides how long the panel stays pinned */}
-      <div ref={trackRef} className="relative mt-10 h-[280vh] lg:mt-16 lg:h-[300vh]">
+      {/* Scroll track */}
+      <div
+        ref={trackRef}
+        className="relative mt-10 h-[280vh] lg:mt-16 lg:h-[300vh]"
+      >
         <div className="sticky top-20 px-5 sm:top-24 sm:px-6">
-          <div
+
+          {/* Animated panel */}
+          <motion.div
+            key={`panel-${animationKey}`}
+            variants={panelAnimation}
+            initial="hidden"
+            animate="visible"
             className="pr-panel relative mx-auto h-[calc(100svh-6.5rem)] max-h-[760px] min-h-[520px] w-full max-w-[1200px] overflow-hidden rounded-xl bg-[color:var(--pr-panel)]"
             style={{
               backgroundImage: [
@@ -137,33 +301,42 @@ export default function ProcessSection() {
               ].join(", "),
             }}
           >
-            {/* Cards: 2-column grid on mobile, 4 in a row on desktop */}
+
+            {/* Process cards */}
             <div className="grid h-full grid-cols-2 content-end gap-3 p-4 sm:p-6 lg:grid-cols-4 lg:items-center lg:content-center lg:gap-5 lg:px-8 lg:py-0">
-              {steps.map((step, i) => (
-                <article
-                  key={step.number}
-                  className={`w-full rounded-2xl bg-white p-4 text-[#1c1c1c] shadow-xl transition-all duration-700 ease-out motion-reduce:transition-none sm:p-5 lg:p-6 ${
-                    i < count
-                      ? "translate-y-0 opacity-100"
-                      : "pointer-events-none translate-y-10 opacity-0"
-                  }`}
-                  aria-hidden={i >= count}
-                >
-                  <p className="text-[clamp(2.75rem,5.2vw,4.75rem)] font-extralight leading-none">
-                    {step.number}
-                  </p>
 
-                  <h3 className="mt-6 text-[16px] font-semibold sm:mt-8 lg:text-[18px]">
-                    {step.title}
-                  </h3>
+              {steps.map((step, i) => {
+                const isVisible = i < count;
 
-                  <p className="mt-2 text-[12px] leading-snug text-gray-500 lg:text-[13px]">
-                    {step.text}
-                  </p>
-                </article>
-              ))}
+                return (
+                  <motion.article
+                    key={`${step.number}-${animationKey}`}
+                    variants={cardAnimation}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                    className="pr-step-card w-full rounded-2xl bg-white p-4 text-[#1c1c1c] shadow-xl sm:p-5 lg:p-6"
+                    style={{
+                      pointerEvents: isVisible ? "auto" : "none",
+                    }}
+                    aria-hidden={!isVisible}
+                  >
+                    <p className="text-[clamp(2.75rem,5.2vw,4.75rem)] font-extralight leading-none">
+                      {step.number}
+                    </p>
+
+                    <h3 className="mt-6 text-[16px] font-semibold sm:mt-8 lg:text-[18px]">
+                      {step.title}
+                    </h3>
+
+                    <p className="mt-2 text-[12px] leading-snug text-gray-500 lg:text-[13px]">
+                      {step.text}
+                    </p>
+                  </motion.article>
+                );
+              })}
+
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

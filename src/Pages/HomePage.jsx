@@ -1,9 +1,6 @@
 import React from 'react'
 import HeroMarquee from '../components/Home/HeroMarquee'
 import DigitalMarketing from '../components/Home/DigitalMarketing'
-import ContactPage from '../components/Contact/ContactPage'
-
-import AboutUs from '../Components/AboutUs/AboutUs'
 import ServicesSection from '../components/Home/ServiceSection'
 import ProcessSection from '../components/Home/ProcessSection'
 import TestimonialsSection from '../components/Home/TestimonialsSection'

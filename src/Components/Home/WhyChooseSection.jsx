@@ -1,13 +1,10 @@
-/*
-  Styling:
-  Manrope font
-  Dark background: #1c1c1c
-  Light background: #ffffff
-  Accent: #f05a2d
 
-  Theme automatically changes when Navbar adds/removes:
-  <html class="light">
-*/
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+} from "framer-motion";
 
 const plans = [
   {
@@ -82,9 +79,110 @@ const Cross = () => (
   </svg>
 );
 
+const headingVariants = {
+  hidden: {
+    opacity: 0,
+    y: 45,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 65,
+    scale: 0.94,
+    filter: "blur(8px)",
+  },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.75,
+      delay: index * 0.16,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -12,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.35,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function WhyChooseSection() {
+  const sectionRef = useRef(null);
+  const [animationKey, setAnimationKey] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Restart the animation whenever the section enters the viewport.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let wasVisible = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !wasVisible) {
+          wasVisible = true;
+          setAnimationKey((prev) => prev + 1);
+        } else if (!entry.isIntersecting) {
+          wasVisible = false;
+        }
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const headingMotion = prefersReducedMotion
+    ? {}
+    : {
+        variants: headingVariants,
+        initial: "hidden",
+        animate: "visible",
+      };
+
+  const cardMotion = prefersReducedMotion
+    ? {}
+    : {
+        variants: cardVariants,
+        initial: "hidden",
+        animate: "visible",
+      };
+
   return (
-    <section className="wc-root w-full overflow-x-clip bg-[color:var(--wc-bg)] py-16 font-['Manrope',sans-serif] text-[color:var(--wc-text)] sm:py-20 lg:py-28">
+    <section
+      ref={sectionRef}
+      className="wc-root w-full overflow-x-clip bg-[color:var(--wc-bg)] py-16 font-['Manrope',sans-serif] text-[color:var(--wc-text)] sm:py-20 lg:py-28"
+    >
       <style>{`
         /* Dark mode - default */
         .wc-root {
@@ -110,15 +208,19 @@ export default function WhyChooseSection() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .wc-root {
-            transition: none;
+          .wc-root,
+          .wc-root * {
+            scroll-behavior: auto !important;
           }
         }
       `}</style>
 
       <div className="mx-auto w-full max-w-[1300px] px-5 sm:px-6">
         {/* Section heading */}
-        <div>
+        <motion.div
+          key={`heading-${animationKey}`}
+          {...headingMotion}
+        >
           <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--wc-text-soft)] sm:text-[12px]">
             Partner with Rodez Web Technologies.
           </p>
@@ -126,47 +228,134 @@ export default function WhyChooseSection() {
           <h2 className="mt-3 max-w-[760px] text-[clamp(1.9rem,3.8vw,3.4rem)] font-extrabold leading-[1.15] tracking-tight">
             Why Clients Choose Rodez Web Technologies
           </h2>
-        </div>
+
+          {!prefersReducedMotion && (
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "90px" }}
+              transition={{
+                duration: 0.7,
+                delay: 0.45,
+                ease: "easeOut",
+              }}
+              className="mt-5 h-1 rounded-full bg-[#f05a2d]"
+            />
+          )}
+        </motion.div>
 
         {/* Comparison cards */}
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:mt-20 lg:gap-5">
-          {plans.map((plan) => (
-            <article
+        <div
+          key={`cards-${animationKey}`}
+          className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:mt-20 lg:gap-5"
+        >
+          {plans.map((plan, index) => (
+            <motion.article
               key={plan.title}
-              className="flex flex-col rounded-2xl border border-[color:var(--wc-card-border)] bg-[color:var(--wc-card)] p-5 text-[color:var(--wc-card-text)] transition-colors duration-300 sm:p-6"
+              custom={index}
+              {...cardMotion}
+              className="group flex flex-col rounded-2xl border border-[color:var(--wc-card-border)] bg-[color:var(--wc-card)] p-5 text-[color:var(--wc-card-text)] transition-colors duration-300 sm:p-6"
+              whileHover={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      y: -8,
+                      transition: { duration: 0.3 },
+                    }
+              }
             >
-              <h3 className="text-[20px] font-normal sm:text-[22px]">
+              <motion.h3
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : { opacity: 0, y: 15 }
+                }
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: prefersReducedMotion ? 0 : index * 0.16 + 0.25,
+                }}
+                className="text-[20px] font-normal sm:text-[22px]"
+              >
                 {plan.title}
-              </h3>
+              </motion.h3>
 
               <ul className="mt-6 flex flex-1 flex-col gap-3.5">
-                {plan.items.map((item) => (
-                  <li
+                {plan.items.map((item, itemIndex) => (
+                  <motion.li
                     key={item.text}
+                    initial={
+                      prefersReducedMotion
+                        ? false
+                        : { opacity: 0, x: -15 }
+                    }
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: prefersReducedMotion
+                        ? 0
+                        : index * 0.16 + 0.35 + itemIndex * 0.055,
+                      ease: "easeOut",
+                    }}
                     className={`flex items-center gap-3 text-[12px] sm:text-[13px] ${
                       item.ok ? "text-[#2a2a2a]" : "text-gray-500"
                     }`}
                   >
                     {item.ok ? <Tick /> : <Cross />}
                     <span>{item.text}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
               {/* Plan button */}
               {plan.highlight ? (
-                <a
+                <motion.a
                   href={plan.href}
-                  className="mt-7 block rounded-md bg-[#f05a2d] py-2.5 text-center text-[12px] font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-110 sm:text-[13px]"
+                  initial={
+                    prefersReducedMotion
+                      ? false
+                      : { opacity: 0, y: 15 }
+                  }
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: prefersReducedMotion
+                      ? 0
+                      : index * 0.16 + 0.85,
+                  }}
+                  whileHover={
+                    prefersReducedMotion
+                      ? undefined
+                      : { y: -4, scale: 1.02 }
+                  }
+                  whileTap={
+                    prefersReducedMotion
+                      ? undefined
+                      : { scale: 0.98 }
+                  }
+                  className="mt-7 block rounded-md bg-[#f05a2d] py-2.5 text-center text-[12px] font-semibold text-white transition hover:brightness-110 sm:text-[13px]"
                 >
                   {plan.button}
-                </a>
+                </motion.a>
               ) : (
-                <div className="mt-7 rounded-md bg-[#f05a2d]/55 py-2.5 text-center text-[12px] font-semibold text-white sm:text-[13px]">
+                <motion.div
+                  initial={
+                    prefersReducedMotion
+                      ? false
+                      : { opacity: 0, y: 15 }
+                  }
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: prefersReducedMotion
+                      ? 0
+                      : index * 0.16 + 0.85,
+                  }}
+                  className="mt-7 rounded-md bg-[#f05a2d]/55 py-2.5 text-center text-[12px] font-semibold text-white sm:text-[13px]"
+                >
                   {plan.button}
-                </div>
+                </motion.div>
               )}
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
