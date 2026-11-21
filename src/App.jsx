@@ -1,22 +1,17 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Pages/HomePage";
 import ContactPage from "./components/Contact/ContactPage";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Blog from "./Components/Blog/Blog";
-import Footer from "./components/Footer/Footer";
-
-
 import Services from "./Components/Services/AllServices";
 import WebDevelopment from "./Components/Services/WebDevelopment";
 import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
-
-
 import AppDevelopment from "./Pages/AppDevelopmentPage";
 import DigitalPage from "./Pages/DigitalPage";
 import WordpressPage from "./Pages/WordpressPage";
+// import Footer from "./components/Footer/Footer";
+
 
 
 const App = () => {
@@ -39,7 +34,7 @@ const App = () => {
         <Route path="/services/wordpress-development" element={<WordpressPage />} />
         <Route path="/services/shopify-development" element={<ShopifyDevelopment />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 };
