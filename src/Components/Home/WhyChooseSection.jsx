@@ -1,10 +1,14 @@
 /*
-  Styling kept from the previous pages: Manrope font, #1c1c1c background, orange #f05a2d.
-  Font (if not already added, index.html <head>):
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  Styling:
+  Manrope font
+  Dark background: #1c1c1c
+  Light background: #ffffff
+  Accent: #f05a2d
+
+  Theme automatically changes when Navbar adds/removes:
+  <html class="light">
 */
 
-/* ok: true = orange tick, ok: false = grey cross */
 const plans = [
   {
     title: "Freelancer",
@@ -50,35 +54,90 @@ const plans = [
 ];
 
 const Tick = () => (
-  <svg viewBox="0 0 24 24" className="h-3 w-3 shrink-0 text-[#f05a2d]" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    className="h-3 w-3 shrink-0 text-[#f05a2d]"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <path d="M4 12.5l5 5L20 6.5" />
   </svg>
 );
 
 const Cross = () => (
-  <svg viewBox="0 0 24 24" className="h-3 w-3 shrink-0 text-gray-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    className="h-3 w-3 shrink-0 text-gray-500"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    aria-hidden="true"
+  >
     <path d="M6 6l12 12M18 6L6 18" />
   </svg>
 );
 
 export default function WhyChooseSection() {
   return (
-    <section className="w-full overflow-x-clip bg-[#1c1c1c] py-16 font-['Manrope',sans-serif] text-white sm:py-20 lg:py-28">
-      <div className="mx-auto w-full max-w-[1300px] px-5 sm:px-6">
-        <p className="text-[11px] font-bold uppercase tracking-wide text-white/90 sm:text-[12px]">
-          Partner with Rodez Web Technologies.
-        </p>
-        <h2 className="mt-3 max-w-[760px] text-[clamp(1.9rem,3.8vw,3.4rem)] font-extrabold leading-[1.15] tracking-tight">
-          Why Clients Choose Rodez Web Technologies
-        </h2>
+    <section className="wc-root w-full overflow-x-clip bg-[color:var(--wc-bg)] py-16 font-['Manrope',sans-serif] text-[color:var(--wc-text)] sm:py-20 lg:py-28">
+      <style>{`
+        /* Dark mode - default */
+        .wc-root {
+          --wc-bg: #1c1c1c;
+          --wc-text: #ffffff;
+          --wc-text-soft: rgba(255, 255, 255, 0.9);
+          --wc-card: #ffffff;
+          --wc-card-text: #1c1c1c;
+          --wc-card-border: transparent;
+          --wc-muted: #6b7280;
+          transition: background-color .3s ease, color .3s ease;
+        }
 
+        /* Light mode */
+        html.light .wc-root {
+          --wc-bg: #ffffff;
+          --wc-text: #1c1c1c;
+          --wc-text-soft: rgba(28, 28, 28, 0.85);
+          --wc-card: #f1f1f1;
+          --wc-card-text: #1c1c1c;
+          --wc-card-border: rgba(0, 0, 0, 0.06);
+          --wc-muted: #6b7280;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .wc-root {
+            transition: none;
+          }
+        }
+      `}</style>
+
+      <div className="mx-auto w-full max-w-[1300px] px-5 sm:px-6">
+        {/* Section heading */}
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--wc-text-soft)] sm:text-[12px]">
+            Partner with Rodez Web Technologies.
+          </p>
+
+          <h2 className="mt-3 max-w-[760px] text-[clamp(1.9rem,3.8vw,3.4rem)] font-extrabold leading-[1.15] tracking-tight">
+            Why Clients Choose Rodez Web Technologies
+          </h2>
+        </div>
+
+        {/* Comparison cards */}
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:mt-20 lg:gap-5">
           {plans.map((plan) => (
             <article
               key={plan.title}
-              className="flex flex-col rounded-2xl bg-white p-5 text-[#1c1c1c] sm:p-6"
+              className="flex flex-col rounded-2xl border border-[color:var(--wc-card-border)] bg-[color:var(--wc-card)] p-5 text-[color:var(--wc-card-text)] transition-colors duration-300 sm:p-6"
             >
-              <h3 className="text-[20px] font-normal sm:text-[22px]">{plan.title}</h3>
+              <h3 className="text-[20px] font-normal sm:text-[22px]">
+                {plan.title}
+              </h3>
 
               <ul className="mt-6 flex flex-1 flex-col gap-3.5">
                 {plan.items.map((item) => (
@@ -89,15 +148,16 @@ export default function WhyChooseSection() {
                     }`}
                   >
                     {item.ok ? <Tick /> : <Cross />}
-                    {item.text}
+                    <span>{item.text}</span>
                   </li>
                 ))}
               </ul>
 
+              {/* Plan button */}
               {plan.highlight ? (
                 <a
                   href={plan.href}
-                  className="mt-7 block rounded-md bg-[#f05a2d] py-2.5 text-center text-[12px] font-semibold text-white transition hover:brightness-110 sm:text-[13px]"
+                  className="mt-7 block rounded-md bg-[#f05a2d] py-2.5 text-center text-[12px] font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-110 sm:text-[13px]"
                 >
                   {plan.button}
                 </a>

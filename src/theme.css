@@ -1,0 +1,92 @@
+/* ============================================================
+   Bright mode: applied when <html class="light">
+   Dark mode is your normal design, so nothing is needed for it.
+   ============================================================ */
+
+html { color-scheme: dark; }
+html.light { color-scheme: light; }
+
+body,
+header,
+section {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light body {
+  background-color: #ffffff;
+  color: #1c1c1c;
+}
+
+/* ---------- Backgrounds ---------- */
+html.light .bg-\[\#1c1c1c\]:where(:not(.theme-fixed, .theme-fixed *)),
+html.light .bg-\[\#101010\]:where(:not(.theme-fixed, .theme-fixed *)) {
+  background-color: #ffffff;
+}
+
+html.light .bg-\[\#242424\]:where(:not(.theme-fixed, .theme-fixed *)),
+html.light .bg-\[\#262626\]:where(:not(.theme-fixed, .theme-fixed *)) {
+  background-color: #f1f1f1;
+}
+
+html.light .hover\:bg-\[\#333\]:hover {
+  background-color: #e4e4e4;
+}
+
+/* ---------- Text (white -> dark) ----------
+   Not changed inside orange buttons/cards, WhatsApp button or .theme-fixed */
+html.light .text-white:not(:hover):where(
+    :not(
+      .theme-fixed, .theme-fixed *,
+      .bg-\[\#f05a2d\], .bg-\[\#f05a2d\] *,
+      .bg-\[\#e8552d\], .bg-\[\#e8552d\] *,
+      .bg-\[\#20cf68\], .bg-\[\#20cf68\] *
+    )
+  ) {
+  color: #1c1c1c;
+}
+
+html.light .text-white\/90:where(:not(.theme-fixed, .theme-fixed *, .bg-\[\#f05a2d\] *)),
+html.light .text-white\/80:where(:not(.theme-fixed, .theme-fixed *, .bg-\[\#f05a2d\] *)) {
+  color: rgba(28, 28, 28, 0.85);
+}
+
+html.light .text-gray-300:where(:not(.theme-fixed *)),
+html.light .text-gray-400:where(:not(.theme-fixed *)) {
+  color: #4b4b4b;
+}
+
+html.light .text-\[\#d4d4d4\]:where(:not(.theme-fixed *)) {
+  color: #3a3a3a;
+}
+
+html.light .hover\:text-white:hover:where(:not(.theme-fixed *)) {
+  color: #000000;
+}
+
+/* ---------- Borders ---------- */
+html.light .border-white\/90:where(:not(.theme-fixed *)),
+html.light .border-white\/80:where(:not(.theme-fixed *)) {
+  border-color: rgba(28, 28, 28, 0.85);
+}
+
+html.light .border-white\/10:where(:not(.theme-fixed *)),
+html.light .border-white\/15:where(:not(.theme-fixed *)) {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Things that must stay white ---------- */
+html.light .bg-\[\#f05a2d\],
+html.light .bg-\[\#e8552d\],
+html.light .bg-\[\#20cf68\],
+html.light .theme-fixed {
+  color: #ffffff;
+}
+
+/* ---------- Navbar edge in bright mode ---------- */
+html.light .theme-header {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, header, section { transition: none; }
+}

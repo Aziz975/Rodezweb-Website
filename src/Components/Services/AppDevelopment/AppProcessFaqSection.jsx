@@ -36,8 +36,8 @@ const sectionStyle = {
 
 /* ---------- Image Placeholders ---------- */
 
-const PROCESS_BG_IMG = "";
-const CTA_BG_IMG = "";
+const PROCESS_BG_IMG = "/images/bg-first.png";
+const CTA_BG_IMG = "/images/spectacle.png";
 
 /* ---------- Data ---------- */
 

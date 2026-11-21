@@ -3,8 +3,10 @@ import { useState } from "react";
 /*
   Section only — drop <ServicesSection /> anywhere inside your existing page.
   Styling kept from the previous page: Manrope font, orange #f05a2d.
-  Section background is #050608 to match this screenshot; change it to
-  #1c1c1c if you want it to match the rest of your page.
+
+  Theme: dark by default (#050608). When the Navbar toggle adds <html class="light">,
+  the variables under `html.light .sv-root` take over (bright mode).
+  Change --sv-bg in the dark block to #1c1c1c if you want it to match the rest of your page.
 
   Font (if not already added, index.html <head>):
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -57,14 +59,14 @@ function Detail({ service }) {
         {service.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full bg-[#f1f1f1] px-5 py-2.5 text-[13px] font-medium text-[#1c1c1c] sm:px-6 sm:py-3 sm:text-[15px]"
+            className="rounded-full bg-[color:var(--sv-chip)] px-5 py-2.5 text-[13px] font-medium text-[color:var(--sv-chip-text)] sm:px-6 sm:py-3 sm:text-[15px]"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <p className="mt-6 max-w-[600px] text-[15px] font-medium leading-[1.8] text-white sm:text-[17px] lg:mt-9 lg:text-[clamp(1.05rem,1.45vw,1.4rem)]">
+      <p className="mt-6 max-w-[600px] text-[15px] font-medium leading-[1.8] text-[color:var(--sv-text)] sm:text-[17px] lg:mt-9 lg:text-[clamp(1.05rem,1.45vw,1.4rem)]">
         {service.text}
       </p>
 
@@ -82,11 +84,41 @@ export default function ServicesSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="w-full overflow-x-hidden bg-[#050608] py-14 font-['Manrope',sans-serif] text-white sm:py-20 lg:py-24">
+    <section className="sv-root w-full overflow-x-hidden bg-[color:var(--sv-bg)] py-14 font-['Manrope',sans-serif] text-[color:var(--sv-text)] sm:py-20 lg:py-24">
       <style>{`
+        /* ---------- Dark mode (default) ---------- */
+        .sv-root {
+          --sv-bg: #050608;
+          --sv-text: #ffffff;
+          --sv-num-active: rgba(255, 255, 255, 0.8);
+          --sv-num-idle: rgba(255, 255, 255, 0.4);
+          --sv-title-idle: rgba(255, 255, 255, 0.45);
+          --sv-title-hover: rgba(255, 255, 255, 0.7);
+          --sv-chip: #f1f1f1;
+          --sv-chip-text: #1c1c1c;
+          transition: background-color .3s ease, color .3s ease;
+        }
+
+        /* ---------- Bright mode ---------- */
+        html.light .sv-root {
+          --sv-bg: #ffffff;
+          --sv-text: #1c1c1c;
+          --sv-num-active: rgba(28, 28, 28, 0.8);
+          --sv-num-idle: rgba(28, 28, 28, 0.35);
+          --sv-title-idle: rgba(28, 28, 28, 0.4);
+          --sv-title-hover: rgba(28, 28, 28, 0.7);
+          --sv-chip: #1c1c1c;
+          --sv-chip-text: #ffffff;
+        }
+
+        .sv-title-idle:hover { color: var(--sv-title-hover); }
+
         @keyframes sv-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
         .sv-fade { animation: sv-fade .4s ease both; }
-        @media (prefers-reduced-motion: reduce) { .sv-fade { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+          .sv-fade { animation: none; }
+          .sv-root { transition: none; }
+        }
       `}</style>
 
       <div className="mx-auto grid w-full max-w-[1300px] gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16">
@@ -106,14 +138,18 @@ export default function ServicesSection() {
                 >
                   <span
                     className={`w-8 shrink-0 pt-[0.55em] text-[clamp(1.1rem,2.3vw,2.4rem)] font-light leading-none transition-colors duration-300 sm:w-12 lg:w-14 ${
-                      isActive ? "text-white/80" : "text-white/40"
+                      isActive
+                        ? "text-[color:var(--sv-num-active)]"
+                        : "text-[color:var(--sv-num-idle)]"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span
                     className={`text-[clamp(1.6rem,3.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight transition-colors duration-300 ${
-                      isActive ? "text-white" : "text-white/45 hover:text-white/70"
+                      isActive
+                        ? "text-[color:var(--sv-text)]"
+                        : "sv-title-idle text-[color:var(--sv-title-idle)]"
                     }`}
                   >
                     {service.title}
@@ -140,7 +176,8 @@ export default function ServicesSection() {
   );
 }
 
-/* Optional: floating green consultation button (place once, e.g. in App/Layout) */
+/* Optional: floating green consultation button (place once, e.g. in App/Layout).
+   Green with white text in both modes, so no theme changes are needed. */
 export function WhatsAppButton() {
   return (
     <a
@@ -148,7 +185,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label="Get Free Consultation for the Project on WhatsApp"
-      className="fixed bottom-4 right-4 z-40 flex items-center gap-3 rounded-full bg-[#25c35a] px-4 py-3 font-['Manrope',sans-serif] text-[15px] font-semibold text-white shadow-lg transition hover:brightness-110 sm:bottom-5 sm:right-5 sm:px-6 sm:text-[17px]"
+      className="theme-fixed fixed bottom-4 right-4 z-40 flex items-center gap-3 rounded-full bg-[#25c35a] px-4 py-3 font-['Manrope',sans-serif] text-[15px] font-semibold text-white shadow-lg transition hover:brightness-110 sm:bottom-5 sm:right-5 sm:px-6 sm:text-[17px]"
     >
       <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22l5.9-2z" />

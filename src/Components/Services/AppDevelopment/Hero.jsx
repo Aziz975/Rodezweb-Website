@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 // Add your hero image path later
-const HERO_IMAGE = "";
+const HERO_IMAGE = "/images/wp-landing.png";
 
 // Replace with your WhatsApp number (country code + number, no + or spaces)
 const WHATSAPP_URL =
@@ -87,9 +87,7 @@ export default function Hero() {
           />
         )}
 
-        {/* Image overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#7e9cae]/75 via-[#292929]/85 to-[#1e1e1e]" />
-
+       
         {/* Hero title */}
         <div className="relative z-10 px-4 py-14 text-center sm:py-20">
           <h1 className="text-[clamp(2rem,7vw,5.8rem)] font-bold leading-[1.1] tracking-[-0.04em] text-white">
@@ -182,6 +180,31 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </section>
+
+           <section className="relative flex min-h-[700px] w-full items-center justify-center overflow-hidden bg-[#1d1d1d] px-4 py-12 sm:min-h-[850px] sm:px-8 lg:min-h-[1000px]">
+
+        {/* Enhanced technology background */}
+        <img
+          src="/images/Smartphone-Display-Layout.png"
+          alt="Abstract orange technology background with digital engineering graphics"
+          className="absolute inset-0 h-full w-full  py-10 "
+        />
+
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-[#1d1d1d]/20" />
+
+        {/* Optional dark vignette */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/20" />
+
+        {/* Background glow */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#003d33]/10 blur-[130px]" />
+
+        {/* Phones */}
+        <div className="relative mx-auto flex w-full max-w-[1200px] items-center justify-center">
+          {/* Keep your existing three phone mockups here */}
+        </div>
+
       </section>
 
       {/* ================= WHATSAPP FLOATING BUTTON ================= */}

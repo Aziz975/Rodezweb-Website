@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 /*
   Styling kept from the previous pages: Manrope font, #1c1c1c background, orange #f05a2d.
+
+  Theme: dark by default. When the Navbar toggle adds <html class="light">,
+  the variables under `html.light .ts-root` take over (bright mode).
+
   Font (if not already added, index.html <head>):
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 */
@@ -94,12 +98,39 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="w-full overflow-x-clip bg-[#1c1c1c] py-16 font-['Manrope',sans-serif] text-white sm:py-20 lg:py-28">
+    <section className="ts-root w-full overflow-x-clip bg-[color:var(--ts-bg)] py-16 font-['Manrope',sans-serif] text-[color:var(--ts-text)] sm:py-20 lg:py-28">
+      <style>{`
+        /* ---------- Dark mode (default) ---------- */
+        .ts-root {
+          --ts-bg: #1c1c1c;
+          --ts-text: #ffffff;
+          --ts-text-soft: rgba(255, 255, 255, 0.9);
+          --ts-card: #ffffff;
+          --ts-card-border: transparent;
+          --ts-dot: #ffffff;
+          transition: background-color .3s ease, color .3s ease;
+        }
+
+        /* ---------- Bright mode ---------- */
+        html.light .ts-root {
+          --ts-bg: #ffffff;
+          --ts-text: #1c1c1c;
+          --ts-text-soft: rgba(28, 28, 28, 0.85);
+          --ts-card: #f1f1f1;           /* cards stay visible on the white page */
+          --ts-card-border: rgba(0, 0, 0, 0.06);
+          --ts-dot: rgba(28, 28, 28, 0.25);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ts-root { transition: none; }
+        }
+      `}</style>
+
       <div className="mx-auto w-full max-w-[1300px] px-5 sm:px-6">
         {/* Heading */}
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full border-[1.5px] border-[#f05a2d]" />
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-white/90 sm:text-[11px]">
+          <span className="text-[10px] font-semibold uppercase tracking-wide text-[color:var(--ts-text-soft)] sm:text-[11px]">
             Client Testimonials
           </span>
         </div>
@@ -113,7 +144,7 @@ export default function TestimonialsSection() {
             type="button"
             onClick={() => go(page - 1)}
             aria-label="Previous testimonials"
-            className="shrink-0 p-1 text-white/90 transition hover:text-[#f05a2d]"
+            className="shrink-0 p-1 text-[color:var(--ts-text-soft)] transition hover:text-[#f05a2d]"
           >
             <Chevron dir="left" />
           </button>
@@ -136,7 +167,7 @@ export default function TestimonialsSection() {
                   {group.map((t, i) => (
                     <figure
                       key={`${t.name}-${i}`}
-                      className="flex grow basis-0 flex-col justify-between rounded-xl bg-white px-5 py-5 text-center text-[#1c1c1c] sm:px-6"
+                      className="flex grow basis-0 flex-col justify-between rounded-xl border border-[color:var(--ts-card-border)] bg-[color:var(--ts-card)] px-5 py-5 text-center text-[#1c1c1c] sm:px-6"
                     >
                       <blockquote className="text-[13px] font-light italic leading-relaxed text-[#444] sm:text-[15px]">
                         “{t.quote}”
@@ -163,7 +194,7 @@ export default function TestimonialsSection() {
             type="button"
             onClick={() => go(page + 1)}
             aria-label="Next testimonials"
-            className="shrink-0 p-1 text-white/90 transition hover:text-[#f05a2d]"
+            className="shrink-0 p-1 text-[color:var(--ts-text-soft)] transition hover:text-[#f05a2d]"
           >
             <Chevron dir="right" />
           </button>
@@ -182,7 +213,7 @@ export default function TestimonialsSection() {
             >
               <span
                 className={`block h-1.5 w-1.5 rounded-full transition-colors ${
-                  i === page ? "bg-[#f05a2d]" : "bg-white"
+                  i === page ? "bg-[#f05a2d]" : "bg-[color:var(--ts-dot)]"
                 }`}
               />
             </button>

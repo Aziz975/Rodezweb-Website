@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const links = [
@@ -62,13 +61,32 @@ const SearchIcon = () => (
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [dark, setDark] = useState(true);
+
+  // dark = true  -> dark mode (default)
+  // dark = false -> bright mode
+  const [dark, setDark] = useState(() => {
+    try {
+      return localStorage.getItem("theme") !== "light";
+    } catch {
+      return true;
+    }
+  });
+
+  // Adds/removes the "light" class on <html> and remembers the choice
+  useEffect(() => {
+    document.documentElement.classList.toggle("light", !dark);
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {
+      /* ignore */
+    }
+  }, [dark]);
 
   const iconBtn =
     "rounded p-2 text-[#d4d4d4] transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e8552d]";
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#1c1c1c] font-['Plus_Jakarta_Sans',sans-serif]">
+    <header className="theme-header sticky top-0 z-50 w-full bg-[#1c1c1c] font-['Plus_Jakarta_Sans',sans-serif]">
 
       <nav className="mx-auto flex h-[72px] w-full max-w-[1900px] items-center justify-between px-5 sm:px-6 lg:h-[80px] lg:px-6">
 
@@ -143,13 +161,15 @@ const Navbar = () => {
         {/* Right Icons */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
 
+          {/* Theme toggle: moon -> go dark, sun -> go bright */}
           <button
             type="button"
             onClick={() => setDark((value) => !value)}
             className={iconBtn}
-            aria-label="Toggle theme"
+            aria-label={dark ? "Switch to bright mode" : "Switch to dark mode"}
+            title={dark ? "Bright mode" : "Dark mode"}
           >
-            {dark ? <MoonIcon /> : <SunIcon />}
+            {dark ? <SunIcon /> : <MoonIcon />}
           </button>
 
           <button
