@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
 
 /* Image sources left empty until you provide the assets */
-const PROCESS_BG_IMG = ""; // blurred red storefront background
-const COUNTER_IMG = ""; // shop counter image with hotspots
-const PHONE_IMG = ""; // Instagram profile phone mockup
+const PROCESS_BG_IMG = "/images/process-bg.png"; // blurred red storefront background
+const COUNTER_IMG = "/images/wp-ecommerce.png"; // shop counter image with hotspots
+const PHONE_IMG = "/images/Before.png"; // Instagram profile phone mockup
 
 /* ---------- Shared sizing (same scale as DigitalMarketingCta / Faq) ---------- */
 const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]"; // left & right space

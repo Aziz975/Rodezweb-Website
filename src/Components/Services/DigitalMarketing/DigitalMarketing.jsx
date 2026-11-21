@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 /* Image source left empty until you provide the asset */
-const HERO_IMG = "";
+const HERO_IMG = "/images/shopify-custom-design.png";
 
 /* Replace with the real number (country code + number, digits only) */
 const WHATSAPP_NUMBER = "XXXXXXXXXXX";
@@ -151,6 +151,34 @@ export default function DigitalMarketing() {
         <WhatsAppIcon className="h-6 w-6 shrink-0 sm:h-8 sm:w-8" />
         <span className="whitespace-nowrap">Get Free Consultation for the Project !</span>
       </a>
+
+
+{/* 
+// banner image */}
+      <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-[#1d1d1d] px-4 py-12 sm:min-h-[850px] sm:px-8 lg:min-h-[400px]">
+
+        {/* Enhanced technology background */}
+        <img
+          src="/images/digital-future-background-enhanced.png"
+          alt="Abstract orange technology background with digital engineering graphics"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-[#1d1d1d]/20" />
+
+        {/* Optional dark vignette */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/20" />
+
+        {/* Background glow */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#003d33]/10 blur-[130px]" />
+
+        {/* Phones */}
+        <div className="relative mx-auto flex w-full max-w-[1200px] items-center justify-center">
+          {/* Keep your existing three phone mockups here */}
+        </div>
+
+      </section>
     </main>
   );
 }

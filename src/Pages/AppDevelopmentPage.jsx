@@ -5,6 +5,8 @@ import AppBusinessImpact from '../components/Services/AppDevelopment/AppBusiness
 import AppProcessFaqSection from '../components/Services/AppDevelopment/AppProcessFaqSection'
 import TrustedBySection from '../components/Services/AppDevelopment/TrustedBySection'
 
+import PhoneShowcase from '../components/Services/AppDevelopment/PhoneShowCase'
+
 
 
 const AppDevelopment = () => {
@@ -12,6 +14,7 @@ const AppDevelopment = () => {
       <>
     <Hero></Hero>
     <AppGrowthSection></AppGrowthSection>
+    <PhoneShowcase></PhoneShowcase>
     <AppBusinessImpact></AppBusinessImpact>
     <AppProcessFaqSection></AppProcessFaqSection>
     <TrustedBySection></TrustedBySection>

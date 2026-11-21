@@ -3,8 +3,8 @@ import { Check } from "lucide-react";
 
 /* Image sources left empty until you provide the assets */
 const HERO_IMG = ""; // orange megaphone + laptop background
-const TURTLE_IMG = ""; // turtle on skateboard
-const HAND_IMG = ""; // hand "OK" gesture
+const TURTLE_IMG = "/images/Fast-Marketing-Tortoise.png"; // turtle on skateboard
+const HAND_IMG = "/images/Rodez-Growth-Hand.png"; // hand "OK" gesture
 
 const goals = [
   "More qualified leads",
@@ -117,7 +117,7 @@ export default function BeingOnline() {
             )}
           </div>
 
-          <div className="w-[min(40%,150px)] sm:w-[22%] sm:max-w-[160px]">
+          <div className="w-[min(40%,150px)] sm:w-[52%] sm:max-w-[160px]">
             {HAND_IMG ? (
               <img
                 src={HAND_IMG}

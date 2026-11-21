@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Image sources left empty until you provide the assets */
-const CTA_BG_IMG = ""; // grayscale portrait background
+const CTA_BG_IMG = "/images/growth-banner.png"; // grayscale portrait background
 
 const clients = [
-  { name: "Sterling Cancer Hospitals", src: "" },
-  { name: "Banyan Paradise The Resort", src: "" },
-  { name: "Swapna Srushti Water Park", src: "" },
-  { name: "Department of Commerce, Government of India", src: "" },
-  { name: "CAP India Chemicals & Plastics Exhibition", src: "" },
-  { name: "Government of Telangana", src: "" },
-  { name: "Eye-care Hospital", src: "" },
-  { name: "K.J. Institute of Engineering & Technology", src: "" },
+  { name: "Sterling Cancer Hospitals", src: "/images/sterling.png" },
+  { name: "Banyan Paradise The Resort", src: "/images/banyan.png" },
+  { name: "Swapna Srushti Water Park", src: "/images/swapna.png" },
+  { name: "Department of Commerce, Government of India", src: "/images/commerce.png" },
+  { name: "CAP India Chemicals & Plastics Exhibition", src: "/images/cap-India.png" },
+  { name: "Government of Telangana", src: "/images/govrn-telangana.png" },
+  { name: "Eye-care Hospital", src: "/images/eyecare.png" },
+  { name: "K.J. Institute of Engineering & Technology", src: "/images/kj-institute.png" },
 ];
 
 /* ---------- CTA card ---------- */

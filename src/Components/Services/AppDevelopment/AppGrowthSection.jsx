@@ -1,6 +1,6 @@
 import React from "react";
 
-const APP_SHOWCASE_IMAGE = "";
+const APP_SHOWCASE_IMAGE = "/images/Left-Rodez-Phone.png";
 
 /* ---------- Shared sizing (same scale as DigitalMarketingCta / Faq / Process / Growth) ---------- */
 const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]"; // left & right space
@@ -62,23 +62,7 @@ export default function AppGrowthSection() {
         </div>
       </div>
 
-      {/* ================= APP IMAGE SHOWCASE ================= */}
-      <div className={`${SIDE_SPACE} py-12 sm:py-16 lg:py-24`}>
-        <div className={`${WRAP} flex items-center justify-center`}>
-          <div className="w-full max-w-[700px] lg:max-w-[900px]">
-            {APP_SHOWCASE_IMAGE ? (
-              <img
-                src={APP_SHOWCASE_IMAGE}
-                alt="Mobile application showcase displaying app features and business solutions"
-                className="block h-auto w-full object-contain"
-                loading="lazy"
-              />
-            ) : (
-              <div className="aspect-[16/9] w-full rounded-md border border-dashed border-white/10" />
-            )}
-          </div>
-        </div>
-      </div>
+
 
       {/* ================= BOTTOM CONTENT ================= */}
       <div className={`${SIDE_SPACE} pb-16 sm:pb-20 lg:pb-28`}>

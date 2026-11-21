@@ -15,22 +15,25 @@ import { useState } from "react";
 
 const approachCards = [
   {
-    title: "How We Think",
-    text: "We focus on solving business challenges, not delivering projects. Every decision is guided by data, user behavior, and long-term objectives.",
-    tags: ["Research", "Analytics", "Planning"],
-    button: "Discover Our Process",
+    title: "Strategy & Vision",
+    text: "We begin with a clear understanding of your business, goals, audience, and long-term vision to build a strong foundation for growth.",
+    tags: ["Strategy", "Research", "Vision"],
+    button: "Explore Strategy",
+    image: "/images/homeimg1.png",
   },
   {
-    title: "How We Create",
-    text: "We turn insights into bold creative ideas, from branding to web design, crafted to engage audiences and strengthen your identity.",
-    tags: ["Branding", "Design", "Content"],
-    button: "See Our Work",
+    title: "Creative & Design",
+    text: "We transform ideas into meaningful visual experiences through creative design, thoughtful branding, and engaging digital interfaces.",
+    tags: ["Branding", "UI/UX", "Creative"],
+    button: "Explore Design",
+    image: "/images/homeimg2.png",
   },
   {
-    title: "How We Grow",
-    text: "We launch, measure, and refine every campaign so your growth compounds over time with clear, trackable results.",
-    tags: ["SEO", "Ads", "Reporting"],
-    button: "View Results",
+    title: "Development & Growth",
+    text: "We bring ideas to life with modern technology, scalable development, and digital experiences designed for long-term growth.",
+    tags: ["Development", "Technology", "Growth"],
+    button: "Explore Development",
+    image: "/images/homeimg3.png",
   },
 ];
 
@@ -181,64 +184,100 @@ export default function DigitalMarketing() {
       </section>
 
       {/* ===================== OUR APPROACH ===================== */}
-      <section className="mx-auto mt-24 w-full max-w-[1300px] px-5 sm:px-6 lg:mt-48">
-        <Label variant="square">Our Approach</Label>
+  <section className="mx-auto mt-24 w-full max-w-[1300px] px-5 sm:px-6 lg:mt-48">
+  <Label variant="square">Our Approach</Label>
 
-        <h2 className="mt-4 text-[clamp(1.6rem,3.5vw,3.5rem)] font-extrabold leading-[1.45] tracking-tight">
-          Every great brand begins with a clear{" "}
-          <span className="inline-block rounded-md bg-[#f05a2d] px-3 leading-[1.25] sm:px-4">vision</span>{" "}
-          and the{" "}
-          <span className="inline-block rounded-md bg-[#f05a2d] px-3 leading-[1.25] sm:px-4">courage</span>{" "}
-          to bring it to life.
-        </h2>
+  <h2 className="mt-4 text-[clamp(1.6rem,3.5vw,3.5rem)] font-extrabold leading-[1.45] tracking-tight">
+    Every great brand begins with a clear{" "}
+    <span className="inline-block rounded-md bg-[#f05a2d] px-3 leading-[1.25] sm:px-4">
+      vision
+    </span>{" "}
+    and the{" "}
+    <span className="inline-block rounded-md bg-[#f05a2d] px-3 leading-[1.25] sm:px-4">
+      courage
+    </span>{" "}
+    to bring it to life.
+  </h2>
 
-        <div className="mt-8 flex flex-col gap-2 lg:mt-10 lg:h-[500px] lg:flex-row lg:gap-3">
-          {approachCards.map((card, i) =>
-            i === active ? (
-              <article
-                key={card.title}
-                className="dm-fade flex flex-col overflow-hidden rounded-xl bg-[#242424] lg:flex-1 lg:flex-row"
-              >
-                <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 lg:w-[45%] lg:p-12">
-                  <h3 className="text-xl font-bold sm:text-2xl">{card.title}</h3>
-                  <p className="max-w-[420px] text-[13px] leading-relaxed text-white/80 sm:text-[15px]">
-                    {card.text}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {card.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-[#f1f1f1] px-3 py-1 text-[11px] font-semibold text-[#1c1c1c]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    className="mt-1 w-fit rounded-md bg-[#f05a2d] px-4 py-2 text-[12px] font-bold text-white transition hover:brightness-110 sm:text-[13px]"
-                  >
-                    {card.button}
-                  </button>
-                </div>
-                <div className="h-64 bg-[#f1f1f1] sm:h-80 lg:h-auto lg:w-[55%]">
-                  <img src="" alt="" className="h-full w-full object-cover" />
-                </div>
-              </article>
-            ) : (
-              <button
-                key={card.title}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-label={`Show ${card.title}`}
-                className="relative h-16 overflow-hidden rounded-xl bg-[#f1f1f1] transition hover:brightness-95 lg:h-auto lg:w-[14%] lg:flex-none"
-              >
-                <img src="" alt="" className="absolute inset-0 h-full w-full object-cover" />
-              </button>
-            )
-          )}
-        </div>
-      </section>
+  <div className="mt-8 flex flex-col gap-2 lg:mt-10 lg:h-[500px] lg:flex-row lg:gap-3">
+    {approachCards.map((card, i) =>
+      i === active ? (
+        <article
+          key={card.title}
+          className="dm-fade flex min-h-[400px] flex-col overflow-hidden rounded-xl bg-[#242424] lg:min-h-0 lg:flex-1 lg:flex-row"
+        >
+          {/* Content */}
+          <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 lg:w-[45%] lg:p-12">
+            <h3 className="text-xl font-bold sm:text-2xl">
+              {card.title}
+            </h3>
+
+            <p className="max-w-[420px] text-[13px] leading-relaxed text-white/80 sm:text-[15px]">
+              {card.text}
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {card.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-[#f1f1f1] px-3 py-1 text-[11px] font-semibold text-[#1c1c1c]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="mt-1 w-fit rounded-md bg-[#f05a2d] px-4 py-2 text-[12px] font-bold text-white transition hover:brightness-110 sm:text-[13px]"
+            >
+              {card.button}
+            </button>
+          </div>
+
+          {/* Active image */}
+          <div className="h-64 overflow-hidden bg-[#f1f1f1] sm:h-80 lg:h-auto lg:w-[55%]">
+            <img
+              src={card.image}
+              alt={`${card.title} visual`}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+            />
+          </div>
+        </article>
+      ) : (
+        /* Collapsed image panels */
+        <button
+          key={card.title}
+          type="button"
+          onClick={() => setActive(i)}
+          aria-label={`Show ${card.title}`}
+          className="group relative h-20 shrink-0 overflow-hidden rounded-xl bg-[#f1f1f1] transition-all duration-500 hover:brightness-95 lg:h-auto lg:w-[12%] lg:flex-none"
+        >
+          <img
+            src={card.image}
+            alt={`${card.title} preview`}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+
+          {/* Image overlay */}
+          <div className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20" />
+
+          {/* Vertical title on desktop */}
+          <span className="absolute inset-0 hidden items-center justify-center p-3 text-center text-sm font-bold text-white drop-shadow-lg lg:flex [writing-mode:vertical-rl] rotate-180">
+            {card.title}
+          </span>
+
+          {/* Title on mobile */}
+          <span className="absolute inset-0 flex items-center justify-center px-4 text-sm font-bold text-white drop-shadow-lg lg:hidden">
+            {card.title}
+          </span>
+        </button>
+      )
+    )}
+  </div>
+</section>
 
       {/* ===================== OUR SERVICES ===================== */}
       <section className="mx-auto mt-24 w-full max-w-[1300px] px-5 sm:px-6 lg:mt-48">

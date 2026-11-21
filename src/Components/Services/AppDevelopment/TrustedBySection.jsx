@@ -3,14 +3,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Logo sources are left empty until you provide the image assets */
 const clients = [
-  { name: "Government of Telangana", src: "images/img1.png"},
-  { name: "K.J. Institute of Engineering & Technology, Savli", src: "images/img1.png" },
-  { name: "Eye-care Hospital", src: "" },
-  { name: "Sterling Cancer Hospitals", src: "" },
-  { name: "Banyan Paradise The Resort", src: "" },
-  { name: "Swapna Srushti Water Park", src: "" },
-  { name: "Client 7", src: "" },
-  { name: "Client 8", src: "" },
+  { name: "Government of Telangana", src: "/images/img1.png"},
+  { name: "K.J. Institute of Engineering & Technology, Savli", src: "/images/img2.png" },
+  { name: "Eye-care Hospital", src: "/images/img3.png" },
+  { name: "Sterling Cancer Hospitals", src: "/images/img4.png" },
+  { name: "Banyan Paradise The Resort", src: "/images/img5.png" },
+  { name: "Swapna Srushti Water Park", src: "/images/img6.png" },
+  { name: "Client 7", src: "/images/cap-India.png" },
+  { name: "Client 8", src: "/images/img2.png" },
 ];
 
 export default function TrustedBySection() {
