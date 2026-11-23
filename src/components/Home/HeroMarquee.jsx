@@ -5,7 +5,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 */
 
-const MESSAGE = "First impressions now happen online";
+const MESSAGE = " Because first impressions now happen online ";
 
 // One "group" = the message repeated with a hollow-circle separator.
 // Two identical groups are rendered so the loop is seamless (-50% translate).
