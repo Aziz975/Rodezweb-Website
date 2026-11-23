@@ -15,8 +15,9 @@ const AppDevelopment = () => {
     <Hero></Hero>
     <AppGrowthSection></AppGrowthSection>
     <PhoneShowcase></PhoneShowcase>
+        <AppProcessFaqSection></AppProcessFaqSection>
+
     <AppBusinessImpact></AppBusinessImpact>
-    <AppProcessFaqSection></AppProcessFaqSection>
     <TrustedBySection></TrustedBySection>
       </>
   )

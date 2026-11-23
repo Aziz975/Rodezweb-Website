@@ -41,30 +41,7 @@ export default function AppGrowthSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#1c1c1c] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9] transition-colors duration-300 light:bg-[#fafafa] light:text-[#1c1c1c]">
       {/* ================= TOP CONTENT ================= */}
-      <div className={`${SIDE_SPACE} pt-16 sm:pt-20 lg:pt-28`}>
-        <div className={`${WRAP} text-center`}>
-          <h2 className="font-bold leading-[1.1]" style={headingStyle}>
-            Your Customers Are Already There
-          </h2>
-
-          <h3 className="mt-3 font-semibold text-[#fdfaf9] light:text-[#1c1c1c]" style={subHeadingStyle}>
-            Is Your Business Too?
-          </h3>
-
-          <div className="mx-auto mt-6 max-w-[1200px] space-y-2 text-[#fdfaf9] light:text-[#555555]" style={bodyStyle}>
-            <p>Today&apos;s customers expect convenience, speed, and accessibility.</p>
-
-            <p>
-              Whether they&apos;re booking services, placing orders, tracking progress, or
-              interacting with your brand, mobile experiences have become the standard—not the
-              advantage.
-              <br className="hidden lg:block" />
-              Businesses that meet customers where they are create stronger relationships, better
-              experiences, and more opportunities to grow.
-            </p>
-          </div>
-        </div>
-      </div>
+     
 
       {/* ================= BOTTOM CONTENT ================= */}
       <div className={`${SIDE_SPACE} pb-16 sm:pb-20 lg:pb-28`}>
@@ -102,3 +79,32 @@ export default function AppGrowthSection() {
     </section>
   );
 }
+
+
+//       ================= TOP CONTENT =================
+
+
+//  <div className={`${SIDE_SPACE} pt-16 sm:pt-20 lg:pt-28`}>
+//         <div className={`${WRAP} text-center`}>
+//           <h2 className="font-bold leading-[1.1]" style={headingStyle}>
+//             Your Customers Are Already There
+//           </h2>
+
+//           <h3 className="mt-3 font-semibold text-[#fdfaf9] light:text-[#1c1c1c]" style={subHeadingStyle}>
+//             Is Your Business Too?
+//           </h3>
+
+//           <div className="mx-auto mt-6 max-w-[1200px] space-y-2 text-[#fdfaf9] light:text-[#555555]" style={bodyStyle}>
+//             <p>Today&apos;s customers expect convenience, speed, and accessibility.</p>
+
+//             <p>
+//               Whether they&apos;re booking services, placing orders, tracking progress, or
+//               interacting with your brand, mobile experiences have become the standard—not the
+//               advantage.
+//               <br className="hidden lg:block" />
+//               Businesses that meet customers where they are create stronger relationships, better
+//               experiences, and more opportunities to grow.
+//             </p>
+//           </div>
+//         </div>
+//       </div>
