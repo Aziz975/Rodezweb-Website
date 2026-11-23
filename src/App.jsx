@@ -8,9 +8,11 @@ import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
 import Home from "./Pages/HomePage";
 import ContactPage from "./components/Contact/ContactPage";
 import AboutUs from "./components/AboutUs/AboutUs";
-// import Blog from "./components/Blog/Blog";
+
 import AllServices from "./components/Services/AllServices";
 import Navbar from "./components/Navbar/Navbar";
+import Blog from "./components/blog1/Blog";
+import Footer from "./components/footer1/Footer";
 
 const App = () => {
   return (
@@ -22,7 +24,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutUs />} />
-        {/* <Route path="/blog" element={<Blog />} /> */}
+        <Route path="/blog" element={<Blog />} />
 
         {/* Services */}
         <Route path="/services" element={<AllServices />} />
@@ -32,7 +34,7 @@ const App = () => {
         <Route path="/services/wordpress-development" element={<WordpressPage />} />
         <Route path="/services/shopify-development" element={<ShopifyDevelopment />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 };
