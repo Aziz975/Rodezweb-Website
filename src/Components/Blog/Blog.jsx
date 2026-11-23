@@ -142,9 +142,9 @@ export default function Blog() {
   );
 
   return (
-    <div className="min-h-screen bg-[#1e1e1e] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9]">
+    <div className="min-h-screen bg-[#1e1e1e] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9] light:bg-[#fafafa] light:text-[#1c1c1c]">
       {/* ---------- Hero ---------- */}
-      <section className="flex min-h-[446px] items-center bg-[#262626] px-6 py-16 lg:px-[7.5%]">
+      <section className="flex min-h-[446px] items-center bg-[#262626] px-6 py-16 lg:px-[7.5%] light:bg-[#f0f0f0]">
         <div className="mx-auto w-full max-w-[1620px]">
           <h2 className="mb-6 text-[clamp(1.5rem,1.7vw,2rem)] font-normal text-[#ef5d39]">
             Our stories
@@ -163,7 +163,9 @@ export default function Blog() {
           {/* Posts */}
           <div>
             {filtered.length === 0 && (
-              <p className="text-[1.3rem] text-[#d9d9d9]">No posts found.</p>
+              <p className="text-[1.3rem] text-[#d9d9d9] light:text-[#555555]">
+                No posts found.
+              </p>
             )}
 
             {filtered.map((p) => (
@@ -176,7 +178,7 @@ export default function Blog() {
                       className="aspect-video w-full rounded-[45px] object-cover"
                     />
                   ) : (
-                    <div className="aspect-video w-full rounded-[45px] bg-[#333]" />
+                    <div className="aspect-video w-full rounded-[45px] bg-[#333] light:bg-[#e5e5e5]" />
                   )}
                 </a>
 
@@ -185,7 +187,7 @@ export default function Blog() {
                     <a
                       key={c}
                       href={categoryHref(c)}
-                      className="rounded-full bg-[#2a2a2a] px-4 py-2 text-[1.1rem] hover:bg-[#383838]"
+                      className="rounded-full bg-[#2a2a2a] px-4 py-2 text-[1.1rem] hover:bg-[#383838] light:bg-[#eeeeee] light:text-[#333333] light:hover:bg-[#e2e2e2]"
                     >
                       {c}
                     </a>
@@ -198,11 +200,11 @@ export default function Blog() {
                   </h2>
                 </a>
 
-                <p className="mt-6 text-[1.3rem] font-light leading-[1.65]">
+                <p className="mt-6 text-[1.3rem] font-light leading-[1.65] text-[#d0d0d0] light:text-[#555555]">
                   {p.excerpt}
                 </p>
 
-                <div className="mt-8 flex items-center justify-between border-t border-[#333] pt-7">
+                <div className="mt-8 flex items-center justify-between border-t border-[#333] pt-7 light:border-[#dddddd]">
                   <div className="flex items-center gap-4">
                     <a href="/author/admin">
                       <img
@@ -218,7 +220,7 @@ export default function Blog() {
                       >
                         admin
                       </a>
-                      <p className="text-[1.1rem] text-[#9a9a9a]">
+                      <p className="text-[1.1rem] text-[#9a9a9a] light:text-[#777777]">
                         {p.date} <span className="mx-1.5">•</span> {p.read}
                       </p>
                     </div>
@@ -241,7 +243,10 @@ export default function Blog() {
             >
               {pages.map((n, i) =>
                 n === "…" ? (
-                  <span key={i} className="hidden px-2 text-[#9a9a9a] sm:inline">
+                  <span
+                    key={i}
+                    className="hidden px-2 text-[#9a9a9a] sm:inline"
+                  >
                     …
                   </span>
                 ) : (
@@ -249,9 +254,13 @@ export default function Blog() {
                     key={n}
                     onClick={() => setPage(n)}
                     aria-current={page === n ? "page" : undefined}
-                    className={`h-[46px] min-w-[46px] items-center justify-center rounded-full px-2 ${
+                    className={`h-[46px] min-w-[46px] items-center justify-center rounded-full px-2 transition-colors ${
                       n === 105 ? "hidden sm:flex" : "flex"
-                    } ${page === n ? "bg-[#444]" : "hover:bg-[#2a2a2a]"}`}
+                    } ${
+                      page === n
+                        ? "bg-[#444] text-white light:bg-[#1c1c1c] light:text-white"
+                        : "hover:bg-[#2a2a2a] light:hover:bg-[#e8e8e8]"
+                    }`}
                   >
                     {n}
                   </button>
@@ -259,7 +268,7 @@ export default function Blog() {
               )}
               <button
                 onClick={() => setPage((n) => Math.min(105, Number(n) + 1))}
-                className="ml-3 px-2 text-[#9a9a9a] hover:text-white"
+                className="ml-3 px-2 text-[#9a9a9a] hover:text-white light:text-[#666666] light:hover:text-[#1c1c1c]"
               >
                 Next
               </button>
@@ -292,7 +301,7 @@ export default function Blog() {
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="h-14 w-full rounded-lg border border-[#444] bg-transparent pl-12 pr-4 text-[1.1rem] outline-none focus:border-[#ef5d39]"
+                  className="h-14 w-full rounded-lg border border-[#444] bg-transparent pl-12 pr-4 text-[1.1rem] text-[#fdfaf9] outline-none focus:border-[#ef5d39] light:border-[#cccccc] light:text-[#1c1c1c] light:placeholder:text-[#888888]"
                 />
               </label>
             </div>
@@ -316,7 +325,9 @@ export default function Blog() {
               <h3 className="mb-8 text-[2.2rem] font-bold leading-tight">
                 Recent Comments
               </h3>
-              <p className="text-[1.3rem]">No comments to show.</p>
+              <p className="text-[1.3rem] text-[#d0d0d0] light:text-[#555555]">
+                No comments to show.
+              </p>
             </div>
 
             <div>
@@ -343,7 +354,7 @@ export default function Blog() {
                   <a
                     key={slug}
                     href={`/tag/${slug}`}
-                    className="rounded-full bg-[#2a2a2a] px-4 py-2 text-[1.1rem] hover:bg-[#383838]"
+                    className="rounded-full bg-[#2a2a2a] px-4 py-2 text-[1.1rem] hover:bg-[#383838] light:bg-[#eeeeee] light:text-[#333333] light:hover:bg-[#e2e2e2]"
                   >
                     #{name}
                   </a>

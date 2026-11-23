@@ -5,13 +5,14 @@ import ContactPage from "./components/Contact/ContactPage";
 
 import Blog from "./components/Blog/Blog";
 import Services from "./Components/Services/AllServices";
-import WebDevelopment from "./Components/Services/WebDevelopment";
+
 import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
 import AppDevelopment from "./Pages/AppDevelopmentPage";
 import DigitalPage from "./Pages/DigitalPage";
 import WordpressPage from "./Pages/WordpressPage";
 import Footer from "./components/Footer/Footer";
-import AboutUs from "./Components/AboutUs/AboutUs";
+import WebDevelopment from "./components/Services/WebDevelopment";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 
 
