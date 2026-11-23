@@ -1,9 +1,9 @@
 import React from 'react'
-import Hero from '../Components/Services/ShopifyDevelopment/Hero'
-import ShopifyBusinessImpact from '../Components/Services/ShopifyDevelopment/ShopifyBusinessImpact'
-import ShopifyGrowthSection from '../Components/Services/ShopifyDevelopment/ShopifyGrowthSection'
-import ShopifyProcessFaqSection from '../Components/Services/ShopifyDevelopment/ShopifyProcessFaqSection'
-import TrustedBySection from '../Components/Services/ShopifyDevelopment/TrustedBySection'
+import Hero from '../components/Services/ShopifyDevelopment/Hero'
+import ShopifyBusinessImpact from '../components/Services/ShopifyDevelopment/ShopifyBusinessImpact'
+import ShopifyGrowthSection from '../components/Services/ShopifyDevelopment/ShopifyGrowthSection'
+import ShopifyProcessFaqSection from '../components/Services/ShopifyDevelopment/ShopifyProcessFaqSection'
+import TrustedBySection from '../components/Services/ShopifyDevelopment/TrustedBySection'
 
 const ShopifyDevelopment = () => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react'
-import Hero from '../Components/Services/WordpressDevelopment/Hero'
-import WordpressBusinessImpact from '../Components/Services/WordpressDevelopment/WordpressBusinessImpact'
-import WordpressGrowthSection from '../Components/Services/WordpressDevelopment/WordpressGrowthSection'
-import WordpressProcessFaqSection from '../Components/Services/WordpressDevelopment/WordpressProcessFaqSection'
-import TrustedBySection from '../Components/Services/WordpressDevelopment/TrustedBySection'
+import Hero from '../components/Services/WordpressDevelopment/Hero'
+import WordpressBusinessImpact from '../components/Services/WordpressDevelopment/WordpressBusinessImpact'
+import WordpressGrowthSection from '../components/Services/WordpressDevelopment/WordpressGrowthSection'
+import WordpressProcessFaqSection from '../components/Services/WordpressDevelopment/WordpressProcessFaqSection'
+import TrustedBySection from '../components/Services/WordpressDevelopment/TrustedBySection'
 
 const WordpressPage = () => {
   return (

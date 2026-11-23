@@ -1,19 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./Pages/HomePage";
-import ContactPage from "./components/Contact/ContactPage";
-
-import Blog from "./components/Blog/Blog";
-import Services from "./Components/Services/AllServices";
-import WebDevelopment from "./Components/Services/WebDevelopment";
-import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
+// import Footer from "./components/Footer/Footer";
 import AppDevelopment from "./Pages/AppDevelopmentPage";
+import WebDevelopment from "./components/Services/WebDevelopment";
 import DigitalPage from "./Pages/DigitalPage";
 import WordpressPage from "./Pages/WordpressPage";
+import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
+import Home from "./Pages/HomePage";
+import ContactPage from "./components/Contact/ContactPage";
+import AboutUs from "./components/AboutUs/AboutUs";
+
+import AllServices from "./components/Services/AllServices";
+import Navbar from "./components/Navbar/Navbar";
+import Blog from "./components/blog1/Blog";
 import Footer from "./components/Footer/Footer";
-import AboutUs from "./Components/AboutUs/AboutUs";
-
-
 
 const App = () => {
   return (
@@ -28,7 +27,7 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
 
         {/* Services */}
-        <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<AllServices />} />
         <Route path="/services/app-development" element={<AppDevelopment/>} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
         <Route path="/services/digital-marketing" element={<DigitalPage />} />
