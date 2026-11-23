@@ -13,11 +13,13 @@ import AllServices from "./components/Services/AllServices";
 import Navbar from "./components/Navbar/Navbar";
 import Blog from "./components/blog1/Blog";
 import Footer from "./components/Footer/Footer";
+import WhatsAppButton from "./components/WhatappButton/WhatsappButton";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      <WhatsAppButton></WhatsAppButton>
 
       <Routes>
         {/* Main Pages */}
