@@ -1,9 +1,10 @@
+
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-/* Logo sources are left empty until you provide the image assets */
+/* Logo sources */
 const clients = [
-  { name: "Government of Telangana", src: "/images/img1.png"},
+  { name: "Government of Telangana", src: "/images/img1.png" },
   { name: "K.J. Institute of Engineering & Technology, Savli", src: "/images/img2.png" },
   { name: "Eye-care Hospital", src: "/images/img3.png" },
   { name: "Sterling Cancer Hospitals", src: "/images/img4.png" },
@@ -17,7 +18,7 @@ export default function TrustedBySection() {
   const trackRef = useRef(null);
   const [active, setActive] = useState(0);
 
-  // distance between the start of one card and the next (card width + gap)
+  // Distance between the start of one card and the next
   const getStep = () => {
     const track = trackRef.current;
     if (!track || track.children.length < 2) return 1;
@@ -27,6 +28,7 @@ export default function TrustedBySection() {
   const updateActive = () => {
     const track = trackRef.current;
     if (!track) return;
+
     const index = Math.round(track.scrollLeft / getStep());
     setActive(Math.min(Math.max(index, 0), clients.length - 1));
   };
@@ -34,39 +36,49 @@ export default function TrustedBySection() {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+
     track.addEventListener("scroll", updateActive, { passive: true });
+
     return () => track.removeEventListener("scroll", updateActive);
   }, []);
 
   const goTo = (index) => {
     const track = trackRef.current;
     if (!track) return;
+
     const safe = Math.min(Math.max(index, 0), clients.length - 1);
     track.scrollTo({ left: safe * getStep(), behavior: "smooth" });
   };
 
   return (
     <section
-      className="bg-[#1e1e1e] px-4 py-14 md:py-20"
+      className="bg-[#1e1e1e] px-4 py-14 transition-colors duration-300 md:py-20 light:bg-[#fafafa]"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
+      {/* Heading */}
       <h2
-        className="text-center font-medium uppercase text-[#fdfaf9]"
-        style={{ fontSize: "clamp(0.85rem, 1.4vw, 1.2rem)", letterSpacing: "-0.02em" }}
+        className="text-center font-medium uppercase text-[#fdfaf9] transition-colors duration-300 light:text-[#1c1c1c]"
+        style={{
+          fontSize: "clamp(0.85rem, 1.4vw, 1.2rem)",
+          letterSpacing: "-0.02em",
+        }}
       >
         Trusted by growing businesses across industries
       </h2>
 
       <div className="mx-auto mt-8 flex max-w-[1500px] items-center gap-2 md:mt-10 md:gap-4">
+
+        {/* Previous Button */}
         <button
           type="button"
           onClick={() => goTo(active - 1)}
           aria-label="Previous logos"
-          className="shrink-0 rounded-full p-1 text-[#d0d0d0] transition hover:text-[#f15a3a]"
+          className="shrink-0 rounded-full p-1 text-[#d0d0d0] transition-colors hover:text-[#f15a3a] light:text-[#555555]"
         >
           <ChevronLeft size={28} strokeWidth={2.5} />
         </button>
 
+        {/* Logo Carousel */}
         <div
           ref={trackRef}
           className="flex flex-1 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth py-2 [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden"
@@ -91,11 +103,12 @@ export default function TrustedBySection() {
           ))}
         </div>
 
+        {/* Next Button */}
         <button
           type="button"
           onClick={() => goTo(active + 1)}
           aria-label="Next logos"
-          className="shrink-0 rounded-full p-1 text-[#d0d0d0] transition hover:text-[#f15a3a]"
+          className="shrink-0 rounded-full p-1 text-[#d0d0d0] transition-colors hover:text-[#f15a3a] light:text-[#555555]"
         >
           <ChevronRight size={28} strokeWidth={2.5} />
         </button>
@@ -111,7 +124,9 @@ export default function TrustedBySection() {
             aria-label={`Go to logo ${i + 1}`}
             aria-current={active === i}
             className={`h-1.5 w-1.5 rounded-full transition-colors ${
-              active === i ? "bg-[#fdfaf9]" : "bg-[#fdfaf9]/20 hover:bg-[#fdfaf9]/50"
+              active === i
+                ? "bg-[#fdfaf9] light:bg-[#1c1c1c]"
+                : "bg-[#fdfaf9]/20 hover:bg-[#fdfaf9]/50 light:bg-[#1c1c1c]/20 light:hover:bg-[#1c1c1c]/50"
             }`}
           />
         ))}

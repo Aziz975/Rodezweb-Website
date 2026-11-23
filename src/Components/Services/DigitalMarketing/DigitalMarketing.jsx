@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-/* Image source left empty until you provide the asset */
+/* Image source */
 const HERO_IMG = "/images/shopify-custom-design.png";
 
 /* Replace with the real number (country code + number, digits only) */
 const WHATSAPP_NUMBER = "XXXXXXXXXXX";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
-/* ---------- Brand icons (custom SVGs, no Lucide dependency issues) ---------- */
+/* ---------- Brand icons (custom SVGs) ---------- */
 const GoogleIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
     <path d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.64 4.1-5.35 4.1-3.22 0-5.85-2.67-5.85-5.96S8.78 6.26 12 6.26c1.83 0 3.06.78 3.76 1.45l2.56-2.47C16.68 3.7 14.55 2.7 12 2.7 6.92 2.7 2.8 6.82 2.8 11.9S6.92 21.1 12 21.1c5.28 0 8.78-3.71 8.78-8.94 0-.6-.07-1.06-.15-1.06z" />
@@ -59,7 +59,7 @@ const socials = [
 export default function DigitalMarketing() {
   return (
     <main
-      className="min-h-screen bg-[#1e1e1e] text-[#fdfaf9]"
+      className="min-h-screen bg-[#1e1e1e] text-[#fdfaf9] transition-colors duration-300 light:bg-[#fafafa] light:text-[#1c1c1c]"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       {/* ---------- Hero banner ---------- */}
@@ -72,11 +72,11 @@ export default function DigitalMarketing() {
           />
         )}
 
-        {/* dark fade towards the bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-[#1e1e1e]" />
+        {/* Dark fade towards the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-[#1e1e1e] light:to-[#fafafa]" />
 
         <h1
-          className="absolute inset-x-0 top-[40%] -translate-y-1/2 px-4 text-center font-extrabold uppercase leading-none"
+          className="absolute inset-x-0 top-[40%] -translate-y-1/2 px-4 text-center font-extrabold uppercase leading-none text-white"
           style={{ fontSize: "clamp(2rem, 5.1vw, 6.25rem)", letterSpacing: "-0.05em" }}
         >
           Digital Marketing
@@ -84,19 +84,20 @@ export default function DigitalMarketing() {
       </section>
 
       {/* ---------- Intro ---------- */}
-      <section className="mx-auto grid max-w-[1700px] gap-10 px-6 pb-24 pt-12 sm:px-10 md:pt-16 lg:grid-cols-[1fr_minmax(0,560px)] lg:gap-16 lg:px-[7%] lg:pb-32 lg:pt-[8.5vw] xl:pt-[7.5rem]">
+      <section className="mx-auto grid max-w-[1700px] gap-10 bg-[#1e1e1e] px-6 pb-24 pt-12 transition-colors duration-300 sm:px-10 md:pt-16 lg:grid-cols-[1fr_minmax(0,560px)] lg:gap-16 lg:px-[7%] lg:pb-32 lg:pt-[8.5vw] xl:pt-[7.5rem] light:bg-[#fafafa]">
         {/* Left: headings */}
         <div>
           <h2
-            className="font-extrabold uppercase leading-[0.95]"
+            className="font-extrabold uppercase leading-[0.95] text-[#fdfaf9] light:text-[#1c1c1c]"
             style={{ fontSize: "clamp(2.25rem, 4.7vw, 5.75rem)", letterSpacing: "-0.05em" }}
           >
             Digital Marketing
             <br />
             That Drives
           </h2>
+
           <p
-            className="mt-4 font-bold uppercase text-[#a0a0a0] lg:mt-6"
+            className="mt-4 font-bold uppercase text-[#a0a0a0] light:text-[#666666] lg:mt-6"
             style={{ fontSize: "clamp(1.35rem, 2.9vw, 3.5rem)", letterSpacing: "-0.04em" }}
           >
             Growth, Not Just Traffic
@@ -106,7 +107,7 @@ export default function DigitalMarketing() {
         {/* Right: description + actions */}
         <div className="lg:pt-1">
           <p
-            className="text-justify text-[#fdfaf9]"
+            className="text-justify text-[#fdfaf9] light:text-[#555555]"
             style={{ fontSize: "clamp(0.95rem, 1.05vw, 1.25rem)", lineHeight: 1.75 }}
           >
             We help businesses attract the right audience, generate qualified leads, increase sales,
@@ -116,7 +117,7 @@ export default function DigitalMarketing() {
           <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
             <Link
               to="/contact"
-              className="rounded-full bg-[#2a2a2a] px-6 py-3.5 text-base font-medium text-[#fdfaf9] transition duration-300 hover:bg-[#f15a3a] sm:px-7 sm:text-lg lg:text-[1.2rem]"
+              className="rounded-full bg-[#2a2a2a] px-6 py-3.5 text-base font-medium text-[#fdfaf9] transition duration-300 hover:bg-[#f15a3a] sm:px-7 sm:text-lg lg:text-[1.2rem] light:bg-[#eeeeee] light:text-[#1c1c1c] light:hover:bg-[#f15a3a] light:hover:text-white"
               style={{ letterSpacing: "-0.03em" }}
             >
               Book A Consultation
@@ -130,7 +131,7 @@ export default function DigitalMarketing() {
                   aria-label={name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#2a2a2a] text-[#fdfaf9] transition duration-300 hover:-translate-y-0.5 hover:bg-[#f15a3a] sm:h-[52px] sm:w-[52px]"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#2a2a2a] text-[#fdfaf9] transition duration-300 hover:-translate-y-0.5 hover:bg-[#f15a3a] sm:h-[52px] sm:w-[52px] light:bg-[#eeeeee] light:text-[#1c1c1c] light:hover:bg-[#f15a3a] light:hover:text-white"
                 >
                   <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </a>
@@ -152,12 +153,9 @@ export default function DigitalMarketing() {
         <span className="whitespace-nowrap">Get Free Consultation for the Project !</span>
       </a>
 
-
-{/* 
-// banner image */}
-      <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-[#1d1d1d] px-4 py-12 sm:min-h-[850px] sm:px-8 lg:min-h-[400px]">
-
-        {/* Enhanced technology background */}
+      {/* ---------- Technology banner ---------- */}
+      <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-[#1d1d1d] px-4 py-12 transition-colors duration-300 sm:min-h-[850px] sm:px-8 lg:min-h-[400px] light:bg-[#fafafa]">
+        {/* Technology background */}
         <img
           src="/images/digital-future-background-enhanced.png"
           alt="Abstract orange technology background with digital engineering graphics"
@@ -177,7 +175,6 @@ export default function DigitalMarketing() {
         <div className="relative mx-auto flex w-full max-w-[1200px] items-center justify-center">
           {/* Keep your existing three phone mockups here */}
         </div>
-
       </section>
     </main>
   );

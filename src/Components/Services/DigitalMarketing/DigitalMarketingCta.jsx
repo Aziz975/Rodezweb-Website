@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-/* Image sources left empty until you provide the assets */
-const CTA_BG_IMG = "/images/growth-banner.png"; // grayscale portrait background
+/* Image sources */
+const CTA_BG_IMG = "/images/growth-banner.png";
 
 const clients = [
   { name: "Sterling Cancer Hospitals", src: "/images/sterling.png" },
@@ -26,9 +26,11 @@ const CtaCard = () => (
         className="absolute inset-0 h-full w-full object-cover grayscale"
       />
     )}
+
+    {/* Dark overlay retained for readability over the image */}
     <div className="absolute inset-0 bg-gradient-to-r from-[#1c1c1c]/90 via-[#1c1c1c]/60 to-[#1c1c1c]/20" />
 
-    <div className="relative px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-9">
+    <div className="relative px-6 py-8 text-white sm:px-8 sm:py-10 lg:px-10 lg:py-9">
       <h2
         className="max-w-[1250px] font-bold leading-[1.05]"
         style={{ fontSize: "clamp(1.9rem, 3.6vw, 4.25rem)", letterSpacing: "-0.03em" }}
@@ -77,13 +79,16 @@ const TrustedBy = () => {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+
     track.addEventListener("scroll", updateActive, { passive: true });
+
     return () => track.removeEventListener("scroll", updateActive);
   }, []);
 
   const goTo = (index) => {
     const track = trackRef.current;
     if (!track) return;
+
     const safe = Math.min(Math.max(index, 0), clients.length - 1);
     track.scrollTo({ left: safe * getStep(), behavior: "smooth" });
   };
@@ -91,22 +96,24 @@ const TrustedBy = () => {
   return (
     <div className="mt-14 md:mt-20">
       <h3
-        className="text-center font-medium uppercase"
+        className="text-center font-medium uppercase text-[#fdfaf9] transition-colors duration-300 light:text-[#1c1c1c]"
         style={{ fontSize: "clamp(0.8rem, 1.05vw, 1.25rem)", letterSpacing: "-0.03em" }}
       >
         Trusted by growing businesses across industries
       </h3>
 
       <div className="mt-8 flex items-center gap-2 md:mt-12 md:gap-3">
+        {/* Previous button */}
         <button
           type="button"
           onClick={() => goTo(active - 1)}
           aria-label="Previous logos"
-          className="shrink-0 text-[#fdfaf9] transition hover:text-[#F45132]"
+          className="shrink-0 text-[#fdfaf9] transition hover:text-[#F45132] light:text-[#555555]"
         >
           <ChevronLeft size={26} strokeWidth={2.5} />
         </button>
 
+        {/* Logo carousel */}
         <div
           ref={trackRef}
           className="flex flex-1 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth py-2 [scrollbar-width:none] sm:gap-6 lg:gap-[3.7vw] [&::-webkit-scrollbar]:hidden"
@@ -117,7 +124,12 @@ const TrustedBy = () => {
               className="flex aspect-square w-[130px] shrink-0 snap-start items-center justify-center overflow-hidden rounded-xl border-2 border-[#F45132] bg-white p-3 transition-transform duration-300 hover:-translate-y-1 sm:w-[150px] lg:w-[9.6vw] lg:min-w-[150px] lg:max-w-[190px]"
             >
               {client.src ? (
-                <img src={client.src} alt={client.name} className="h-full w-full object-contain" />
+                <img
+                  src={client.src}
+                  alt={client.name}
+                  className="h-full w-full object-contain"
+                  loading="lazy"
+                />
               ) : (
                 <span className="text-center text-[10px] font-medium text-[#1c1c1c]/50 sm:text-xs">
                   {client.name}
@@ -127,11 +139,12 @@ const TrustedBy = () => {
           ))}
         </div>
 
+        {/* Next button */}
         <button
           type="button"
           onClick={() => goTo(active + 1)}
           aria-label="Next logos"
-          className="shrink-0 text-[#fdfaf9] transition hover:text-[#F45132]"
+          className="shrink-0 text-[#fdfaf9] transition hover:text-[#F45132] light:text-[#555555]"
         >
           <ChevronRight size={26} strokeWidth={2.5} />
         </button>
@@ -147,7 +160,9 @@ const TrustedBy = () => {
             aria-label={`Go to logo ${i + 1}`}
             aria-current={active === i}
             className={`h-1.5 w-1.5 rounded-full transition-colors ${
-              active === i ? "bg-[#fdfaf9]" : "bg-[#fdfaf9]/15 hover:bg-[#fdfaf9]/40"
+              active === i
+                ? "bg-[#fdfaf9] light:bg-[#1c1c1c]"
+                : "bg-[#fdfaf9]/15 hover:bg-[#fdfaf9]/40 light:bg-[#1c1c1c]/15 light:hover:bg-[#1c1c1c]/40"
             }`}
           />
         ))}
@@ -158,7 +173,7 @@ const TrustedBy = () => {
 
 /* ---------- Export ---------- */
 const DigitalMarketingCta = () => (
-  <section className="bg-[#1c1c1c] px-5 pb-16 pt-8 text-white sm:px-8 md:pb-24 lg:px-[7.5%]">
+  <section className="bg-[#1c1c1c] px-5 pb-16 pt-8 text-white transition-colors duration-300 sm:px-8 md:pb-24 lg:px-[7.5%] light:bg-[#fafafa] light:text-[#1c1c1c]">
     <div className="mx-auto max-w-[1700px]">
       <CtaCard />
       <TrustedBy />

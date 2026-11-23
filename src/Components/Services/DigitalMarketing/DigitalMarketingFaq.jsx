@@ -28,14 +28,16 @@ const DigitalMarketingFaq = () => {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-[#1c1c1c] px-5 py-16 text-white sm:px-8 md:py-24 lg:px-[7.5%] lg:py-28">
+    <section className="bg-[#1c1c1c] px-5 py-16 text-white transition-colors duration-300 sm:px-8 md:py-24 lg:px-[7.5%] lg:py-28 light:bg-[#fafafa] light:text-[#1c1c1c]">
       <div className="mx-auto grid max-w-[1700px] gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:gap-16 xl:gap-24">
         {/* Left: heading */}
         <div>
-          <p className="text-base font-medium uppercase sm:text-lg lg:text-xl">FAQs</p>
+          <p className="text-base font-medium uppercase text-[#fdfaf9] light:text-[#1c1c1c] sm:text-lg lg:text-xl">
+            FAQs
+          </p>
 
           <h2
-            className="mt-5 font-bold leading-[1.02]"
+            className="mt-5 font-bold leading-[1.02] text-[#fdfaf9] light:text-[#1c1c1c]"
             style={{ fontSize: "clamp(2.5rem, 4.2vw, 5rem)", letterSpacing: "-0.03em" }}
           >
             Frequently
@@ -46,7 +48,7 @@ const DigitalMarketingFaq = () => {
           </h2>
 
           <p
-            className="mt-8 max-w-[720px] text-[#fdfaf9] lg:mt-12"
+            className="mt-8 max-w-[720px] text-[#fdfaf9] light:text-[#555555] lg:mt-12"
             style={{ fontSize: "clamp(0.95rem, 1.05vw, 1.25rem)", lineHeight: 1.6 }}
           >
             Find answers to common questions about our services, process, timelines, and how we help
@@ -58,13 +60,14 @@ const DigitalMarketingFaq = () => {
         <div className="flex flex-col gap-4 lg:gap-[30px] lg:pt-2">
           {faqs.map((item, i) => {
             const isOpen = open === i;
+
             return (
               <div key={item.q}>
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   aria-expanded={isOpen}
-                  className="flex min-h-[56px] w-full items-center gap-4 rounded-md bg-white px-5 py-4 text-left text-[#1c1c1c] sm:min-h-[64px] lg:min-h-[68px]"
+                  className="flex min-h-[56px] w-full items-center gap-4 rounded-md bg-white px-5 py-4 text-left text-[#1c1c1c] transition-colors duration-300 hover:bg-[#f5f5f5] sm:min-h-[64px] lg:min-h-[68px]"
                 >
                   <span className="shrink-0">
                     {isOpen ? (
@@ -73,6 +76,7 @@ const DigitalMarketingFaq = () => {
                       <Plus size={18} strokeWidth={3} />
                     )}
                   </span>
+
                   <span
                     className="font-semibold leading-snug"
                     style={{ fontSize: "clamp(0.9rem, 1.05vw, 1.25rem)", letterSpacing: "-0.02em" }}

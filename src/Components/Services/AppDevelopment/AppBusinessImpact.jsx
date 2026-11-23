@@ -4,24 +4,27 @@ import { TrendingUp, Users, Settings, Target } from "lucide-react";
 // Add your banner image path later
 const STATS_BG_IMAGE = "";
 
-/* ---------- Shared sizing (same scale as DigitalMarketingCta / Faq / Process / Growth) ---------- */
-const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]"; // left & right space
+/* ---------- Shared sizing ---------- */
+const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]";
 const WRAP = "mx-auto max-w-[1700px]";
 
 const headingStyle = {
   fontSize: "clamp(1.9rem, 3.6vw, 4.25rem)",
   letterSpacing: "-0.03em",
 };
+
 const bodyStyle = {
   fontSize: "clamp(0.9rem, 1.05vw, 1.25rem)",
   lineHeight: 1.7,
   letterSpacing: "-0.02em",
 };
+
 const smallStyle = {
   fontSize: "clamp(0.8rem, 0.95vw, 1.1rem)",
   lineHeight: 1.6,
   letterSpacing: "-0.02em",
 };
+
 const cardTitleStyle = {
   fontSize: "clamp(1.05rem, 1.35vw, 1.6rem)",
   letterSpacing: "-0.02em",
@@ -72,7 +75,7 @@ const benefits = [
 export default function AppBusinessImpact() {
   return (
     <section
-      className={`w-full bg-[#1c1c1c] ${SIDE_SPACE} py-14 font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9] sm:py-16 lg:py-24`}
+      className={`w-full bg-[#1c1c1c] ${SIDE_SPACE} py-14 font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9] transition-colors duration-300 light:bg-[#fafafa] light:text-[#1c1c1c] sm:py-16 lg:py-24`}
     >
       <div className={WRAP}>
         {/* ================= STATS BANNER ================= */}
@@ -96,13 +99,20 @@ export default function AppBusinessImpact() {
               <div key={stat.value} className="text-center">
                 <h3
                   className="font-bold leading-none text-white"
-                  style={{ fontSize: "clamp(2.5rem, 3.9vw, 4.75rem)", letterSpacing: "-0.03em" }}
+                  style={{
+                    fontSize: "clamp(2.5rem, 3.9vw, 4.75rem)",
+                    letterSpacing: "-0.03em",
+                  }}
                 >
                   {stat.value}
                 </h3>
+
                 <p
                   className="mx-auto mt-3 max-w-[260px] font-semibold text-white/90"
-                  style={{ fontSize: "clamp(0.75rem, 0.9vw, 1.05rem)", lineHeight: 1.45 }}
+                  style={{
+                    fontSize: "clamp(0.75rem, 0.9vw, 1.05rem)",
+                    lineHeight: 1.45,
+                  }}
                 >
                   {stat.label}
                 </p>
@@ -113,7 +123,10 @@ export default function AppBusinessImpact() {
             <div className="flex items-center justify-center text-center sm:col-span-2 lg:col-span-1 lg:justify-start lg:text-left">
               <h3
                 className="max-w-[340px] font-bold leading-tight text-white"
-                style={{ fontSize: "clamp(1.25rem, 1.7vw, 2.1rem)", letterSpacing: "-0.03em" }}
+                style={{
+                  fontSize: "clamp(1.25rem, 1.7vw, 2.1rem)",
+                  letterSpacing: "-0.03em",
+                }}
               >
                 The Impact Of Mobile-First Experiences
               </h3>
@@ -127,16 +140,23 @@ export default function AppBusinessImpact() {
             What Can A Custom Application Do For Your Business?
           </h2>
 
-          <p className="mx-auto mt-5 max-w-[900px] text-[#fdfaf9]" style={bodyStyle}>
-            A great app isn&apos;t just installed. It&apos;s used, loved, and remembered. We build
-            applications that solve real problems and create real business impact.
+          <p
+            className="mx-auto mt-5 max-w-[900px] text-[#fdfaf9] light:text-[#555555]"
+            style={bodyStyle}
+          >
+            A great app isn&apos;t just installed. It&apos;s used, loved, and
+            remembered. We build applications that solve real problems and create
+            real business impact.
           </p>
         </div>
 
         {/* ================= BENEFITS GRID ================= */}
         <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:mt-16 lg:grid-cols-4 lg:gap-10">
           {benefits.map(({ Icon, title, description, color }) => (
-            <div key={title} className="group flex flex-col items-center text-center">
+            <div
+              key={title}
+              className="group flex flex-col items-center text-center"
+            >
               {/* Icon circle */}
               <div
                 className={`mb-5 flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:-translate-y-1 sm:h-14 sm:w-14 lg:h-16 lg:w-16 ${color}`}
@@ -145,12 +165,18 @@ export default function AppBusinessImpact() {
               </div>
 
               {/* Title */}
-              <h3 className="font-semibold leading-tight text-[#fdfaf9]" style={cardTitleStyle}>
+              <h3
+                className="font-semibold leading-tight text-[#fdfaf9] light:text-[#1c1c1c]"
+                style={cardTitleStyle}
+              >
                 {title}
               </h3>
 
               {/* Description */}
-              <p className="mt-3 max-w-[320px] text-gray-300" style={smallStyle}>
+              <p
+                className="mt-3 max-w-[320px] text-gray-300 light:text-[#666666]"
+                style={smallStyle}
+              >
                 {description}
               </p>
             </div>

@@ -3,8 +3,8 @@ import { Check } from "lucide-react";
 
 /* Image sources left empty until you provide the assets */
 const HERO_IMG = ""; // orange megaphone + laptop background
-const TURTLE_IMG = "/images/Fast-Marketing-Tortoise.png"; // turtle on skateboard
-const HAND_IMG = "/images/Rodez-Growth-Hand.png"; // hand "OK" gesture
+const TURTLE_IMG = "/images/Fast-Marketing-Tortoise.png";
+const HAND_IMG = "/images/Rodez-Growth-Hand.png";
 
 const goals = [
   "More qualified leads",
@@ -18,7 +18,7 @@ const goals = [
 const WHATSAPP_NUMBER = "XXXXXXXXXXX";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
-/* ---------- Brand icons (custom SVGs, no Lucide dependency issues) ---------- */
+/* ---------- Brand icons (custom SVGs) ---------- */
 const GoogleIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
     <path d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.64 4.1-5.35 4.1-3.22 0-5.85-2.67-5.85-5.96S8.78 6.26 12 6.26c1.83 0 3.06.78 3.76 1.45l2.56-2.47C16.68 3.7 14.55 2.7 12 2.7 6.92 2.7 2.8 6.82 2.8 11.9S6.92 21.1 12 21.1c5.28 0 8.78-3.71 8.78-8.94 0-.6-.07-1.06-.15-1.06z" />
@@ -70,24 +70,21 @@ const socials = [
 export default function BeingOnline() {
   return (
     <main
-      className="min-h-screen bg-[#1e1e1e] text-[#fdfaf9]"
+      className="min-h-screen bg-[#1e1e1e] text-[#fdfaf9] transition-colors duration-300 light:bg-[#fafafa] light:text-[#1c1c1c]"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
-      {/* ---------- Hero banner ---------- */}
-     
-      {/* ---------- Intro ---------- */}
-
       {/* ---------- Being Online Isn't Enough ---------- */}
       <section className="px-6 pb-16 pt-4 sm:px-10 md:pb-24">
         <div className="mx-auto max-w-5xl text-center">
           <h2
-            className="font-bold"
+            className="font-bold text-[#fdfaf9] light:text-[#1c1c1c]"
             style={{ fontSize: "clamp(1.65rem, 2.9vw, 3.25rem)", letterSpacing: "-0.04em" }}
           >
             Being Online Isn&apos;t Enough Anymore
           </h2>
+
           <div
-            className="mx-auto mt-5 max-w-4xl space-y-1 font-medium text-[#fdfaf9]"
+            className="mx-auto mt-5 max-w-4xl space-y-1 font-medium text-[#fdfaf9] light:text-[#555555]"
             style={{ fontSize: "clamp(0.8rem, 0.95vw, 1.05rem)", lineHeight: 1.7 }}
           >
             <p>Your website is often the first impression people have of your business.</p>
@@ -113,7 +110,7 @@ export default function BeingOnline() {
                 className="h-auto w-full object-contain"
               />
             ) : (
-              <div className="aspect-[5/3] w-full rounded-lg border border-dashed border-white/10" />
+              <div className="aspect-[5/3] w-full rounded-lg border border-dashed border-white/10 light:border-[#e5e5e5]" />
             )}
           </div>
 
@@ -125,7 +122,7 @@ export default function BeingOnline() {
                 className="h-auto w-full object-contain"
               />
             ) : (
-              <div className="aspect-square w-full rounded-lg border border-dashed border-white/10" />
+              <div className="aspect-square w-full rounded-lg border border-dashed border-white/10 light:border-[#e5e5e5]" />
             )}
           </div>
         </div>
@@ -135,14 +132,14 @@ export default function BeingOnline() {
       <section className="px-6 pb-32 pt-2 sm:px-10 md:pb-40">
         <div className="mx-auto max-w-5xl text-center">
           <h2
-            className="font-bold"
+            className="font-bold text-[#fdfaf9] light:text-[#1c1c1c]"
             style={{ fontSize: "clamp(1.5rem, 2.9vw, 3.25rem)", letterSpacing: "-0.04em" }}
           >
             We Don&apos;t Just Run Campaigns. We Create Growth Opportunities.
           </h2>
 
           <div
-            className="mt-4 space-y-0.5 font-medium text-[#d0d0d0]"
+            className="mt-4 space-y-0.5 font-medium text-[#d0d0d0] light:text-[#555555]"
             style={{ fontSize: "clamp(0.8rem, 0.95vw, 1.05rem)", lineHeight: 1.7 }}
           >
             <p>Clicks, impressions, and followers are important.</p>
@@ -154,7 +151,7 @@ export default function BeingOnline() {
             {goals.map((goal) => (
               <li
                 key={goal}
-                className="flex items-center gap-1.5 font-semibold text-[#fdfaf9]"
+                className="flex items-center gap-1.5 font-semibold text-[#fdfaf9] light:text-[#1c1c1c]"
                 style={{ fontSize: "clamp(0.75rem, 0.9vw, 1rem)" }}
               >
                 <Check className="h-3.5 w-3.5 shrink-0 text-[#f15a3a]" strokeWidth={3} />
@@ -164,7 +161,7 @@ export default function BeingOnline() {
           </ul>
 
           <p
-            className="mt-5 text-[#d0d0d0]"
+            className="mt-5 text-[#d0d0d0] light:text-[#555555]"
             style={{ fontSize: "clamp(0.75rem, 0.9vw, 1rem)", lineHeight: 1.7 }}
           >
             Every strategy we create is designed to connect marketing efforts with measurable

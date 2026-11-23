@@ -69,7 +69,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#1e1e1e] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9]">
+    <div className="min-h-screen bg-[#1e1e1e] font-['Plus_Jakarta_Sans',system-ui,sans-serif] text-[#fdfaf9] transition-colors duration-300 light:bg-[#fafafa] light:text-[#1c1c1c]">
       <link rel="stylesheet" href={FONT_URL} />
 
       {/* ================= HERO BANNER ================= */}
@@ -87,7 +87,6 @@ export default function Hero() {
           />
         )}
 
-       
         {/* Hero title */}
         <div className="relative z-10 px-4 py-14 text-center sm:py-20">
           <h1 className="text-[clamp(2rem,7vw,5.8rem)] font-bold leading-[1.1] tracking-[-0.04em] text-white">
@@ -97,23 +96,23 @@ export default function Hero() {
       </section>
 
       {/* ================= MAIN CONTENT ================= */}
-      <section className="bg-[#1e1e1e] px-6 py-16 sm:px-8 sm:py-20 lg:px-[7.2%] lg:py-[130px]">
+      <section className="bg-[#1e1e1e] px-6 py-16 transition-colors duration-300 sm:px-8 sm:py-20 lg:px-[7.2%] lg:py-[130px] light:bg-[#fafafa]">
         <div className="mx-auto grid max-w-[1600px] grid-cols-1 items-center gap-10 lg:grid-cols-[1.45fr_0.9fr] lg:gap-[6%]">
 
           {/* LEFT CONTENT */}
           <div>
-            <h2 className="text-[clamp(2.5rem,5.2vw,5rem)] font-bold leading-[1.05] tracking-[-0.045em] text-[#fdfaf9]">
+            <h2 className="text-[clamp(2.5rem,5.2vw,5rem)] font-bold leading-[1.05] tracking-[-0.045em] text-[#fdfaf9] light:text-[#1c1c1c]">
               Your Next Stage of Growth Starts
             </h2>
 
-            <h3 className="mt-5 text-[clamp(1.5rem,2.8vw,2.7rem)] font-bold leading-tight tracking-[-0.04em] text-[#a0a0a0]">
+            <h3 className="mt-5 text-[clamp(1.5rem,2.8vw,2.7rem)] font-bold leading-tight tracking-[-0.04em] text-[#a0a0a0] light:text-[#666666]">
               With the Right Application
             </h3>
           </div>
 
           {/* RIGHT CONTENT */}
           <div className="flex flex-col gap-6 lg:pt-1">
-            <p className="text-[clamp(1rem,1.15vw,1.3rem)] leading-[1.75] text-[#f0eeee]">
+            <p className="text-[clamp(1rem,1.15vw,1.3rem)] leading-[1.75] text-[#f0eeee] light:text-[#555555]">
               Custom web and mobile applications designed to streamline
               operations, improve customer experiences, and unlock new
               opportunities for growth.
@@ -134,7 +133,7 @@ export default function Hero() {
               {/* Android */}
               <div
                 title="Android Development"
-                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333]"
+                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333] light:bg-[#eeeeee] light:text-[#1c1c1c] light:hover:bg-[#e2e2e2]"
               >
                 <Smartphone size={26} strokeWidth={1.8} />
               </div>
@@ -142,18 +141,18 @@ export default function Hero() {
               {/* AWS */}
               <div
                 title="AWS Cloud"
-                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333]"
+                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333] light:bg-[#eeeeee] light:text-[#1c1c1c] light:hover:bg-[#e2e2e2]"
               >
                 <span className="relative text-[17px] font-bold tracking-tight">
                   aws
-                  <span className="absolute -bottom-1 left-0 right-0 mx-auto h-[2px] w-[22px] rounded-full bg-[#fdfaf9]" />
+                  <span className="absolute -bottom-1 left-0 right-0 mx-auto h-[2px] w-[22px] rounded-full bg-[#fdfaf9] light:bg-[#1c1c1c]" />
                 </span>
               </div>
 
               {/* App Store */}
               <div
                 title="App Store"
-                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333]"
+                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333] light:bg-[#eeeeee] light:text-[#1c1c1c] light:hover:bg-[#e2e2e2]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -173,7 +172,7 @@ export default function Hero() {
               {/* Apple */}
               <div
                 title="Apple Development"
-                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333]"
+                className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#292929] text-white transition-colors hover:bg-[#333333] light:bg-[#eeeeee] light:text-[#1c1c1c] light:hover:bg-[#e2e2e2]"
               >
                 <Apple size={25} fill="currentColor" strokeWidth={1.5} />
               </div>
@@ -182,13 +181,14 @@ export default function Hero() {
         </div>
       </section>
 
-           <section className="relative flex min-h-[700px] w-full items-center justify-center overflow-hidden bg-[#1d1d1d] px-4 py-12 sm:min-h-[850px] sm:px-8 lg:min-h-[1000px]">
+      {/* ================= TECHNOLOGY SHOWCASE ================= */}
+      <section className="relative flex min-h-[700px] w-full items-center justify-center overflow-hidden bg-[#1d1d1d] px-4 py-12 sm:min-h-[850px] sm:px-8 lg:min-h-[1000px]">
 
         {/* Enhanced technology background */}
         <img
           src="/images/Smartphone-Display-Layout.png"
           alt="Abstract orange technology background with digital engineering graphics"
-          className="absolute inset-0 h-full w-full  py-10 "
+          className="absolute inset-0 h-full w-full py-10"
         />
 
         {/* Background overlay */}
@@ -204,7 +204,6 @@ export default function Hero() {
         <div className="relative mx-auto flex w-full max-w-[1200px] items-center justify-center">
           {/* Keep your existing three phone mockups here */}
         </div>
-
       </section>
 
       {/* ================= WHATSAPP FLOATING BUTTON ================= */}

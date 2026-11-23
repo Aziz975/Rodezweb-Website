@@ -2,41 +2,53 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
 
-/* Image sources left empty until you provide the assets */
-const PROCESS_BG_IMG = "/images/process-bg.png"; // blurred red storefront background
-const COUNTER_IMG = "/images/wp-ecommerce.png"; // shop counter image with hotspots
-const PHONE_IMG = "/images/Before.png"; // Instagram profile phone mockup
+/* ---------- Image Sources ---------- */
+const PROCESS_BG_IMG = "/images/process-bg.png";
+const COUNTER_IMG = "/images/wp-ecommerce.png";
+const PHONE_IMG = "/images/Before.png";
 
-/* ---------- Shared sizing (same scale as DigitalMarketingCta / Faq) ---------- */
-const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]"; // left & right space
+/* ---------- Shared sizing ---------- */
+const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]";
 const WRAP = "mx-auto max-w-[1700px]";
 
 const headingStyle = {
   fontSize: "clamp(1.9rem, 3.6vw, 4.25rem)",
   letterSpacing: "-0.03em",
 };
+
 const bodyStyle = {
   fontSize: "clamp(0.9rem, 1.05vw, 1.25rem)",
   lineHeight: 1.7,
   letterSpacing: "-0.02em",
 };
+
 const smallStyle = {
   fontSize: "clamp(0.8rem, 0.95vw, 1.1rem)",
   lineHeight: 1.6,
   letterSpacing: "-0.02em",
 };
+
 const buttonStyle = {
   fontSize: "clamp(0.95rem, 1.1vw, 1.25rem)",
   letterSpacing: "-0.02em",
 };
 
 const steps = [
-  { title: "Discover", text: "Understanding your business, market, and goals." },
-  { title: "Strategize", text: "Building a customized growth plan." },
-  { title: "Execute", text: "Launching campaigns designed to drive results." },
+  {
+    title: "Discover",
+    text: "Understanding your business, market, and goals.",
+  },
+  {
+    title: "Strategize",
+    text: "Building a customized growth plan.",
+  },
+  {
+    title: "Execute",
+    text: "Launching campaigns designed to drive results.",
+  },
 ];
 
-/* Hotspot positions on the counter image (percent of width / height) */
+/* ---------- Hotspot positions ---------- */
 const hotspots = [
   { no: "01", left: "26%", top: "18%" },
   { no: "02", left: "63%", top: "30%" },
@@ -59,7 +71,8 @@ const results = {
       "Few inquiries and leads",
       "Limited brand awareness",
     ],
-    result: "Time and effort spent creating content, but little to no business growth.",
+    result:
+      "Time and effort spent creating content, but little to no business growth.",
   },
   after: {
     tags: ["High Reach", "Strong Engagement", "Steady Growth"],
@@ -75,7 +88,8 @@ const results = {
       "More inquiries and leads",
       "Stronger brand awareness",
     ],
-    result: "Every post supports your brand and turns attention into real business growth.",
+    result:
+      "Every post supports your brand and turns attention into real business growth.",
   },
 };
 
@@ -101,23 +115,31 @@ const HowWeHelp = () => {
           className="absolute inset-0 h-full w-full object-cover blur-[2px]"
         />
       )}
+
       <div className="absolute inset-0 bg-black/45" />
 
       <div className={`relative ${SIDE_SPACE} py-14 md:py-20 lg:py-24`}>
-        <div className={`${WRAP} flex flex-col items-center gap-8 md:flex-row md:gap-10 lg:gap-14`}>
+        <div
+          className={`${WRAP} flex flex-col items-center gap-8 md:flex-row md:gap-10 lg:gap-14`}
+        >
           {/* Intro card */}
-          <div className="w-full max-w-md rounded-md bg-[#242424] p-6 sm:p-8 md:w-[34%] md:max-w-none md:shrink-0 lg:w-[26%] lg:p-10">
+          <div className="w-full max-w-md rounded-md bg-[#242424] p-6 text-white sm:p-8 md:w-[34%] md:max-w-none md:shrink-0 lg:w-[26%] lg:p-10">
             <h2
               className="font-bold leading-[1.1]"
-              style={{ fontSize: "clamp(1.6rem, 2.6vw, 3.25rem)", letterSpacing: "-0.03em" }}
+              style={{
+                fontSize: "clamp(1.6rem, 2.6vw, 3.25rem)",
+                letterSpacing: "-0.03em",
+              }}
             >
               How We Help
               <br />
               Businesses Grow
             </h2>
+
             <p className="mt-5 text-[#fdfaf9]" style={smallStyle}>
-              Whether you&apos;re launching a new business or upgrading an existing presence, we do
-              marketing that aligns with your objectives and delivers measurable results.
+              Whether you&apos;re launching a new business or upgrading an
+              existing presence, we do marketing that aligns with your
+              objectives and delivers measurable results.
             </p>
           </div>
 
@@ -138,12 +160,14 @@ const HowWeHelp = () => {
               <div className="relative grid grid-cols-1 md:grid-cols-3 md:gap-4 lg:gap-8">
                 {visible.map((step, i) => {
                   const isMiddle = i === 1;
+
                   return (
                     <div
                       key={step.number}
                       className={`${i > 0 ? "hidden md:flex" : "flex"} flex-col items-center justify-center gap-3 md:min-h-[210px] lg:min-h-[260px]`}
                     >
                       {isMiddle && <Badge number={step.number} />}
+
                       <div
                         className={`w-full max-w-[260px] rounded-md bg-white px-5 py-5 text-center text-[#1c1c1c] shadow-lg transition-transform duration-300 hover:-translate-y-1 lg:max-w-[300px] lg:py-7 ${
                           isMiddle ? "md:translate-y-4" : "md:-translate-y-4"
@@ -151,14 +175,25 @@ const HowWeHelp = () => {
                       >
                         <h3
                           className="font-semibold"
-                          style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.4rem)", letterSpacing: "-0.02em" }}
+                          style={{
+                            fontSize: "clamp(0.95rem, 1.2vw, 1.4rem)",
+                            letterSpacing: "-0.02em",
+                          }}
                         >
                           {step.title}
                         </h3>
-                        <p className="mt-1.5 text-gray-500" style={{ ...smallStyle, fontSize: "clamp(0.72rem, 0.85vw, 1rem)" }}>
+
+                        <p
+                          className="mt-1.5 text-gray-500"
+                          style={{
+                            ...smallStyle,
+                            fontSize: "clamp(0.72rem, 0.85vw, 1rem)",
+                          }}
+                        >
                           {step.text}
                         </p>
                       </div>
+
                       {!isMiddle && <Badge number={step.number} />}
                     </div>
                   );
@@ -189,19 +224,35 @@ const Badge = ({ number }) => (
 
 /* ---------- 2. Why Businesses Choose Rodez? ---------- */
 const WhyChoose = () => (
-  <section className={`bg-[#1c1c1c] ${SIDE_SPACE} py-16 md:py-24 lg:py-28`}>
-    <div className={`${WRAP} grid items-center gap-10 md:grid-cols-2 lg:gap-20`}>
+  <section
+    className={`bg-[#1c1c1c] ${SIDE_SPACE} py-16 text-white transition-colors duration-300 md:py-24 lg:py-28 light:bg-[#fafafa] light:text-[#1c1c1c]`}
+  >
+    <div
+      className={`${WRAP} grid items-center gap-10 md:grid-cols-2 lg:gap-20`}
+    >
       {/* Text */}
       <div>
-        <h2 className="font-bold leading-[1.1]" style={headingStyle}>
+        <h2
+          className="font-bold leading-[1.1] text-[#fdfaf9] light:text-[#1c1c1c]"
+          style={headingStyle}
+        >
           Why Businesses{" "}
-          <span className="inline-block bg-[#F45132] px-3 py-0.5">Choose</span> Rodez?
+          <span className="inline-block bg-[#F45132] px-3 py-0.5 text-white">
+            Choose
+          </span>{" "}
+          Rodez?
         </h2>
-        <p className="mt-6 max-w-[620px] text-[#fdfaf9]" style={bodyStyle}>
-          A slow, outdated website can drive customers away before they even learn about your
-          business. We create stunning, high-performing websites that build trust, capture
-          attention, and turn visitors into customers.
+
+        <p
+          className="mt-6 max-w-[620px] text-[#fdfaf9] light:text-[#555555]"
+          style={bodyStyle}
+        >
+          A slow, outdated website can drive customers away before they even
+          learn about your business. We create stunning, high-performing
+          websites that build trust, capture attention, and turn visitors into
+          customers.
         </p>
+
         <Link
           to="/contact"
           className="mt-8 inline-block rounded-full bg-[#F45132] px-7 py-3 font-medium text-white transition hover:bg-white hover:text-black sm:px-8 sm:py-3.5"
@@ -220,6 +271,7 @@ const WhyChoose = () => (
             className="h-full w-full object-cover"
           />
         )}
+
         {hotspots.map((spot) => (
           <span
             key={spot.no}
@@ -240,8 +292,12 @@ const BeforeAfter = () => {
   const data = results[mode];
 
   return (
-    <section className={`bg-[#1c1c1c] ${SIDE_SPACE} pb-20 pt-4 md:pb-28`}>
-      <div className={`${WRAP} grid items-start gap-8 md:grid-cols-[minmax(0,280px)_1fr] lg:grid-cols-[minmax(0,22%)_1fr] lg:gap-16`}>
+    <section
+      className={`bg-[#1c1c1c] ${SIDE_SPACE} pb-20 pt-4 text-white transition-colors duration-300 md:pb-28 light:bg-[#fafafa] light:text-[#1c1c1c]`}
+    >
+      <div
+        className={`${WRAP} grid items-start gap-8 md:grid-cols-[minmax(0,280px)_1fr] lg:grid-cols-[minmax(0,22%)_1fr] lg:gap-16`}
+      >
         {/* Phone mockup */}
         <div className="mx-auto w-full max-w-[240px] md:max-w-none">
           <div className="aspect-[9/16] w-full overflow-hidden rounded-md bg-white">
@@ -258,18 +314,29 @@ const BeforeAfter = () => {
         {/* Content */}
         <div>
           <p
-            className="font-medium uppercase"
-            style={{ fontSize: "clamp(0.8rem, 1.05vw, 1.25rem)", letterSpacing: "-0.02em" }}
+            className="font-medium uppercase text-[#fdfaf9] light:text-[#1c1c1c]"
+            style={{
+              fontSize: "clamp(0.8rem, 1.05vw, 1.25rem)",
+              letterSpacing: "-0.02em",
+            }}
           >
             <span className="text-[#F45132]">■</span> Same Brand. Better Results.
           </p>
-          <h2 className="mt-3 font-bold leading-[1.1]" style={headingStyle}>
+
+          <h2
+            className="mt-3 font-bold leading-[1.1] text-[#fdfaf9] light:text-[#1c1c1c]"
+            style={headingStyle}
+          >
             From Invisible To Unmissable
           </h2>
-          <p className="mt-5 max-w-[900px] text-[#fdfaf9]" style={bodyStyle}>
-            The right strategy can completely change how your brand performs on Instagram.
-            Here&apos;s a glimpse of what happens when creativity meets consistency and data-driven
-            marketing.
+
+          <p
+            className="mt-5 max-w-[900px] text-[#fdfaf9] light:text-[#555555]"
+            style={bodyStyle}
+          >
+            The right strategy can completely change how your brand performs on
+            Instagram. Here&apos;s a glimpse of what happens when creativity
+            meets consistency and data-driven marketing.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:gap-4">
@@ -277,6 +344,7 @@ const BeforeAfter = () => {
             <div className="flex gap-2 sm:w-[130px] sm:shrink-0 sm:flex-col lg:w-[160px]">
               {["before", "after"].map((key) => {
                 const active = mode === key;
+
                 return (
                   <button
                     key={key}
@@ -290,7 +358,11 @@ const BeforeAfter = () => {
                     }`}
                     style={{ fontSize: "clamp(0.8rem, 0.95vw, 1.1rem)" }}
                   >
-                    {active ? <Plus size={14} strokeWidth={3} /> : <Minus size={14} strokeWidth={3} />}
+                    {active ? (
+                      <Plus size={14} strokeWidth={3} />
+                    ) : (
+                      <Minus size={14} strokeWidth={3} />
+                    )}
                     {key}
                   </button>
                 );
@@ -313,10 +385,14 @@ const BeforeAfter = () => {
 
               <h3
                 className="mt-5 font-semibold"
-                style={{ fontSize: "clamp(1rem, 1.25vw, 1.5rem)", letterSpacing: "-0.02em" }}
+                style={{
+                  fontSize: "clamp(1rem, 1.25vw, 1.5rem)",
+                  letterSpacing: "-0.02em",
+                }}
               >
                 {data.title}
               </h3>
+
               <p className="mt-2 text-gray-600" style={smallStyle}>
                 {data.intro}
               </p>
@@ -324,6 +400,7 @@ const BeforeAfter = () => {
               <p className="mt-4 font-bold" style={smallStyle}>
                 {data.listTitle}
               </p>
+
               <ul
                 className="mt-2 list-disc space-y-1 pl-5 text-gray-600 marker:text-[#F45132]"
                 style={smallStyle}
@@ -336,6 +413,7 @@ const BeforeAfter = () => {
               <p className="mt-4 font-bold" style={smallStyle}>
                 Result:
               </p>
+
               <p className="mt-1 text-gray-600" style={smallStyle}>
                 {data.result}
               </p>
@@ -349,7 +427,7 @@ const BeforeAfter = () => {
 
 /* ---------- Export ---------- */
 const WordpressProcess = () => (
-  <div className="bg-[#1c1c1c] text-white">
+  <div className="bg-[#1c1c1c] text-white transition-colors duration-300 light:bg-[#fafafa] light:text-[#1c1c1c]">
     <HowWeHelp />
     <WhyChoose />
     <BeforeAfter />

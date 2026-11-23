@@ -1,9 +1,8 @@
-
 import React, { useState } from "react";
 import { ArrowRight, PieChart, User, Navigation } from "lucide-react";
 
 /* ---------- Image Sources ---------- */
-const BANNER_IMG = ""; // Stats banner background
+const BANNER_IMG = "";
 
 /* ---------- Shared sizing ---------- */
 const SIDE_SPACE = "px-5 sm:px-8 lg:px-[7.5%]";
@@ -33,12 +32,7 @@ const cardTitleStyle = {
 
 /* ---------- Google G Icon ---------- */
 const GoogleG = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    aria-hidden="true"
-    {...props}
-  >
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
     <path d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.64 4.1-5.35 4.1-3.22 0-5.85-2.67-5.85-5.96S8.78 6.26 12 6.26c1.83 0 3.06.78 3.76 1.45l2.56-2.47C16.68 3.7 14.55 2.7 12 2.7 6.92 2.7 2.8 6.82 2.8 11.9S6.92 21.1 12 21.1c5.28 0 8.78-3.71 8.78-8.94 0-.6-.07-1.06-.15-1.06z" />
   </svg>
 );
@@ -130,10 +124,9 @@ const DigitalMarketingGrowth = () => {
 
   return (
     <section
-      className={`bg-[#1c1c1c] ${SIDE_SPACE} py-16 text-white md:py-24 lg:py-28`}
+      className={`bg-[#1c1c1c] ${SIDE_SPACE} py-16 text-white transition-colors duration-300 md:py-24 lg:py-28 light:bg-[#fafafa] light:text-[#1c1c1c]`}
     >
       <div className={WRAP}>
-
         {/* ---------- Stats Banner ---------- */}
         <div className="relative overflow-hidden rounded-md bg-gradient-to-r from-[#1a2a7a] via-[#1d3a9e] to-[#0f1f5c]">
           {BANNER_IMG && (
@@ -146,7 +139,7 @@ const DigitalMarketingGrowth = () => {
 
           <div className="absolute inset-0 bg-black/30" />
 
-          <div className="relative grid grid-cols-1 items-center gap-8 px-6 py-9 text-center sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 lg:px-10 lg:py-10">
+          <div className="relative grid grid-cols-1 items-center gap-8 px-6 py-9 text-center text-white sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 lg:px-10 lg:py-10">
             {stats.map((stat) => (
               <div key={stat.value}>
                 <h3
@@ -185,12 +178,15 @@ const DigitalMarketingGrowth = () => {
 
         {/* ---------- Growth Solutions Heading ---------- */}
         <div className="mt-16 text-center lg:mt-24">
-          <h2 className="font-bold leading-[1.1]" style={headingStyle}>
+          <h2
+            className="font-bold leading-[1.1] text-[#fdfaf9] light:text-[#1c1c1c]"
+            style={headingStyle}
+          >
             Growth Solutions Tailored To Your Business
           </h2>
 
           <p
-            className="mx-auto mt-5 max-w-[760px] text-[#fdfaf9]"
+            className="mx-auto mt-5 max-w-[760px] text-[#fdfaf9] light:text-[#555555]"
             style={bodyStyle}
           >
             No two businesses grow the same way. That&apos;s why we create
@@ -206,10 +202,8 @@ const DigitalMarketingGrowth = () => {
             return (
               <div
                 key={item.no}
-                className={`rounded-md bg-[#242424] transition-all duration-300 ${
-                  isOpen
-                    ? "p-3 sm:p-4 lg:p-5"
-                    : "sm:mx-3 lg:mx-6"
+                className={`rounded-md bg-[#242424] transition-all duration-300 light:bg-white light:border light:border-[#e5e5e5] ${
+                  isOpen ? "p-3 sm:p-4 lg:p-5" : "sm:mx-3 lg:mx-6"
                 }`}
               >
                 <button
@@ -220,7 +214,7 @@ const DigitalMarketingGrowth = () => {
                 >
                   <span className="flex items-center gap-3 lg:gap-5">
                     <span
-                      className="font-bold text-gray-300"
+                      className="font-bold text-gray-300 light:text-[#888888]"
                       style={smallStyle}
                     >
                       {item.no}
@@ -228,7 +222,9 @@ const DigitalMarketingGrowth = () => {
 
                     <span
                       className={`font-bold leading-tight ${
-                        isOpen ? "text-white" : "text-gray-200"
+                        isOpen
+                          ? "text-white light:text-[#1c1c1c]"
+                          : "text-gray-200 light:text-[#333333]"
                       }`}
                       style={cardTitleStyle}
                     >
@@ -237,7 +233,7 @@ const DigitalMarketingGrowth = () => {
                   </span>
 
                   <span
-                    className="order-3 col-span-2 text-gray-400 md:order-none md:col-span-1"
+                    className="order-3 col-span-2 text-gray-400 light:text-[#666666] md:order-none md:col-span-1"
                     style={smallStyle}
                   >
                     {item.text}
@@ -257,9 +253,7 @@ const DigitalMarketingGrowth = () => {
                 {/* ---------- Individual Service Image ---------- */}
                 <div
                   className={`grid transition-all duration-500 ${
-                    isOpen
-                      ? "grid-rows-[1fr] pt-2"
-                      : "grid-rows-[0fr]"
+                    isOpen ? "grid-rows-[1fr] pt-2" : "grid-rows-[0fr]"
                   }`}
                 >
                   <div className="overflow-hidden">
@@ -283,7 +277,7 @@ const DigitalMarketingGrowth = () => {
         {/* ---------- Benefits Heading ---------- */}
         <div className="mt-20 text-center lg:mt-32">
           <h2
-            className="mx-auto max-w-[1000px] font-bold leading-[1.1]"
+            className="mx-auto max-w-[1000px] font-bold leading-[1.1] text-[#fdfaf9] light:text-[#1c1c1c]"
             style={headingStyle}
           >
             What Effective Digital Marketing Can Do For Your Business
@@ -295,7 +289,7 @@ const DigitalMarketingGrowth = () => {
           {benefits.map(({ title, text, Icon, color, bg }) => (
             <div
               key={title}
-              className="flex flex-col items-center rounded-md bg-[#242424] px-5 py-7 text-center transition duration-300 hover:-translate-y-1 lg:px-7 lg:py-10"
+              className="flex flex-col items-center rounded-md bg-[#242424] px-5 py-7 text-center transition duration-300 hover:-translate-y-1 lg:px-7 lg:py-10 light:bg-white light:border light:border-[#e5e5e5]"
             >
               <span
                 className={`flex h-11 w-11 items-center justify-center rounded-full lg:h-14 lg:w-14 ${bg}`}
@@ -304,14 +298,14 @@ const DigitalMarketingGrowth = () => {
               </span>
 
               <h3
-                className="mt-4 font-bold leading-snug"
+                className="mt-4 font-bold leading-snug text-[#fdfaf9] light:text-[#1c1c1c]"
                 style={cardTitleStyle}
               >
                 {title}
               </h3>
 
               <p
-                className="mt-2 max-w-[280px] text-gray-400"
+                className="mt-2 max-w-[280px] text-gray-400 light:text-[#666666]"
                 style={smallStyle}
               >
                 {text}
