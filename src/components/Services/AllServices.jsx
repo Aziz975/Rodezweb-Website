@@ -127,7 +127,7 @@ const services = [
   },
 ];
 
-export default function Services() {
+export default function AllServices() {
   const heroRef = useRef(null);
   const imgRef = useRef(null);
 
