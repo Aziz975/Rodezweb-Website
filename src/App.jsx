@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import AppDevelopment from "./Pages/AppDevelopmentPage";
 import WebDevelopment from "./components/Services/WebDevelopment";
 import DigitalPage from "./Pages/DigitalPage";
@@ -8,7 +8,7 @@ import ShopifyDevelopment from "./Pages/ShopifyDevelopmentPage";
 import Home from "./Pages/HomePage";
 import ContactPage from "./components/Contact/ContactPage";
 import AboutUs from "./components/AboutUs/AboutUs";
-import Blog from "./components/Blog/Blog";
+// import Blog from "./components/Blog/Blog";
 import AllServices from "./components/Services/AllServices";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/blog" element={<Blog />} />
+        {/* <Route path="/blog" element={<Blog />} /> */}
 
         {/* Services */}
         <Route path="/services" element={<AllServices />} />
@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/services/wordpress-development" element={<WordpressPage />} />
         <Route path="/services/shopify-development" element={<ShopifyDevelopment />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 };
