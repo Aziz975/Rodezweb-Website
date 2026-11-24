@@ -17,7 +17,7 @@ const MESSAGE = " Because first impressions now happen online ";
 const HERO_IMAGE = "/images/heroimg.png";
 
 // Time (ms) the image is shown before the video starts
-const VIDEO_DELAY_MS = 5000;
+const VIDEO_DELAY_MS = 4000;
 
 const VIDEO_SRC =
   "https://www.youtube-nocookie.com/embed/Hgg7M3kSqyE?autoplay=1&mute=1&loop=1&playlist=Hgg7M3kSqyE&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3";
@@ -66,7 +66,7 @@ export default function HeroMarquee() {
           to   { transform: translateX(-50%); }
         }
         .marquee-track {
-          animation: marquee-rtl 30s linear infinite;
+          animation: marquee-rtl 60s linear infinite;
         }
         @media (max-width: 640px) {
           .marquee-track { animation-duration: 20s; }

@@ -33,25 +33,25 @@ const services = [
     title: "S.E.O",
     tags: ["On-Page SEO", "Technical SEO", "Link Building"],
     text: "We improve your search visibility with data-driven SEO strategies that bring qualified traffic and long-term organic growth.",
-    href: "/services/seo",
+    href: "/services/shopify-development",
   },
   {
     title: "Social Media Marketing",
     tags: ["Content Strategy", "Instagram", "LinkedIn"],
     text: "We build engaging social media presences that grow your audience, strengthen your brand, and turn followers into customers.",
-    href: "/services/social-media-marketing",
+    href: "/services/app-development",
   },
   {
     title: "Performance Marketing",
     tags: ["Google Ads", "Meta Ads", "Conversion Tracking"],
     text: "We run measurable paid campaigns focused on leads, sales, and return on ad spend, optimised continuously with real data.",
-    href: "/services/performance-marketing",
+    href: "/services/digital-marketing",
   },
   {
     title: "E-Commerce Solutions",
     tags: ["Store Setup", "Payment Gateway", "Product Management"],
     text: "We design and launch fast, secure online stores that make it easy for customers to browse, buy, and come back again.",
-    href: "/services/e-commerce",
+    href: "/services/wordpress-development",
   },
 ];
 
@@ -245,7 +245,7 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       className={`sv-root relative w-full font-['Manrope',sans-serif] text-[color:var(--sv-text)] ${
-        pinned ? "h-[300vh]" : ""
+        pinned ? "h-[500vh]" : ""
       }`}
     >
       <style>{`

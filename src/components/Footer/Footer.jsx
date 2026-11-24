@@ -44,7 +44,7 @@ const socials = [
   {
     name: "Facebook",
     handle: "@rodezweb",
-    href: "#",
+    href: "https://www.facebook.com/p/Rodez-Web-Technologies-100063709671838/",
     icon: <path d="M12 3a9 9 0 100 18 9 9 0 000-18zm-3 5c2 .5 3.500 2 4 4m-6 0c3-1 6 0 8 2m-7 4c1-3 3-4 6-4" />,
   },
   {
@@ -56,7 +56,7 @@ const socials = [
   {
     name: "Instagram",
     handle: "@rodezweb",
-    href: "#",
+    href: "https://www.instagram.com/rodezweb/",
     icon: (
       <>
         <rect x="5" y="5" width="14" height="14" rx="4" />
@@ -68,13 +68,13 @@ const socials = [
   {
     name: "Linkedin",
     handle: "@rodez-web-technologies",
-    href: "#",
+    href: "https://www.linkedin.com/company/rodez-web-technologies/posts/?feedView=all",
     icon: <path d="M7 10v7M7 7v.01M11 17v-7m0 3c0-2 1.500-3 3-3s3 1 3 3v4" />,
   },
 ];
 
 const Caret = () => (
-  <svg viewBox="0 0 10 6" className="ml-1.5 inline-block h-1.5 w-2 fill-current" aria-hidden="true">
+  <svg viewBox="0 0 10 6" className="ml-1.5 inline-block h-2 w-2 fill-current" aria-hidden="true">
     <path d="M0 0h10L5 6z" />
   </svg>
 );
@@ -93,14 +93,14 @@ export default function Footer() {
       <div className="relative mx-auto w-full max-w-[1100px] px-5 pb-14 pt-14 sm:px-6 lg:pt-20">
         {/* Heading */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-          <h2 className="text-[clamp(2rem,5vw,3.6rem)] font-medium leading-[1.3] tracking-tight">
+          <h2 className="text-[clamp(2.2rem,5.3vw,3.9rem)] font-medium leading-[1.3] tracking-tight">
             Got a <span className="font-extrabold">PROJECT</span>
             <br className="hidden sm:block" />
             <span className="font-extrabold sm:ml-2">IN MIND?</span>
           </h2>
           <a
             href="/contact"
-            className="rounded-full border border-white/70 px-7 py-2.5 text-[14px] font-medium text-white transition hover:bg-white hover:text-black sm:px-8 sm:text-[16px]"
+            className="rounded-full border border-white/70 px-7 py-3 text-[15px] font-medium text-white transition hover:bg-white hover:text-black sm:px-8 sm:text-[17px]"
           >
             Let&apos;s Talk
           </a>
@@ -110,9 +110,9 @@ export default function Footer() {
         <div className="mt-12 grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:mt-14 lg:grid-cols-5">
           {offices.map((o) => (
             <div key={o.title} className="border-t border-white/80 pt-4">
-              <h3 className="text-[16px] font-normal text-[#f5431f]">{o.title}</h3>
-              <p className="mt-1 text-[14px] font-medium">{o.city}</p>
-              <address className="mt-1 text-[12px] not-italic leading-[1.55] text-white/60">
+              <h3 className="text-[17px] font-normal text-[#f5431f]">{o.title}</h3>
+              <p className="mt-1 text-[15px] font-semibold">{o.city}</p>
+              <address className="mt-1 text-[13.5px] not-italic leading-[1.65] text-white/65">
                 {o.lines.map((l) => (
                   <span key={l} className="block">
                     {l}
@@ -125,9 +125,9 @@ export default function Footer() {
 
         {/* International */}
         <div className="mt-8 border-t border-white/80 pt-5 lg:mt-0 lg:border-t-0">
-          <h3 className="text-[16px] font-normal text-[#f5431f]">International Branch Office</h3>
-          <p className="mt-1 text-[14px] font-medium">Dubai, U.A.E.</p>
-          <address className="mt-1 text-[12px] not-italic leading-[1.55] text-white/60">
+          <h3 className="text-[17px] font-normal text-[#f5431f]">International Branch Office</h3>
+          <p className="mt-1 text-[15px] font-semibold">Dubai, U.A.E.</p>
+          <address className="mt-1 text-[13.5px] not-italic leading-[1.65] text-white/65">
             {["T-06 ,R-Floor", "Sheikha building", "Al Ras , Dubai", "UAE"].map((l) => (
               <span key={l} className="block">
                 {l}
@@ -139,8 +139,8 @@ export default function Footer() {
         {/* Services / Contact / Quick link */}
         <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6">
           <div>
-            <h3 className="text-[17px] font-normal text-[#f5431f]">Services</h3>
-            <ul className="mt-2 flex flex-col gap-2.5 text-[13px] text-white/60">
+            <h3 className="text-[18px] font-normal text-[#f5431f]">Services</h3>
+            <ul className="mt-3 flex flex-col gap-3 text-[14px] text-white/65">
               {links.map((l, i) => (
                 <li key={l.label}>
                   <a href={l.href} className={`transition hover:text-white ${i === 0 ? "font-semibold text-white" : ""}`}>
@@ -153,24 +153,24 @@ export default function Footer() {
           </div>
 
           <div className="sm:text-center">
-            <h3 className="text-[17px] font-normal text-[#f5431f]">Contact Us</h3>
-            <p className="mt-2 text-[13px]">
+            <h3 className="text-[18px] font-normal text-[#f5431f]">Contact Us</h3>
+            <p className="mt-3 text-[14px]">
               <span className="font-bold">Email:</span>{" "}
-              <a href="mailto:info@rodezweb.com" className="text-white/70 hover:text-white">
+              <a href="mailto:info@rodezweb.com" className="text-white/75 hover:text-white">
                 info@rodezweb.com
               </a>
             </p>
-            <p className="mt-1.5 text-[13px]">
+            <p className="mt-2 text-[14px]">
               <span className="font-bold">Phone No.:</span>{" "}
-              <a href="tel:+918149845323" className="text-white/70 hover:text-white">
+              <a href="tel:+918149845323" className="text-white/75 hover:text-white">
                 +91-81498 45323
               </a>
             </p>
           </div>
 
           <div className="sm:text-right">
-            <h3 className="text-[17px] font-normal text-[#f5431f]">Quick link</h3>
-            <ul className="mt-2 flex flex-col gap-2.5 text-[13px] text-white/60 sm:items-end">
+            <h3 className="text-[18px] font-normal text-[#f5431f]">Quick link</h3>
+            <ul className="mt-3 flex flex-col gap-3 text-[14px] text-white/65 sm:items-end">
               {links.map((l, i) => (
                 <li key={l.label}>
                   <a href={l.href} className={`transition hover:text-white ${i === 0 ? "font-semibold text-white" : ""}`}>
@@ -188,15 +188,15 @@ export default function Footer() {
           {socials.map((s) => (
             <div key={s.name} className="flex items-start justify-between gap-4 lg:pr-4">
               <div>
-                <h3 className="text-[17px] font-normal text-[#f5431f]">{s.name}</h3>
-                <p className="mt-1 text-[12px] text-white/60">{s.handle}</p>
+                <h3 className="text-[18px] font-normal text-[#f5431f]">{s.name}</h3>
+                <p className="mt-1 text-[13px] text-white/65">{s.handle}</p>
               </div>
               <a
                 href={s.href}
                 aria-label={s.name}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white/70 transition hover:bg-[#f5431f] hover:text-white"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 text-white/75 transition hover:bg-[#f5431f] hover:text-white"
               >
-                <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-[19px] w-[19px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   {s.icon}
                 </svg>
               </a>
@@ -207,7 +207,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="relative bg-[#2b2b2b]">
-        <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center justify-between gap-3 px-5 py-5 text-[12px] text-white/70 sm:px-6 md:flex-row">
+        <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center justify-between gap-3 px-5 py-5 text-[13px] text-white/70 sm:px-6 md:flex-row">
           <p>©2026 Rodez Web Technologies. All Rights Reserved.</p>
           <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             {links.map((l, i) => (

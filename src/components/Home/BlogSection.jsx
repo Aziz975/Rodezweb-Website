@@ -9,7 +9,7 @@ const posts = [
       "Website Redesign Services in Noida to Improve User Experience and Conversions | Rodez Web Technology",
     date: "Oct 27, 2026",
     image: "images/image2.png",
-    href: "/blog/website-redesign-services-in-noida",
+    href: "/services/web-development",
   },
   {
     category: "Business",
