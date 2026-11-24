@@ -67,38 +67,44 @@ export default function AppGrowthSection() {
       </div>
 
       {/* ================= BOTTOM CONTENT ================= */}
-      <div className={`${SIDE_SPACE} pb-16 sm:pb-20 lg:pb-28`}>
-        <div className={`${WRAP} text-center`}>
-          <h2 className="mx-auto max-w-[1400px] font-bold leading-[1.1]" style={headingStyle}>
-            We Don’t Just Build Apps. We Build Growth Engines.
-          </h2>
-
-          <div className="mx-auto mt-6 max-w-[1000px] text-[#fdfaf9] light:text-[#555555]" style={bodyStyle}>
-            <p>An application shouldn&apos;t be another business expense.</p>
-            <p className="mt-1 font-semibold light:text-[#1c1c1c]">It should:</p>
-          </div>
-
-          {/* ================= BENEFITS ================= */}
-          <div className="mx-auto mt-6 flex max-w-[1400px] flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:gap-x-9">
-            {benefits.map((benefit) => (
-              <div
-                key={benefit}
-                className="flex items-center gap-2 font-semibold text-[#fdfaf9] light:text-[#1c1c1c]"
-                style={smallStyle}
-              >
-                <span className="text-[#F45132]">✓</span>
-                <span>{benefit}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* ================= FINAL TEXT ================= */}
-          <p className="mx-auto mt-8 max-w-[1100px] text-gray-300 light:text-[#666666]" style={smallStyle}>
-            At Rodex Web Technologies, every application is designed around business outcomes—not
-            just features.
-          </p>
-        </div>
-      </div>
+      
     </section>
   );
 }
+
+
+      {/* ================= BOTTOM CONTENT ================= */}
+
+
+// <div className={`${SIDE_SPACE} pb-16 sm:pb-20 lg:pb-28`}>
+//         <div className={`${WRAP} text-center`}>
+//           <h2 className="mx-auto max-w-[1400px] font-bold leading-[1.1]" style={headingStyle}>
+//             We Don’t Just Build Apps. We Build Growth Engines.
+//           </h2>
+
+//           <div className="mx-auto mt-6 max-w-[1000px] text-[#fdfaf9] light:text-[#555555]" style={bodyStyle}>
+//             <p>An application shouldn&apos;t be another business expense.</p>
+//             <p className="mt-1 font-semibold light:text-[#1c1c1c]">It should:</p>
+//           </div>
+
+//           {/* ================= BENEFITS ================= */}
+//           <div className="mx-auto mt-6 flex max-w-[1400px] flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:gap-x-9">
+//             {benefits.map((benefit) => (
+//               <div
+//                 key={benefit}
+//                 className="flex items-center gap-2 font-semibold text-[#fdfaf9] light:text-[#1c1c1c]"
+//                 style={smallStyle}
+//               >
+//                 <span className="text-[#F45132]">✓</span>
+//                 <span>{benefit}</span>
+//               </div>
+//             ))}
+//           </div>
+
+//           {/* ================= FINAL TEXT ================= */}
+//           <p className="mx-auto mt-8 max-w-[1100px] text-gray-300 light:text-[#666666]" style={smallStyle}>
+//             At Rodex Web Technologies, every application is designed around business outcomes—not
+//             just features.
+//           </p>
+//         </div>
+//       </div>
