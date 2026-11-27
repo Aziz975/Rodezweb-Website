@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
@@ -5,22 +6,8 @@ import {
   useReducedMotion,
   useScroll,
   useTransform,
+  useMotionValueEvent,
 } from "framer-motion";
-
-/*
-  Services section – pinned scroll sequence (desktop).
-
-  1. Page scrolls normally until this section fully fills the screen.
-     At that moment the robot background is NOT visible yet.
-  2. The section then stays pinned (constant) while you keep scrolling,
-     and the robot image rises from the bottom, passes through the
-     screen and leaves from the top.
-  3. Once the robot has gone, the pin is released and the page
-     continues scrolling as usual.
-
-  On mobile / tablet the section scrolls normally with a static
-  background (a pinned screen would clip the stacked content).
-*/
 
 const services = [
   {
@@ -70,7 +57,6 @@ const ArrowRight = () => (
   </svg>
 );
 
-/* Service detail content */
 function Detail({ service, reduceMotion }) {
   return (
     <motion.div
@@ -86,14 +72,13 @@ function Detail({ service, reduceMotion }) {
       }}
       exit={{
         opacity: 0,
-        y: reduceMotion ? 0 : -15,
+        y: reduceMotion ? 0 : -20,
         filter: reduceMotion ? "none" : "blur(4px)",
       }}
       transition={{
         duration: reduceMotion ? 0 : 0.4,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="sv-fade"
     >
       <div className="flex flex-wrap gap-3 sm:gap-4">
         {service.tags.map((tag, index) => (
@@ -135,52 +120,64 @@ function Detail({ service, reduceMotion }) {
 
 export default function ServicesSection() {
   const [active, setActive] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
 
   const sectionRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
 
-  /* Pinned scroll effect only on large screens, and not for reduced motion */
   const pinned = isDesktop && !shouldReduceMotion;
 
+  // Detect desktop screens
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
+
     const update = () => setIsDesktop(mq.matches);
+
     update();
+
     mq.addEventListener("change", update);
+
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  /*
-    Scroll progress of the tall outer wrapper:
-    0 -> wrapper top touches viewport top (section fully on screen)
-    1 -> wrapper bottom touches viewport bottom (pin is released)
-  */
+  // Track the complete pinned scroll sequence
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  /* Robot: starts below the screen, rises, and leaves through the top */
+  // Robot enters from bottom and moves towards top
   const robotY = useTransform(
     scrollYProgress,
     [0, 1],
-    ["100%", "-100%"]
+    ["100vh", "-100vh"]
   );
 
-  /*
-    Replay entrance animations every time the section
-    enters the viewport after being outside it.
-  */
+  // Change service automatically while scrolling
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (!pinned) return;
+
+    const index = Math.min(
+      services.length - 1,
+      Math.floor(progress * services.length)
+    );
+
+    setActive(index);
+  });
+
+  // Reset the first service when section is entered again
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimationKey((prev) => prev + 1);
+        if (
+          entry.isIntersecting &&
+          entry.intersectionRatio > 0 &&
+          entry.boundingClientRect.top >= 0
+        ) {
+          setActive(0);
         }
       },
       { threshold: 0 }
@@ -191,101 +188,45 @@ export default function ServicesSection() {
     return () => observer.disconnect();
   }, []);
 
-  /* Main section entrance */
-  const sectionVariants = {
-    hidden: {
-      opacity: 0,
-      y: shouldReduceMotion ? 0 : 35,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  /* Staggered service list entrance */
-  const listItemVariants = {
-    hidden: {
-      opacity: 0,
-      x: shouldReduceMotion ? 0 : -45,
-    },
-    visible: (index) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.65,
-        delay: shouldReduceMotion ? 0 : 0.12 + index * 0.12,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
-  };
-
-  /* Number animation */
-  const numberVariants = {
-    hidden: {
-      opacity: 0,
-      scale: shouldReduceMotion ? 1 : 0.7,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    /* Tall outer wrapper = the scroll distance of the pinned sequence */
     <section
       ref={sectionRef}
       className={`sv-root relative w-full font-['Manrope',sans-serif] text-[color:var(--sv-text)] ${
-        pinned ? "h-[500vh]" : ""
+        pinned ? "h-[600vh]" : ""
       }`}
     >
       <style>{`
-        /* ---------- Dark mode (default) ---------- */
         .sv-root {
           --sv-bg: #050608;
           --sv-text: #ffffff;
-          --sv-num-active: rgba(255, 255, 255, 0.8);
-          --sv-num-idle: rgba(255, 255, 255, 0.4);
-          --sv-title-idle: rgba(255, 255, 255, 0.45);
-          --sv-title-hover: rgba(255, 255, 255, 0.7);
+          --sv-num-active: rgba(255,255,255,.9);
+          --sv-num-idle: rgba(255,255,255,.35);
+          --sv-title-idle: rgba(255,255,255,.38);
+          --sv-title-hover: rgba(255,255,255,.75);
           --sv-chip: #f1f1f1;
           --sv-chip-text: #1c1c1c;
-          --sv-overlay: linear-gradient(rgba(5, 6, 8, 0.82), rgba(5, 6, 8, 0.7));
 
           background-color: var(--sv-bg);
-          transition:
-            background-color .3s ease,
-            color .3s ease;
+          overflow: clip;
         }
 
-        /* ---------- Bright mode ---------- */
         html.light .sv-root {
           --sv-bg: #ffffff;
           --sv-text: #1c1c1c;
-          --sv-num-active: rgba(28, 28, 28, 0.8);
-          --sv-num-idle: rgba(28, 28, 28, 0.35);
-          --sv-title-idle: rgba(28, 28, 28, 0.4);
-          --sv-title-hover: rgba(28, 28, 28, 0.7);
+          --sv-num-active: rgba(28,28,28,.85);
+          --sv-num-idle: rgba(28,28,28,.3);
+          --sv-title-idle: rgba(28,28,28,.35);
+          --sv-title-hover: rgba(28,28,28,.7);
           --sv-chip: #1c1c1c;
           --sv-chip-text: #ffffff;
-          --sv-overlay: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.55));
+        }
+
+        .sv-service-button {
+          transition: color .35s ease, opacity .35s ease;
         }
 
         .sv-title-idle:hover {
           color: var(--sv-title-hover);
-        }
-
-        .sv-service-button {
-          transition: color .3s ease;
         }
 
         .sv-service-button:hover .sv-service-number {
@@ -293,128 +234,195 @@ export default function ServicesSection() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .sv-root {
-            transition: none !important;
-          }
-
-          .sv-service-button,
-          .sv-fade {
-            transition: none !important;
+          .sv-root *,
+          .sv-root *::before,
+          .sv-root *::after {
             animation: none !important;
+            transition: none !important;
           }
         }
       `}</style>
 
-      {/* Sticky stage: stays fixed on screen while the wrapper scrolls */}
+      {/* Sticky screen */}
       <div
-        className={`relative isolate w-full overflow-hidden py-14 sm:py-20 lg:py-0 ${
+        className={`relative isolate w-full overflow-hidden ${
           pinned
-            ? "sticky top-0 flex h-screen items-center"
-            : ""
+            ? "sticky top-0 flex h-screen min-h-screen items-center"
+            : "py-14 sm:py-20"
         }`}
+       
       >
-        {/* Robot background layer (moves up with scroll) */}
-        <motion.div
-          aria-hidden="true"
-          style={pinned ? { y: robotY } : undefined}
-          className="pointer-events-none absolute inset-0 -z-10"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/images/robot-bg.jpg')" }}
-          />
-         
-        </motion.div>
 
-        <div className="relative mx-auto grid w-full max-w-[1300px] gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16">
-
-          {/* Left: numbered service list */}
-          <motion.ul
-            key={`service-list-${animationKey}`}
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col gap-6 sm:gap-8 lg:gap-9"
+        {/* FULL SCREEN ROBOT BACKGROUND */}
+        {pinned && (
+          <motion.div
+            aria-hidden="true"
+            style={{
+              y: robotY,
+              width: "100vw",
+              height: "100vh",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+            className="pointer-events-none z-0 flex items-center justify-center"
           >
-            {services.map((service, i) => {
-              const isActive = i === active;
+            <img
+              src="/images/robot-bg.jpg"
+              alt=""
+              draggable="false"
+              className="block h-full w-full"
+              style={{
+                width: "100%",
+                height: "180%",
+                objectFit: "cover",
+                objectPosition: "center center",
+                maxWidth: "none",
+              }}
+            />
+          </motion.div>
+        )}
 
-              return (
-                <motion.li
-                  key={service.title}
-                  custom={i}
-                  variants={listItemVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <motion.button
-                    type="button"
-                    onClick={() => setActive(i)}
-                    onMouseEnter={() => setActive(i)}
-                    onFocus={() => setActive(i)}
-                    aria-pressed={isActive}
-                    whileHover={
-                      shouldReduceMotion ? undefined : { x: 7 }
-                    }
-                    className="sv-service-button flex w-full items-start gap-4 text-left sm:gap-5"
+
+        {/* Main content */}
+        <div className="relative z-10 mx-auto grid w-full max-w-[1300px] gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16">
+
+          {/* Left: Services list */}
+          <div className="flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.7 }}
+              className="mb-9"
+            >
+              <span className="mb-4 block text-sm font-semibold uppercase tracking-[.25em] text-[#f05a2d]">
+                What We Do
+              </span>
+
+              <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">
+                Our Services
+              </h2>
+            </motion.div>
+
+            <ul className="flex flex-col gap-6 sm:gap-8 lg:gap-9">
+              {services.map((service, i) => {
+                const isActive = i === active;
+                const isPassed = i < active;
+
+                return (
+                  <motion.li
+                    key={service.title}
+                    initial={{
+                      opacity: 0,
+                      x: shouldReduceMotion ? 0 : -35,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    viewport={{ once: false }}
+                    transition={{
+                      duration: 0.55,
+                      delay: i * 0.08,
+                    }}
                   >
-                    {/* Number */}
-                    <motion.span
-                      variants={numberVariants}
-                      initial="hidden"
-                      animate="visible"
-                      className={`sv-service-number w-8 shrink-0 pt-[0.55em] text-[clamp(1.1rem,2.3vw,2.4rem)] font-light leading-none transition-colors duration-300 sm:w-12 lg:w-14 ${
-                        isActive
-                          ? "text-[color:var(--sv-num-active)]"
-                          : "text-[color:var(--sv-num-idle)]"
-                      }`}
+                    <motion.button
+                      type="button"
+                      onClick={() => setActive(i)}
+                      onMouseEnter={() => {
+                        if (!pinned) setActive(i);
+                      }}
+                      onFocus={() => setActive(i)}
+                      aria-pressed={isActive}
+                      whileHover={
+                        shouldReduceMotion ? undefined : { x: 7 }
+                      }
+                      className="sv-service-button flex w-full items-start gap-4 text-left sm:gap-5"
+                      style={{
+                        opacity: isActive ? 1 : isPassed ? 0.58 : 0.32,
+                      }}
                     >
-                      {String(i + 1).padStart(2, "0")}
-                    </motion.span>
+                      {/* Number */}
+                      <span
+                        className="sv-service-number w-8 shrink-0 pt-[.55em] text-[clamp(1.1rem,2.3vw,2.4rem)] font-light leading-none transition-colors duration-300 sm:w-12 lg:w-14"
+                        style={{
+                          color: isActive
+                            ? "var(--sv-num-active)"
+                            : "var(--sv-num-idle)",
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
 
-                    {/* Service title */}
-                    <span
-                      className={`text-[clamp(1.6rem,3.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight transition-colors duration-300 ${
-                        isActive
-                          ? "text-[color:var(--sv-text)]"
-                          : "sv-title-idle text-[color:var(--sv-title-idle)]"
-                      }`}
-                    >
-                      {service.title}
-                    </span>
-                  </motion.button>
+                      {/* Title */}
+                      <span
+                        className="text-[clamp(1.4rem,3vw,3.2rem)] font-bold leading-[1.05] tracking-tight transition-colors duration-300"
+                        style={{
+                          color: isActive
+                            ? "var(--sv-text)"
+                            : "var(--sv-title-idle)",
+                        }}
+                      >
+                        {service.title}
+                      </span>
 
-                  {/* Mobile / tablet detail */}
-                  <div className="mt-5 pl-12 sm:pl-[68px] lg:hidden">
-                    <AnimatePresence mode="wait" initial={false}>
-                      {isActive && (
-                        <Detail
-                          key={`${service.title}-${animationKey}`}
-                          service={service}
-                          reduceMotion={shouldReduceMotion}
-                        />
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </motion.li>
-              );
-            })}
-          </motion.ul>
+                    </motion.button>
 
-          {/* Right: desktop detail panel */}
-          <div className="hidden lg:flex lg:items-center">
-            <AnimatePresence mode="wait" initial={false}>
-              <Detail
-                key={`${active}-${animationKey}`}
-                service={services[active]}
-                reduceMotion={shouldReduceMotion}
-              />
-            </AnimatePresence>
+                    {/* Mobile service details */}
+                    <div className="mt-5 pl-12 sm:pl-[68px] lg:hidden">
+                      <AnimatePresence mode="wait" initial={false}>
+                        {isActive && (
+                          <Detail
+                            key={service.title}
+                            service={service}
+                            reduceMotion={shouldReduceMotion}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </motion.li>
+                );
+              })}
+            </ul>
           </div>
 
+          {/* Right: Desktop service details */}
+          <div className="hidden lg:flex lg:items-center">
+            <div className="w-full">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active}
+                  className="w-full"
+                  initial={{
+                    opacity: 0,
+                    x: shouldReduceMotion ? 0 : 30,
+                    filter: shouldReduceMotion ? "none" : "blur(5px)",
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                    filter: "blur(0px)",
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: shouldReduceMotion ? 0 : -20,
+                    filter: shouldReduceMotion ? "none" : "blur(4px)",
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <Detail
+                    service={services[active]}
+                    reduceMotion={shouldReduceMotion}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
+
+        
       </div>
     </section>
   );
 }
-

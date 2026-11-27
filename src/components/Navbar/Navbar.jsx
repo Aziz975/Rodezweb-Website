@@ -106,12 +106,12 @@ const Navbar = () => {
           />
 
           <span className="text-sm font-semibold sm:text-base">
-            Rodex Web Technologies
+            Rodez Web Technologies
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="ml-10 hidden flex-1 items-center gap-x-8 pl-8 lg:flex xl:gap-x-[55px] xl:pl-[70px]">
+        <ul className="ml-40 hidden flex-1 items-center gap-x-8 pl-8 lg:flex xl:gap-x-[55px] xl:pl-[70px]">
 
           {links.map((link) => (
             <li
@@ -126,7 +126,7 @@ const Navbar = () => {
             >
               <Link
                 to={link.href}
-                className="flex items-center gap-1 whitespace-nowrap text-[17px] text-white transition-colors hover:text-[#e8552d] xl:text-[19px]"
+                className="flex items-center gap-1 whitespace-nowrap text-[15px] text-white transition-colors hover:text-[#e8552d] xl:text-[17px]"
               >
                 {link.label}
 

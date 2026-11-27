@@ -19,9 +19,7 @@ const HERO_IMAGE = "/images/heroimg.png";
 // Time (ms) the image is shown before the video starts
 const VIDEO_DELAY_MS = 4000;
 
-const VIDEO_SRC =
-  "https://www.youtube-nocookie.com/embed/Hgg7M3kSqyE?autoplay=1&mute=1&loop=1&playlist=Hgg7M3kSqyE&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3";
-
+const VIDEO_SRC = "https://www.youtube.com/embed/Hgg7M3kSqyE?autoplay=1&mute=1&loop=1&playlist=Hgg7M3kSqyE&controls=0&playsinline=1";
 // One "group" = the message repeated with a hollow-circle separator.
 // Two identical groups are rendered so the loop is seamless (-50% translate).
 function MarqueeGroup({ ariaHidden = false }) {
@@ -87,14 +85,13 @@ export default function HeroMarquee() {
       {/* Background video — YouTube embed, mounted only after the delay */}
       {startVideo && (
         <div
-          className={`pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-1000 ${
-            videoReady ? "opacity-100" : "opacity-0"
-          }`}
+          className={`pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-1000 ${videoReady ? "opacity-100" : "opacity-0"
+            }`}
         >
           <iframe
             src={VIDEO_SRC}
             title="Background video"
-            allow="autoplay; encrypted-media; picture-in-picture"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
             referrerPolicy="strict-origin-when-cross-origin"
             tabIndex={-1}
             aria-hidden="true"
