@@ -710,7 +710,7 @@ export default function AboutUs() {
 
       {/* WHATSAPP FLOATING BUTTON */}
 
-      <motion.a
+      {/* <motion.a
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
@@ -786,7 +786,7 @@ export default function AboutUs() {
           Get Free Consultation for the Project !
         </span>
 
-      </motion.a>
+      </motion.a> */}
 
     </div>
   );
